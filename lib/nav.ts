@@ -1,32 +1,31 @@
-export type NavItem = { readonly label: string; readonly href: string };
+export type NavLink = { href: string; label: string };
 
-export const PRIMARY_NAV: readonly NavItem[] = [
-  { label: "Services", href: "/services" },
-  { label: "Prices", href: "/menu" },
-  { label: "Team", href: "/team" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-] as const;
+/** Primary header navigation. Kept deliberately short — Haze-style restraint. */
+export const PRIMARY_NAV: readonly NavLink[] = [
+  { href: "/services", label: "Services" },
+  { href: "/menu", label: "Prices" },
+  { href: "/team", label: "Our Team" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "Our Story" },
+  { href: "/contact", label: "Contact" },
+];
 
-// Zazou-style discovery links — surfaced in the footer so visitors can reach
-// the deeper, informational pages (story, team, work, locations) at a glance.
-export const FOOTER_EXPLORE: readonly NavItem[] = [
-  { label: "Our Story", href: "/about" },
-  { label: "The Team", href: "/team" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Locations", href: "/locations" },
-  { label: "Journal", href: "/blog" },
-] as const;
+/**
+ * Grouped footer, in the spirit of Zazou's Salon / Locations / Academy columns.
+ * Megas has no training academy, so that column becomes "Visit".
+ */
+export const FOOTER_SALON: readonly NavLink[] = [
+  { href: "/about", label: "Our Story" },
+  { href: "/team", label: "Our Team" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/reviews", label: "Reviews" },
+  { href: "/blog", label: "Journal" },
+];
 
-export const FOOTER_SERVICES: readonly NavItem[] = [
-  { label: "Balayage", href: "/services/balayage-coquitlam" },
-  { label: "Blonde Specialist", href: "/services/blonde-specialist-coquitlam" },
-  { label: "Precision Cut", href: "/services/precision-haircut-coquitlam" },
-  { label: "Hair Color", href: "/services/hair-color-coquitlam" },
-  { label: "Keratin Treatment", href: "/services/keratin-treatment-coquitlam" },
-  { label: "Blow Dry", href: "/services/blow-dry-coquitlam" },
-  { label: "Root Touch Up", href: "/services/root-touch-up-coquitlam" },
-  { label: "Restorative Treatment", href: "/services/restorative-treatment-coquitlam" },
-] as const;
+export const FOOTER_VISIT: readonly NavLink[] = [
+  { href: "/areas/hair-salon-coquitlam", label: "Coquitlam" },
+  { href: "/areas/hair-salon-port-moody", label: "Port Moody" },
+  { href: "/areas/hair-salon-port-coquitlam", label: "Port Coquitlam" },
+  { href: "/areas/turkish-hair-salon-vancouver", label: "Vancouver" },
+  { href: "/contact", label: "Hours & directions" },
+];

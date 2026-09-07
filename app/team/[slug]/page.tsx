@@ -1,274 +1,182 @@
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
-import { personSchema } from "@/lib/schema";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
+import { CtaBand } from "@/components/sections/CtaBand";
+import { ServiceCard } from "@/components/sections/ServicesGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PageHero } from "@/components/sections/PageHero";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { CtaButton } from "@/components/ui/CtaButton";
+import { BookButton, ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { TEAM, getTeamMember } from "@/lib/team";
-import { SERVICES } from "@/lib/services";
-import { BOOKING } from "@/lib/constants";
+import { Reveal } from "@/components/ui/Reveal";
+import { getService } from "@/lib/services";
+import { getTeamMember, TEAM } from "@/lib/team";
+import { personSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return TEAM.map((p) => ({ slug: p.slug }));
+export function generateStaticParams() {
+  return TEAM.map((member) => ({ slug: member.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const person = getTeamMember(slug);
-  if (!person) return {};
-  return pageMetadata({
-    title: person.metaTitle,
-    description: person.metaDescription,
-    path: `/team/${slug}`,
+  const member = getTeamMember(slug);
+  if (!member) return {};
+
+  return pageMeta({
+    title: member.metaTitle,
+    description: member.metaDescription,
+    path: `/team/${member.slug}`,
+    image: member.portrait,
   });
 }
 
 export default async function TeamMemberPage({ params }: Params) {
   const { slug } = await params;
-  const person = getTeamMember(slug);
-  if (!person) notFound();
+  const member = getTeamMember(slug);
+  if (!member) notFound();
 
-  const others = TEAM.filter((p) => p.slug !== slug);
-  const relatedServices = person.relatedServices
-    .map((s) => SERVICES.find((svc) => svc.slug === s))
-    .filter((s): s is NonNullable<typeof s> => !!s);
+  const services = member.relatedServices.map(getService).filter((s) => s !== undefined);
 
   return (
     <>
-      <JsonLd
-        data={personSchema({
-          name: person.name,
-          alternateName: person.alternateName,
-          jobTitle: person.title,
-          slug: person.slug,
-          image: person.portrait,
-          knowsAbout: person.knowsAbout ? [...person.knowsAbout] : undefined,
-        })}
-      />
-
-      <PageHero
-        breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "Team", href: "/team" },
-          { name: person.name },
+      <Breadcrumbs
+        trail={[
+          { name: "Our Team", path: "/team" },
+          { name: member.name, path: `/team/${member.slug}` },
         ]}
-        eyebrow={person.eyebrow}
-        title={person.h1}
-        subhead={person.title}
       />
 
-      {/* Portrait + bio */}
-      <section
-        className="mx-auto px-6 md:px-10 py-10 md:py-14"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-start">
-          <FadeIn className="relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
-            <Image
-              src={person.portrait}
-              alt={person.portraitAlt}
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              priority
-              className="object-cover"
-            />
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <Eyebrow>Bio</Eyebrow>
-            <p
-              className="mt-5 text-lg md:text-xl text-foreground"
-              style={{ lineHeight: "var(--leading-body)" }}
-            >
-              {person.bio}
-            </p>
+      <section className="shell pt-10 md:pt-14">
+        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          <Reveal className="lg:col-span-5">
+            <div className="relative aspect-3/4 overflow-hidden rounded-sm bg-clay">
+              <Image
+                src={member.portrait}
+                alt={member.portraitAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
 
-            <div className="mt-10">
-              <Eyebrow>Specialities</Eyebrow>
-              <ul className="mt-4 space-y-2 md:text-lg text-muted">
-                {person.specialties.map((s) => (
-                  <li key={s} className="flex gap-3">
-                    <span className="text-accent" aria-hidden="true">
-                      ·
-                    </span>
-                    <span>{s}</span>
+          <Reveal delay={120} className="lg:col-span-7">
+            <Eyebrow className="mb-5">
+              {member.title}
+              {member.years !== null && ` · ${member.years} years`}
+            </Eyebrow>
+            <h1 className="text-title text-balance">{member.headline}</h1>
+
+            <p className="mt-7 text-lede text-pretty text-muted">{member.bio}</p>
+
+            {member.isPlaceholder && (
+              <p className="mt-6 rounded-sm border border-copper/25 bg-sand px-5 py-4 text-sm text-muted">
+                A full profile for {member.name} — training, specialties, and featured work —
+                is being written. Booking is already open.
+              </p>
+            )}
+
+            <div className="mt-8 rule pt-6">
+              <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
+                Specialties
+              </h2>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {member.specialties.map((specialty) => (
+                  <li
+                    key={specialty}
+                    className="rounded-full border border-ink/15 px-4 py-1.5 text-sm text-ink"
+                  >
+                    {specialty}
                   </li>
                 ))}
               </ul>
+              {member.level && (
+                <p className="mt-4 text-xs tracking-wide text-muted">
+                  Booking level: {member.level}
+                </p>
+              )}
             </div>
 
-            <div className="mt-10">
-              <CtaButton href={BOOKING.url} external>
-                Book an appointment with {person.name}
-              </CtaButton>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <BookButton size="lg">Book with {member.name}</BookButton>
+              <ButtonLink href="/team" variant="outline" size="lg">
+                All stylists
+              </ButtonLink>
             </div>
-          </FadeIn>
+          </Reveal>
         </div>
       </section>
 
-      {/* Featured work */}
-      {person.gallery.length > 0 && (
-        <section
-          className="mx-auto px-6 md:px-10 py-14 md:py-20"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn className="max-w-2xl">
-            <Eyebrow>Featured work</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              A few recent favourites.
-            </h2>
-          </FadeIn>
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {person.gallery.map((img, i) => (
-              <FadeIn
-                key={i}
-                delay={(i % 4) * 0.05}
-                className="relative aspect-[4/5] overflow-hidden bg-bg-alt"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                  className="object-cover"
-                />
-              </FadeIn>
-            ))}
+      {member.quote && (
+        <section className="bg-sand">
+          <div className="shell py-20 md:py-24">
+            <Reveal as="figure" className="mx-auto max-w-3xl text-center">
+              <div aria-hidden="true" className="text-copper">
+                ★★★★★
+              </div>
+              <blockquote className="mt-6 font-display text-2xl leading-snug text-balance text-ink md:text-3xl">
+                “{member.quote.text}”
+              </blockquote>
+              <figcaption className="mt-6 text-sm text-muted">{member.quote.author}</figcaption>
+            </Reveal>
           </div>
         </section>
       )}
 
-      {/* Pull quote */}
-      <section
-        className="border-y border-border"
-        style={{ backgroundColor: "var(--color-bg-alt)" }}
-      >
-        <div
-          className="mx-auto px-6 md:px-10 py-16 md:py-24 text-center"
-          style={{ maxWidth: "var(--container-text)" }}
-        >
-          <FadeIn>
-            <blockquote>
-              <p
-                className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-foreground"
-                style={{ lineHeight: "var(--leading-tight)" }}
-              >
-                &ldquo;{person.pullQuote.quote}&rdquo;
-              </p>
-              <footer
-                className="mt-8 text-xs uppercase text-muted"
-                style={{ letterSpacing: "var(--tracking-label)" }}
-              >
-                — {person.pullQuote.author}
-                {person.pullQuote.city ? `, ${person.pullQuote.city}` : ""}
-              </footer>
-            </blockquote>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Related services */}
-      {relatedServices.length > 0 && (
-        <section
-          className="mx-auto px-6 md:px-10 py-14 md:py-20"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn className="max-w-2xl">
-            <Eyebrow>Book {person.name} for</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              Services {person.name} specialises in.
-            </h2>
-          </FadeIn>
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {relatedServices.map((s, i) => (
-              <FadeIn key={s.slug} delay={i * 0.08}>
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="group block border border-border p-6 transition-colors hover:border-accent"
-                >
-                  <h3
-                    className="font-display text-xl md:text-2xl group-hover:text-accent transition-colors"
-                    style={{
-                      lineHeight: "var(--leading-tight)",
-                      letterSpacing: "var(--tracking-display)",
-                    }}
-                  >
-                    {s.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted">{s.teaser}</p>
-                  <p className="mt-3 text-xs text-muted">
-                    From ${s.priceFrom}
-                  </p>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Other stylists */}
-      <section
-        className="mx-auto px-6 md:px-10 py-10 md:py-16 border-t border-border"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <FadeIn>
-          <Eyebrow>More of the team</Eyebrow>
-          <h2
-            className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)]"
-            style={{
-              lineHeight: "var(--leading-tight)",
-              letterSpacing: "var(--tracking-display)",
-            }}
-          >
-            Other stylists.
-          </h2>
-        </FadeIn>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {others.map((p, i) => (
-            <FadeIn key={p.slug} delay={i * 0.08}>
-              <Link href={`/team/${p.slug}`} className="group block">
-                <div className="relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
+      {member.gallery.length > 0 && (
+        <section className="shell py-20 md:py-24">
+          <Reveal>
+            <Eyebrow className="mb-5">Selected work</Eyebrow>
+            <h2 className="text-title text-balance">{member.name}&apos;s work</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {member.gallery.map((shot, index) => (
+              <Reveal key={shot.src} delay={index * 70}>
+                <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
                   <Image
-                    src={p.portrait}
-                    alt={p.portraitAlt}
+                    src={shot.src}
+                    alt={shot.alt}
                     fill
-                    sizes="(min-width: 640px) 33vw, 100vw"
-                    className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                    sizes="(min-width: 1024px) 24vw, (min-width: 640px) 45vw, 100vw"
+                    className="object-cover"
                   />
                 </div>
-                <h3
-                  className="mt-4 font-display text-xl md:text-2xl"
-                  style={{
-                    lineHeight: "var(--leading-tight)",
-                    letterSpacing: "var(--tracking-display)",
-                  }}
-                >
-                  {p.name}
-                </h3>
-                <p className="mt-1 text-sm text-muted">{p.title}</p>
-              </Link>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {services.length > 0 && (
+        <section className="shell border-t border-ink/12 py-20 md:py-24">
+          <Reveal>
+            <Eyebrow className="mb-5">Book with {member.name}</Eyebrow>
+            <h2 className="text-title text-balance">Services</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, index) => (
+              <ServiceCard key={service.slug} service={service} index={index} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <CtaBand />
+
+      <JsonLd
+        data={personSchema({
+          name: member.name,
+          alternateName: member.alternateName,
+          jobTitle: member.title,
+          description: member.metaDescription,
+          path: `/team/${member.slug}`,
+          image: member.portrait,
+          knowsAbout: member.specialties,
+        })}
+      />
     </>
   );
 }

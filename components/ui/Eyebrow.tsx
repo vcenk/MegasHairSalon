@@ -1,22 +1,20 @@
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 
-type Props = {
-  children: React.ReactNode;
+export function Eyebrow({
+  children,
+  className = "",
+  tone = "copper",
+}: {
+  children: ReactNode;
   className?: string;
-  accent?: boolean;
-};
+  tone?: "copper" | "muted" | "light";
+}) {
+  const colour =
+    tone === "copper" ? "text-copper" : tone === "light" ? "text-bone/60" : "text-muted";
 
-export function Eyebrow({ children, className, accent = false }: Props) {
   return (
-    <span
-      className={cn(
-        "inline-block text-[0.7rem] uppercase",
-        accent ? "text-accent" : "text-muted",
-        className,
-      )}
-      style={{ letterSpacing: "var(--tracking-label)" }}
-    >
+    <p className={`font-sans text-[0.6875rem] font-medium uppercase tracking-[0.22em] ${colour} ${className}`}>
       {children}
-    </span>
+    </p>
   );
 }

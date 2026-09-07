@@ -1,32 +1,25 @@
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
-type Props = {
-  className?: string;
-  size?: "sm" | "md" | "lg";
-  onClick?: () => void;
-};
+/**
+ * Wordmark lockup. `tone` follows the header state — light while the header
+ * is overlaying the dark hero, ink once it settles onto the bone background.
+ */
+export function Logo({ tone = "ink" }: { tone?: "ink" | "light" }) {
+  const primary = tone === "light" ? "text-bone" : "text-ink";
+  const secondary = tone === "light" ? "text-bone/55" : "text-muted";
 
-const SIZE_CLASS: Record<NonNullable<Props["size"]>, string> = {
-  sm: "text-[1.5rem]",
-  md: "text-[1.875rem] md:text-[2.125rem]",
-  lg: "text-[2.5rem] md:text-[3rem]",
-};
-
-export function Logo({ className, size = "md", onClick }: Props) {
   return (
-    <Link
-      href="/"
-      onClick={onClick}
-      aria-label="Megas Hair Salon — home"
-      className={cn(
-        "inline-block font-display uppercase leading-none text-foreground hover:opacity-70 transition-opacity",
-        SIZE_CLASS[size],
-        className,
-      )}
-      style={{ letterSpacing: "var(--tracking-display-caps)" }}
-    >
-      Megas
+    <Link href="/" className="group flex flex-col leading-none" aria-label="Megas Hair Salon — home">
+      <span
+        className={`font-display text-[1.4rem] font-normal tracking-[0.3em] transition-colors duration-300 md:text-[1.55rem] ${primary}`}
+      >
+        MEGAS
+      </span>
+      <span
+        className={`mt-1 hidden font-sans text-[0.5625rem] uppercase tracking-[0.34em] transition-colors duration-300 sm:block ${secondary}`}
+      >
+        Hair Salon · Est. 1984
+      </span>
     </Link>
   );
 }

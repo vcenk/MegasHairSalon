@@ -1,214 +1,200 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { pageMetadata } from "@/lib/seo";
-import { aboutPageSchema } from "@/lib/schema";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { PageHero } from "@/components/sections/PageHero";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { Artisans } from "@/components/sections/Artisans";
+import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
+import { CtaBand } from "@/components/sections/CtaBand";
+import { TeamGrid } from "@/components/sections/TeamGrid";
 import { Visit } from "@/components/sections/Visit";
+import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Reveal } from "@/components/ui/Reveal";
+import { TEAM_LEADS } from "@/lib/team";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata = pageMetadata({
-  title:
-    "About Megas Hair Salon | Turkish Hair Artistry in Coquitlam Since 1984",
+export const metadata: Metadata = pageMeta({
+  title: "Our Story | Turkish Hair Salon in Coquitlam Since 1984",
   description:
-    "From a small Istanbul salon in 1984 to Coquitlam's premier destination for master colourists. Discover the Megas story, philosophy, and team.",
+    "Megas Hair Salon began in Istanbul in 1984 and opened in Coquitlam in 2025. Four decades of Turkish hair artistry — master colourists, long consultations, honest advice.",
   path: "/about",
 });
 
-const PHILOSOPHY = [
+const TIMELINE = [
   {
-    title: "Listen first, design second",
-    body: "Every great hairstyle starts with a real conversation. We ask, we observe, we recommend — but we never assume.",
+    year: "1984",
+    title: "Istanbul",
+    detail:
+      "The first Megas chair. Gazi starts the same year — four decades later he is still cutting.",
   },
   {
-    title: "Healthy hair, always",
-    body: "We use professional-grade products that nourish and protect through every process. The result lasts because the hair stays well.",
+    year: "1990s",
+    title: "Two salons",
+    detail:
+      "Bülent builds a following across two established salons in Türkiye, specialising in blonde work.",
   },
   {
-    title: "A space that breathes",
-    body: "Modern, clean, calm. Fresh coffee or herbal tea. Time to think. The visit is part of the work.",
+    year: "2000s",
+    title: "The craft travels",
+    detail:
+      "Training with L'Oréal, Kérastase, and Wella. Emir works across both Türkiye and Canada.",
   },
-] as const;
+  {
+    year: "2025",
+    title: "Coquitlam",
+    detail:
+      "Under Fulya's direction, the salon opens on Pacific Street — a room designed for the way we work.",
+  },
+];
+
+const VALUES = [
+  {
+    title: "The consultation is the service",
+    body: "Twenty minutes in natural light before anything is mixed. It is free, and it is the part that decides whether you like your hair in six weeks.",
+  },
+  {
+    title: "We will tell you no",
+    body: "If your hair cannot take what you are asking for today, we will say so and give you a route to get there. A colourist who never says no is not protecting your hair.",
+  },
+  {
+    title: "Prices before, not after",
+    body: "Every service on our menu is priced. If your hair needs extra time or product, you hear it at the start of the appointment, not at the till.",
+  },
+  {
+    title: "Türkçe konuşuyoruz",
+    body: "Bülent, Gazi, Emir, and Fulya all speak Turkish. For the Turkish community across Greater Vancouver, that has turned out to matter more than we expected.",
+  },
+];
 
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={aboutPageSchema()} />
+      <Breadcrumbs trail={[{ name: "Our Story", path: "/about" }]} />
 
-      <PageHero
-        breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "About" },
-        ]}
-        eyebrow="Our Story"
-        title="Forty-one years in the making."
-        subhead="A Turkish hair house, brought to the Tri-Cities."
-      />
+      <section className="shell pt-10 md:pt-14">
+        <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
+          <Reveal className="lg:col-span-7">
+            <Eyebrow className="mb-5">Our story</Eyebrow>
+            <h1 className="text-title text-balance">
+              A salon that has been getting this right since 1984.
+            </h1>
+            <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
+              Two salons in Istanbul, one in Coquitlam, and a way of working that has not
+              changed in forty years.
+            </p>
+          </Reveal>
 
-      {/* Origin (1984) */}
-      <section
-        className="mx-auto px-6 md:px-10 py-14 md:py-20"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <FadeIn className="md:order-2 relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
-            <Image
-              src="/images/photos/salon-interior-3.jpg"
-              alt="Megas Hair Salon archive — Turkish hair house established in Istanbul, 1984"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </FadeIn>
-          <FadeIn className="md:order-1">
-            <Eyebrow>1984</Eyebrow>
-            <h2
-              className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              It started in Istanbul.
-            </h2>
-            <div
-              className="mt-8 space-y-5 text-muted md:text-lg"
-              style={{ lineHeight: "var(--leading-body)" }}
-            >
-              <p>
-                In 1984, three brothers opened a small salon in Istanbul with
-                a single belief: that great hair begins with great listening.
-                There were no chairs to spare, no marketing, no shortcuts —
-                only the work, and the people who trusted it.
-              </p>
-              <p>
-                Word spread. The salon grew. Over the next four decades, Megas
-                became a destination across multiple Turkish cities — a place
-                where executives, brides, and grandmothers all sat in the
-                same chair, and all left feeling seen.
-              </p>
-              <p>
-                The craft we built in those years is what we carry to every
-                client today: precision over flash, listening over assumption,
-                and the patience to do hair properly.
-              </p>
+          <Reveal delay={120} className="lg:col-span-5">
+            <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
+              <Image
+                src="/images/ph/about-heritage.svg"
+                alt="The origins of Megas Hair Salon in Istanbul, 1984"
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
             </div>
-          </FadeIn>
+          </Reveal>
         </div>
       </section>
 
-      {/* Vancouver chapter (2025) */}
-      <section
-        className="mx-auto px-6 md:px-10 py-14 md:py-20"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <FadeIn className="relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
-            <Image
-              src="/images/photos/salon-interior-1.jpg"
-              alt="Megas Hair Salon Coquitlam interior — styling floor at 150-1169 Pacific St"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <Eyebrow>2025 — Coquitlam</Eyebrow>
-            <h2
-              className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              Why we crossed an ocean.
-            </h2>
-            <div
-              className="mt-8 space-y-5 text-muted md:text-lg"
-              style={{ lineHeight: "var(--leading-body)" }}
-            >
-              <p>
-                In 2025, we brought our craft to Coquitlam — drawn by the
-                city&apos;s energy, its diversity, and the chance to bring
-                something specific to the Tri-Cities: master colourists with
-                decades behind them, and the unhurried care that only comes
-                with experience.
-              </p>
-              <p>
-                Today, three master stylists — Bülent, Gazi, and Emir — lead
-                the salon, with director Fulya guiding the experience.
-                Together, they&apos;ve built a space that feels both modern
-                and warm, where every appointment is treated as a quiet
-                ritual.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Philosophy */}
-      <section
-        className="mx-auto px-6 md:px-10 py-14 md:py-20 border-y border-border"
-        style={{
-          backgroundColor: "var(--color-bg-alt)",
-        }}
-      >
-        <div
-          className="mx-auto"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn className="max-w-2xl mx-auto text-center">
-            <Eyebrow>Philosophy</Eyebrow>
-            <h2
-              className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              How we work.
-            </h2>
-          </FadeIn>
-
-          <div className="mt-12 md:mt-16 grid md:grid-cols-3 gap-10 md:gap-12">
-            {PHILOSOPHY.map((p, i) => (
-              <FadeIn key={p.title} delay={i * 0.08}>
-                <h3
-                  className="font-display text-2xl md:text-[1.75rem]"
-                  style={{
-                    lineHeight: "var(--leading-tight)",
-                    letterSpacing: "var(--tracking-display)",
-                  }}
-                >
-                  {p.title}
-                </h3>
-                <p
-                  className="mt-4 text-muted"
-                  style={{ lineHeight: "var(--leading-body)" }}
-                >
-                  {p.body}
-                </p>
-              </FadeIn>
-            ))}
+      <section className="shell grid gap-12 py-20 md:py-24 lg:grid-cols-12 lg:gap-16">
+        <Reveal className="lg:col-span-7">
+          <div className="space-y-6 text-lede text-pretty text-muted">
+            <p>
+              If you have had your hair done in Istanbul, you know the difference is not a
+              technique. It is a set of assumptions — that the consultation matters, that
+              colour gets mixed for your head rather than poured from a pre-made bowl, and
+              that a stylist with thirty years of experience is normal rather than remarkable.
+            </p>
+            <p>
+              Megas has been operating on those assumptions since 1984. Gazi has been behind a
+              chair for forty-one years. Bülent — Bill to everyone who books him — built his
+              reputation on blonde work across two salons in Türkiye before bringing it here.
+              Emir has spent twenty-three years between the two countries.
+            </p>
+            <p>
+              In 2025 the practice moved to Coquitlam, under Fulya&apos;s direction. The room
+              is new; the standard is not. What we brought with us was the long consultation,
+              the custom mix, the willingness to say &ldquo;not today, and here is why&rdquo;
+              — and eight people who have chosen to do this for a living rather than for now.
+            </p>
           </div>
+        </Reveal>
+
+        <Reveal delay={120} className="lg:col-span-5">
+          <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
+            <Image
+              src="/images/ph/about-today.svg"
+              alt="Megas Hair Salon today, on Pacific Street in Coquitlam"
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </Reveal>
+      </section>
+
+      {/* Timeline */}
+      <section className="bg-espresso text-bone">
+        <div className="shell py-20 md:py-28">
+          <Reveal className="max-w-xl">
+            <Eyebrow tone="light" className="mb-5">
+              Forty years
+            </Eyebrow>
+            <h2 className="text-title text-balance">Istanbul to Coquitlam.</h2>
+          </Reveal>
+
+          <ol className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {TIMELINE.map((entry, index) => (
+              <Reveal key={entry.year} delay={index * 80} as="li" className="border-t border-bone/20 pt-6">
+                <span className="font-display text-3xl text-copper-soft">{entry.year}</span>
+                <h3 className="mt-3 font-display text-xl text-bone">{entry.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-pretty text-bone/65">
+                  {entry.detail}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <Artisans />
+      {/* Values */}
+      <section className="shell py-20 md:py-28">
+        <Reveal className="max-w-xl">
+          <Eyebrow className="mb-5">How we work</Eyebrow>
+          <h2 className="text-title text-balance">Four things we do not compromise on.</h2>
+        </Reveal>
 
-      <FadeIn className="text-center pb-6">
-        <Link
-          href="/gallery"
-          className="inline-block text-xs uppercase text-foreground hover:text-accent transition-colors underline underline-offset-4"
-          style={{ letterSpacing: "var(--tracking-label)" }}
-        >
-          See the salon in the gallery →
-        </Link>
-      </FadeIn>
+        <div className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-2">
+          {VALUES.map((value, index) => (
+            <Reveal key={value.title} delay={(index % 2) * 90}>
+              <h3 className="font-display text-2xl text-balance text-ink">{value.title}</h3>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-pretty text-muted">
+                {value.body}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="bg-sand">
+        <div className="shell py-20 md:py-24">
+          <Reveal className="max-w-xl">
+            <Eyebrow className="mb-5">The people</Eyebrow>
+            <h2 className="text-title text-balance">Who you will be sitting with.</h2>
+          </Reveal>
+          <div className="mt-12">
+            <TeamGrid members={TEAM_LEADS} />
+          </div>
+          <ButtonLink href="/team" variant="outline" className="mt-12">
+            All eight stylists
+          </ButtonLink>
+        </div>
+      </section>
 
       <Visit />
+
+      <CtaBand />
     </>
   );
 }

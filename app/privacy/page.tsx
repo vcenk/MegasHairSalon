@@ -1,72 +1,94 @@
-import { pageMetadata } from "@/lib/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { BUSINESS, CONTACT } from "@/lib/constants";
+import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { pageMeta } from "@/lib/seo";
+import { BOOKING, BUSINESS, CONTACT } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  title: "Privacy Policy | Megas Hair Salon",
-  description:
-    "How Megas Hair Salon collects, uses, and protects your information.",
+export const metadata: Metadata = pageMeta({
+  title: "Privacy Policy",
+  description: `How ${BUSINESS.name} handles personal information collected through this website and our online booking.`,
   path: "/privacy",
-  noIndex: true,
 });
 
+/**
+ * Good-faith placeholder. The salon should have this reviewed against PIPEDA
+ * and BC PIPA before launch — see docs/LAUNCH-CHECKLIST.md.
+ */
 export default function PrivacyPage() {
   return (
     <>
-      <PageHero
-        breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "Privacy" },
-        ]}
-        eyebrow="Legal"
-        title="Privacy policy."
-      />
+      <Breadcrumbs trail={[{ name: "Privacy", path: "/privacy" }]} />
 
-      <section
-        className="mx-auto px-6 md:px-10 py-10 md:py-14"
-        style={{ maxWidth: "var(--container-text)" }}
-      >
-        <FadeIn
-          className="space-y-6 text-muted"
-        >
-          <p style={{ lineHeight: "var(--leading-body)" }}>
-            {BUSINESS.name} respects your privacy. This page outlines, in
-            plain terms, what information we collect and how we use it.
-            Full policy copy is being finalised for launch.
+      <section className="shell pt-10 pb-24 md:pt-14 md:pb-32">
+        <Eyebrow className="mb-5">Legal</Eyebrow>
+        <h1 className="text-title text-balance">Privacy policy</h1>
+
+        <div className="mt-10 max-w-2xl space-y-8 text-[0.9375rem] leading-relaxed text-muted">
+          <p>
+            {BUSINESS.name} respects your privacy. This page explains what information we
+            collect through this website and what we do with it.
           </p>
-          <h2 className="text-foreground font-display text-2xl mt-8">
-            What we collect
-          </h2>
-          <p style={{ lineHeight: "var(--leading-body)" }}>
-            When you book an appointment, we collect your name, phone
-            number, and email through our scheduling provider. When you
-            contact us directly, we collect what you send us. We use
-            anonymised site analytics (page views, referrers) through
-            Google Analytics and Microsoft Clarity.
-          </p>
-          <h2 className="text-foreground font-display text-2xl mt-8">
-            How we use it
-          </h2>
-          <p style={{ lineHeight: "var(--leading-body)" }}>
-            To book and remind you of appointments. To reply to your
-            messages. To understand how the site is used so we can improve
-            it. We don&apos;t sell your information, ever.
-          </p>
-          <h2 className="text-foreground font-display text-2xl mt-8">
-            Contact
-          </h2>
-          <p style={{ lineHeight: "var(--leading-body)" }}>
-            To request correction or deletion of your data, email us at{" "}
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="text-foreground hover:text-accent underline underline-offset-4 transition-colors"
-            >
-              {CONTACT.email}
-            </a>
-            .
-          </p>
-        </FadeIn>
+
+          <div>
+            <h2 className="font-display text-xl text-ink">What this website collects</h2>
+            <p className="mt-3">
+              This site does not run a contact form and does not ask you to create an account.
+              We do not collect names, email addresses, or phone numbers directly through these
+              pages.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-xl text-ink">Booking</h2>
+            <p className="mt-3">
+              Appointments are handled by {BOOKING.provider}, a third-party booking platform.
+              When you click a booking link you leave this website, and any information you
+              enter is collected and stored by {BOOKING.provider} under their own privacy
+              policy and terms.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-xl text-ink">Maps</h2>
+            <p className="mt-3">
+              Our contact and location pages embed a Google Maps frame so you can find us.
+              Loading that frame involves a request to Google, which may set cookies and
+              receive your IP address under Google&apos;s privacy policy.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-xl text-ink">In the salon</h2>
+            <p className="mt-3">
+              When you book and visit, we keep the details needed to serve you well — contact
+              information, appointment history, and your colour formula. We do not sell that
+              information, and we share it only where required to run the salon.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-xl text-ink">Your choices</h2>
+            <p className="mt-3">
+              You can ask us what we hold about you, ask us to correct it, or ask us to delete
+              it. Write to{" "}
+              <a href={CONTACT.emailHref} className="text-copper underline-offset-4 hover:underline">
+                {CONTACT.email}
+              </a>{" "}
+              or call {CONTACT.phone}.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-xl text-ink">Contact</h2>
+            <address className="mt-3 not-italic">
+              {BUSINESS.name}
+              <br />
+              {CONTACT.addressLine}
+              <br />
+              {CONTACT.phone}
+            </address>
+          </div>
+        </div>
       </section>
     </>
   );

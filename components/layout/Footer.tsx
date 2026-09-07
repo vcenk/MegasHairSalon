@@ -1,218 +1,170 @@
 import Link from "next/link";
-import { Star, MapPin, Phone, Mail } from "lucide-react";
-import { BUSINESS, CONTACT, SOCIAL, BOOKING } from "@/lib/constants";
-import { FOOTER_SERVICES, FOOTER_EXPLORE } from "@/lib/nav";
-import { Logo } from "./Logo";
-import { InstagramIcon, FacebookIcon } from "./BrandIcons";
+import { BookButton } from "@/components/ui/Button";
+import { FOOTER_SALON, FOOTER_VISIT } from "@/lib/nav";
+import { SERVICES } from "@/lib/services";
+import { BUSINESS, CONTACT, HOURS_DISPLAY, SOCIAL } from "@/lib/site";
 
-function directionsHref() {
-  const { streetAddress, addressLocality, addressRegion, postalCode } = CONTACT.address;
-  const q = `${streetAddress}, ${addressLocality}, ${addressRegion} ${postalCode}`;
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
-}
-
-const LABEL_CLASS =
-  "text-[0.7rem] uppercase text-foreground mb-5 block";
-const LABEL_STYLE = { letterSpacing: "var(--tracking-label)" } as const;
-
-const LINK_CLASS =
-  "text-sm text-muted hover:text-accent transition-colors";
-
+/**
+ * Grouped footer in the spirit of Zazou's Salon / Locations / Academy columns.
+ * Megas runs no training academy, so that slot becomes Visit — the same
+ * wayfinding depth, without inventing an offering.
+ */
 export function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer
-      className="border-t border-border"
-      style={{ backgroundColor: "var(--color-bg-alt)" }}
-    >
-      <div
-        className="mx-auto px-6 md:px-10 py-16 md:py-20 grid grid-cols-2 md:grid-cols-5 gap-12 md:gap-10"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        {/* Column 1 — Brand */}
-        <div className="col-span-2 md:col-span-1">
-          <Logo size="lg" />
-          <p className="mt-5 text-sm text-muted leading-relaxed">
-            Since 1984.
-            <br />
-            From Istanbul to Vancouver.
-          </p>
-        </div>
-
-        {/* Column 2 — Explore */}
-        <div>
-          <span className={LABEL_CLASS} style={LABEL_STYLE}>
-            Explore
-          </span>
-          <ul className="flex flex-col gap-3">
-            {FOOTER_EXPLORE.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className={LINK_CLASS}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Column 3 — Services */}
-        <div>
-          <span className={LABEL_CLASS} style={LABEL_STYLE}>
-            Services
-          </span>
-          <ul className="flex flex-col gap-3">
-            {FOOTER_SERVICES.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className={LINK_CLASS}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/menu" className={`${LINK_CLASS} text-foreground`}>
-                Full price menu →
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 4 — Visit */}
-        <div>
-          <span className={LABEL_CLASS} style={LABEL_STYLE}>
-            Visit
-          </span>
-          <address className="not-italic flex flex-col gap-3 text-sm text-muted">
+    <footer className="bg-espresso text-bone">
+      <div className="shell py-16 md:py-20">
+        {/* Brand + booking CTA */}
+        <div className="flex flex-col gap-8 border-b border-bone/15 pb-12 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-md">
+            <p className="font-display text-[1.6rem] tracking-[0.3em]">MEGAS</p>
+            <p className="mt-4 font-display text-3xl leading-tight text-balance md:text-4xl">
+              {BUSINESS.longTagline}
+            </p>
+          </div>
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <BookButton variant="light" size="lg" />
             <a
-              href={directionsHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-2 hover:text-accent transition-colors"
+              href={CONTACT.phoneHref}
+              className="inline-flex items-center rounded-full border border-bone/30 px-8 py-4 font-sans text-[0.9375rem] tracking-wide transition-colors duration-300 hover:bg-bone hover:text-ink"
             >
-              <MapPin size={15} strokeWidth={1.5} className="mt-0.5 flex-none" />
-              <span>
+              {CONTACT.phone}
+            </a>
+          </div>
+        </div>
+
+        {/* Grouped columns */}
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+          <FooterColumn title="Salon">
+            {FOOTER_SALON.map((link) => (
+              <FooterLink key={link.href} href={link.href}>
+                {link.label}
+              </FooterLink>
+            ))}
+          </FooterColumn>
+
+          <FooterColumn title="Services">
+            {SERVICES.map((service) => (
+              <FooterLink key={service.slug} href={`/services/${service.slug}`}>
+                {service.name}
+              </FooterLink>
+            ))}
+            <FooterLink href="/menu" accent>
+              Full price menu
+            </FooterLink>
+          </FooterColumn>
+
+          <FooterColumn title="Visit">
+            {FOOTER_VISIT.map((link) => (
+              <FooterLink key={link.href} href={link.href}>
+                {link.label}
+              </FooterLink>
+            ))}
+          </FooterColumn>
+
+          <FooterColumn title="Find us">
+            <address className="not-italic">
+              <a
+                href={CONTACT.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm leading-relaxed text-bone/70 transition-colors hover:text-bone"
+              >
                 {CONTACT.address.streetAddress}
                 <br />
                 {CONTACT.address.addressLocality}, {CONTACT.address.addressRegion}{" "}
                 {CONTACT.address.postalCode}
-              </span>
-            </a>
-            <a
-              href={`tel:${CONTACT.phoneHref}`}
-              className="flex items-center gap-2 hover:text-accent transition-colors"
-            >
-              <Phone size={15} strokeWidth={1.5} />
-              {CONTACT.phone}
-            </a>
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="flex items-center gap-2 hover:text-accent transition-colors"
-            >
-              <Mail size={15} strokeWidth={1.5} />
-              {CONTACT.email}
-            </a>
-          </address>
+              </a>
+              <a
+                href={CONTACT.emailHref}
+                className="mt-3 block text-sm text-bone/70 transition-colors hover:text-bone"
+              >
+                {CONTACT.email}
+              </a>
+            </address>
 
-          <dl className="mt-5 text-sm text-muted flex flex-col gap-1.5 max-w-[240px]">
-            <div className="flex justify-between gap-4">
-              <dt>Mon — Sat</dt>
-              <dd>10am – 6pm</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt>Sunday</dt>
-              <dd>Closed</dd>
-            </div>
-          </dl>
+            {/* Stacked rather than justified — the column is too narrow for
+                "Monday – Saturday" and a time range on one line. */}
+            <dl className="mt-4 space-y-2 text-sm">
+              {HOURS_DISPLAY.map((row) => (
+                <div key={row.label}>
+                  <dt className="text-bone/50">{row.label}</dt>
+                  <dd className="text-bone/75">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
 
-          <a
-            href={BOOKING.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center bg-foreground text-background rounded-full px-7 py-3 text-[0.7rem] uppercase hover:bg-accent transition-colors"
-            style={{ letterSpacing: "0.08em" }}
-          >
-            Book Now
-          </a>
+            <div className="mt-5 flex gap-4 text-sm">
+              <SocialLink href={SOCIAL.instagram}>Instagram</SocialLink>
+              <SocialLink href={SOCIAL.facebook}>Facebook</SocialLink>
+              <SocialLink href={SOCIAL.google}>Google</SocialLink>
+            </div>
+          </FooterColumn>
         </div>
 
-        {/* Column 5 — Connect */}
-        <div>
-          <span className={LABEL_CLASS} style={LABEL_STYLE}>
-            Connect
-          </span>
-          <ul className="flex flex-col gap-3 text-sm text-muted">
-            <li>
-              <a
-                href={SOCIAL.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <InstagramIcon size={15} />
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href={SOCIAL.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <FacebookIcon size={15} />
-                Facebook
-              </a>
-            </li>
-            <li>
-              <a
-                href={SOCIAL.google}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <Star size={15} strokeWidth={1.5} />
-                Google Reviews
-              </a>
-            </li>
-          </ul>
-
-          <p
-            lang="tr"
-            className="mt-8 font-display text-[1.75rem] leading-none text-accent"
-            style={{ letterSpacing: "var(--tracking-display)" }}
-          >
-            Hoş geldiniz
-          </p>
-        </div>
-      </div>
-
-      <div className="border-t border-border">
-        <div
-          className="mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row justify-between gap-3 text-xs text-muted"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
+        {/* Baseline */}
+        <div className="flex flex-col gap-4 border-t border-bone/15 pt-8 text-xs text-bone/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {BUSINESS.name}
+            © {new Date().getFullYear()} {BUSINESS.name}. Istanbul {BUSINESS.foundingDate} →
+            Coquitlam {BUSINESS.vancouverSince}.
           </p>
-          <ul className="flex gap-5">
-            <li>
-              <Link href="/privacy" className="hover:text-accent transition-colors">
-                Privacy
-              </Link>
-            </li>
-            <li>
-              <Link href="/terms" className="hover:text-accent transition-colors">
-                Terms
-              </Link>
-            </li>
-            <li>
-              <Link href="/sitemap.xml" className="hover:text-accent transition-colors">
-                Sitemap
-              </Link>
-            </li>
-          </ul>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy" className="transition-colors hover:text-bone">
+              Privacy
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-bone">
+              Terms
+            </Link>
+            <span lang="tr" className="text-copper-soft">
+              Hoş geldiniz
+            </span>
+          </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h2 className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.22em] text-copper-soft">
+        {title}
+      </h2>
+      <div className="mt-5 flex flex-col gap-2.5">{children}</div>
+    </div>
+  );
+}
+
+function FooterLink({
+  href,
+  children,
+  accent = false,
+}: {
+  href: string;
+  children: React.ReactNode;
+  accent?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`text-sm transition-colors duration-300 hover:text-bone ${
+        accent ? "text-copper-soft" : "text-bone/70"
+      }`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function SocialLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-bone/70 transition-colors duration-300 hover:text-bone"
+    >
+      {children}
+    </a>
   );
 }

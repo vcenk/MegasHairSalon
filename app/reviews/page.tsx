@@ -1,98 +1,67 @@
-import Link from "next/link";
-import { pageMetadata } from "@/lib/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { StubNotice } from "@/components/sections/StubNotice";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { FEATURED_REVIEWS, MARQUEE_ROW_1, MARQUEE_ROW_2 } from "@/lib/reviews";
-import { SOCIAL, RATINGS } from "@/lib/constants";
+import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
+import { CtaBand } from "@/components/sections/CtaBand";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Reveal } from "@/components/ui/Reveal";
+import { ALL_REVIEWS } from "@/lib/reviews";
+import { pageMeta } from "@/lib/seo";
+import { RATING, SOCIAL } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  title: "Reviews | 4.8★ from 146 Google Reviews | Megas Hair Salon",
+export const metadata: Metadata = pageMeta({
+  title: "Reviews | 4.8 Stars from 146 Google Reviews",
   description:
-    "What our clients say. 4.8 stars from 146 Google reviews — master colourists, balayage specialists, and precision cutting in Coquitlam.",
+    "What clients say about Megas Hair Salon in Coquitlam — 4.8 stars from 146 Google reviews, covering colour, cuts, blowouts, and treatments.",
   path: "/reviews",
 });
 
 export default function ReviewsPage() {
-  const allShortQuotes = [...MARQUEE_ROW_1, ...MARQUEE_ROW_2];
-
   return (
     <>
-      <PageHero
-        breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "Reviews" },
-        ]}
-        eyebrow={`${RATINGS.ratingValue} ★★★★★ · ${RATINGS.reviewCount} Google reviews`}
-        title="What our clients say."
-        subhead="A handful of voices from our chairs — Coquitlam, Port Moody, Port Coquitlam, Burnaby, Vancouver."
+      <Breadcrumbs trail={[{ name: "Reviews", path: "/reviews" }]} />
+
+      <section className="shell pt-10 md:pt-14">
+        <Reveal className="max-w-3xl">
+          <Eyebrow className="mb-5">Reviews</Eyebrow>
+          <h1 className="text-title text-balance">
+            {RATING.value} stars, across {RATING.count} Google reviews.
+          </h1>
+          <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
+            The pattern in them is consistent: people mention the consultation, the honesty,
+            and how the cut or colour was still holding weeks later.
+          </p>
+          <a
+            href={SOCIAL.google}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+          >
+            Read them on Google →
+          </a>
+        </Reveal>
+      </section>
+
+      <div className="shell grid gap-x-10 gap-y-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-3">
+        {ALL_REVIEWS.map((review, index) => (
+          <Reveal key={`${review.author}-${index}`} delay={(index % 3) * 80} as="figure">
+            <div aria-hidden="true" className="text-copper-soft">
+              ★★★★★
+            </div>
+            <blockquote className="mt-4 font-display text-lg leading-snug text-pretty text-ink">
+              “{review.quote}”
+            </blockquote>
+            <figcaption className="mt-4 text-sm text-muted">
+              {review.author}, {review.city}
+              {review.service && <span className="text-muted/70"> · {review.service}</span>}
+            </figcaption>
+          </Reveal>
+        ))}
+      </div>
+
+      <CtaBand
+        title="See what the fuss is about."
+        body="Booking is open around the clock. Consultations are complimentary, and there is no obligation to book a service at the end of one."
+        secondary={{ href: "/services", label: "Browse services" }}
       />
-
-      {/* Featured */}
-      <section
-        className="mx-auto px-6 md:px-10 py-10 md:py-16"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
-          {FEATURED_REVIEWS.map((review, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <blockquote className="flex flex-col">
-                <p
-                  className="font-display text-[clamp(1.5rem,2.2vw,1.875rem)] text-foreground"
-                  style={{ lineHeight: "var(--leading-tight)" }}
-                >
-                  &ldquo;{review.quote}&rdquo;
-                </p>
-                <footer
-                  className="mt-6 text-xs uppercase text-muted"
-                  style={{ letterSpacing: "var(--tracking-label)" }}
-                >
-                  — {review.author}, {review.city}
-                </footer>
-              </blockquote>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-
-      {/* Short quotes grid */}
-      <section
-        className="mx-auto px-6 md:px-10 py-10 md:py-16 border-t border-border"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {allShortQuotes.map((q, i) => (
-            <FadeIn key={i} delay={(i % 3) * 0.06}>
-              <p
-                className="font-display italic text-xl md:text-2xl text-foreground"
-                style={{ lineHeight: "var(--leading-tight)" }}
-              >
-                &ldquo;{q.quote}&rdquo;
-              </p>
-              <p
-                className="mt-3 text-[0.7rem] uppercase text-muted"
-                style={{ letterSpacing: "var(--tracking-label)" }}
-              >
-                {q.author}, {q.city}
-              </p>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-
-      <StubNotice message="A fuller reviews archive — filterable by stylist and service — is on its way." />
-
-      <FadeIn className="text-center pb-16 md:pb-24">
-        <Link
-          href={SOCIAL.google}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block text-xs uppercase text-foreground hover:text-accent transition-colors underline underline-offset-4"
-          style={{ letterSpacing: "var(--tracking-label)" }}
-        >
-          Read all {RATINGS.reviewCount} reviews on Google →
-        </Link>
-      </FadeIn>
     </>
   );
 }

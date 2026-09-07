@@ -1,53 +1,83 @@
-// ⚠️ PLACEHOLDER CONTENT
-// Quotes below are from the component spec (docs/components/reviews-marquee.md)
-// and are illustrative only. Before launch, curate 16 real quotes from the
-// salon's Google reviews per LAUNCH-BLOCKERS.md.
+/**
+ * ⚠️ PLACEHOLDER CONTENT.
+ *
+ * These quotes are illustrative. Before launch, replace them with real,
+ * verbatim Google reviews (the salon has 146 at 4.8 stars). Never publish
+ * invented testimonials — and never wire these into Review schema, which is
+ * why lib/schema.ts only emits the aggregate rating.
+ */
 
 export type Review = {
   readonly quote: string;
   readonly author: string;
   readonly city: string;
+  readonly service?: string;
 };
-
-export const MARQUEE_ROW_1: readonly Review[] = [
-  { quote: "Magic hands.", author: "Sarah M.", city: "Coquitlam" },
-  { quote: "Best cut I've had in years.", author: "Jessica T.", city: "Port Moody" },
-  { quote: "Bülent is the real deal.", author: "Maya K.", city: "Burnaby" },
-  { quote: "Found my forever salon.", author: "Anna R.", city: "Vancouver" },
-  { quote: "The blonde of my dreams.", author: "Linda P.", city: "Coquitlam" },
-  { quote: "Worth every minute of the drive.", author: "Rachel B.", city: "PoCo" },
-  { quote: "Excellent service and results.", author: "Rain H.", city: "Coquitlam" },
-  { quote: "Beautifully renovated, beautifully run.", author: "Emily F.", city: "Port Moody" },
-] as const;
-
-export const MARQUEE_ROW_2: readonly Review[] = [
-  { quote: "Gazi sculpts hair like art.", author: "Sophia L.", city: "Vancouver" },
-  { quote: "Emir's blowouts last for days.", author: "Hannah W.", city: "Coquitlam" },
-  { quote: "Honest, skilled, unhurried.", author: "Diana K.", city: "Burnaby" },
-  { quote: "Calm, clean, professional.", author: "Olivia M.", city: "PoCo" },
-  { quote: "Fulya remembers everything.", author: "Tara S.", city: "Coquitlam" },
-  { quote: "I recommend them to everyone.", author: "Priya N.", city: "Vancouver" },
-  { quote: "Patient and thorough — rare today.", author: "Margaret D.", city: "Port Moody" },
-  { quote: "Walked out feeling brand new.", author: "Aisha R.", city: "Coquitlam" },
-] as const;
 
 export const FEATURED_REVIEWS: readonly Review[] = [
   {
     quote:
-      "I had been looking for someone like Bill in Vancouver for years — truly, he has magic hands.",
+      "I had been looking for someone like Bill in Vancouver for years — truly, he has magic hands. He listened, he was honest about what my hair could take, and the colour is exactly what I asked for.",
     author: "Sarah M.",
+    city: "Coquitlam",
+    service: "Balayage",
+  },
+  {
+    quote:
+      "Gazi understood exactly what I wanted without me having to explain it twice. The cut still moves beautifully six weeks later, which has never happened to me before.",
+    author: "Rachel B.",
+    city: "Port Coquitlam",
+    service: "Precision cut",
+  },
+  {
+    quote:
+      "The colour work is the best I have seen in the Tri-Cities. I will happily drive from Burnaby again — and I have already booked my mother in.",
+    author: "Maya K.",
+    city: "Burnaby",
+    service: "Full colour",
+  },
+];
+
+export const ALL_REVIEWS: readonly Review[] = [
+  ...FEATURED_REVIEWS,
+  {
+    quote:
+      "Emir's blowouts last for days. I came in before a wedding and it still looked good in the photos the next morning.",
+    author: "Hannah W.",
+    city: "Coquitlam",
+    service: "Blowout",
+  },
+  {
+    quote:
+      "Fulya made me feel welcomed from the moment I walked in, and she follows up after every visit. That level of care is rare now.",
+    author: "Tara S.",
     city: "Coquitlam",
   },
   {
     quote:
-      "Gazi understood exactly what I wanted without me having to explain. The cut moves beautifully and has lasted weeks.",
-    author: "Rachel B.",
-    city: "Port Coquitlam",
+      "Honest, skilled, and unhurried. They told me my hair needed a treatment before more lightening instead of just taking my money. I respect that.",
+    author: "Diana K.",
+    city: "Burnaby",
+    service: "Restorative treatment",
   },
   {
     quote:
-      "The colour work is the best I've seen in the Tri-Cities. I will happily drive from Burnaby again.",
-    author: "Maya K.",
-    city: "Burnaby",
+      "The keratin treatment cut my morning routine in half. Through a Vancouver winter, that is worth every dollar.",
+    author: "Olivia M.",
+    city: "Port Moody",
+    service: "Keratin smoothing",
   },
-] as const;
+  {
+    quote:
+      "Finally, a salon where someone speaks Turkish and understands the kind of colour I grew up with. It feels like home.",
+    author: "Aisha R.",
+    city: "Vancouver",
+  },
+  {
+    quote:
+      "Patient and thorough — rare these days. My grey coverage is perfect and there is no line at the crown like I used to get.",
+    author: "Margaret D.",
+    city: "Port Moody",
+    service: "Root touch-up",
+  },
+];

@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Megas Hair Salon
 
-## Getting Started
+Marketing site for Megas Hair Salon — 150-1169 Pacific St, Coquitlam BC. Turkish
+salon founded in Istanbul in 1984, opened in Coquitlam in 2025.
 
-First, run the development server:
+**Design direction:** Salon Haze's restraint (whitespace, few sections, quiet
+type) with Salon Zazou's content depth (grouped footer, service pages, area
+pages, journal). Megas has no training academy, so Zazou's Academy column
+becomes **Visit** rather than inventing an offering.
+
+## Stack
+
+- Next.js 15 (App Router) · TypeScript · Tailwind CSS v4
+- Fonts: Fraunces (display) + DM Sans (body), via `next/font`
+- Fully static — 42 prerendered pages, no database, no API routes
+- Booking is external: every CTA links to Phorest
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other scripts: `npm run build`, `npm run lint`, `npm run placeholders`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where the content lives
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All copy and data is in `lib/` — there is no CMS, and pages read straight from
+these files. To change the site, change these:
 
-## Learn More
+| File | Holds |
+| --- | --- |
+| `lib/site.ts` | Address, phone, email, hours, booking URL, social, rating. **Single source of truth for NAP.** |
+| `lib/menu.ts` | The full 67-item price list. Snapshot of Phorest. |
+| `lib/services.ts` | The 8 SEO service pages — copy, pricing tables, FAQs. |
+| `lib/team.ts` | The 8 stylists. |
+| `lib/areas.ts` | The 4 local-SEO area pages. |
+| `lib/blog.ts` | Journal posts. |
+| `lib/reviews.ts` | Testimonials. **Currently placeholders — see the launch checklist.** |
+| `lib/gallery.ts` | Gallery grid. |
+| `lib/nav.ts` | Header and footer navigation. |
 
-To learn more about Next.js, take a look at the following resources:
+## Prices
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Phorest (`megashairsalon.phorest.me`) is authoritative. `lib/menu.ts` and
+`lib/services.ts` are a manual snapshot taken 2026-07-31 — if the salon edits
+anything in Phorest, update both files and bump `MENU_UPDATED`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Do not swap the booking URL for `phorest.com/book/salons/megashairsalon`; that
+address redirects to Phorest's own marketing site instead of the booking flow.
 
-## Deploy on Vercel
+## Images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Every image is a generated placeholder in `public/images/ph/`, produced by
+`scripts/gen-placeholders.mjs`. Each one is labelled with the shot it stands in
+for, so the set doubles as a brief for the photographer.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+When real photos arrive: drop them in `public/images/photos/`, update the `src`
+values in `lib/` (keep the alt text), and remove `dangerouslyAllowSVG` from
+`next.config.ts`.
+
+## SEO
+
+- `lib/seo.ts` builds every page's title, description, canonical, and OG tags.
+- `lib/schema.ts` builds JSON-LD: `HairSalon` sitewide, plus `Service`,
+  `Person`, `FAQPage`, `BreadcrumbList`, `OfferCatalog`, and `BlogPosting`.
+- `app/sitemap.ts` and `app/robots.ts` generate from the same data.
+
+Before launch, see [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).

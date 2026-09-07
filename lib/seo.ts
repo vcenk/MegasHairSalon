@@ -1,36 +1,45 @@
 import type { Metadata } from "next";
-import { SITE, BUSINESS } from "./constants";
+import { SITE } from "./site";
 
 type PageMetaInput = {
   title: string;
   description: string;
+  /** Path with a leading slash, e.g. "/services/balayage-coquitlam". */
   path: string;
-  ogImage?: string;
-  noIndex?: boolean;
+  image?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
 };
 
-export function pageMetadata({
+/**
+ * Every page gets a unique title, description, canonical, and OG image.
+ * Use this rather than hand-rolling `metadata` objects so nothing drifts.
+ */
+export function pageMeta({
   title,
   description,
   path,
-  ogImage,
-  noIndex,
+  image = SITE.ogImage,
+  type = "website",
+  publishedTime,
 }: PageMetaInput): Metadata {
-  const canonical = `${SITE.url}${path === "/" ? "" : path}`;
-  const image = ogImage ?? SITE.ogImage;
-
+  const url = `${SITE.url}${path}`;
   return {
-    title,
+    // `absolute` opts out of the root layout's "%s | Megas Hair Salon"
+    // template — these titles already carry the salon name where it helps,
+    // and appending it again pushes them past what Google will render.
+    title: { absolute: title },
     description,
-    alternates: { canonical },
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
-      url: canonical,
-      siteName: BUSINESS.name,
-      images: [{ url: image, width: 1200, height: 630 }],
+      url,
+      siteName: SITE.name,
       locale: SITE.locale,
-      type: "website",
+      type,
+      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      ...(publishedTime ? { publishedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -38,8 +47,5 @@ export function pageMetadata({
       description,
       images: [image],
     },
-    robots: noIndex
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
   };
 }

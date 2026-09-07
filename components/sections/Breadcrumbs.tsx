@@ -1,53 +1,36 @@
 import Link from "next/link";
-import { breadcrumbSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
-export type Crumb = { name: string; href?: string };
+export type Crumb = { name: string; path: string };
 
-type Props = { items: Crumb[]; className?: string };
+export function Breadcrumbs({ trail }: { trail: readonly Crumb[] }) {
+  const full = [{ name: "Home", path: "/" }, ...trail];
 
-export function Breadcrumbs({ items, className }: Props) {
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema(
-          items.map((i) => ({ name: i.name, path: i.href })),
-        )}
-      />
-      <nav
-        aria-label="Breadcrumb"
-        className={className}
-      >
-        <ol
-          className="flex flex-wrap items-center gap-2 text-[0.7rem] uppercase text-muted"
-          style={{ letterSpacing: "var(--tracking-label)" }}
-        >
-          {items.map((item, i) => {
-            const isLast = i === items.length - 1;
+      <nav aria-label="Breadcrumb" className="shell pt-28 md:pt-32">
+        <ol className="flex flex-wrap items-center gap-2 font-sans text-xs tracking-wide text-muted">
+          {full.map((crumb, index) => {
+            const last = index === full.length - 1;
             return (
-              <li key={i} className="flex items-center gap-2">
-                {item.href && !isLast ? (
-                  <Link
-                    href={item.href}
-                    className="hover:text-accent transition-colors"
-                  >
-                    {item.name}
-                  </Link>
+              <li key={crumb.path} className="flex items-center gap-2">
+                {last ? (
+                  <span aria-current="page" className="text-ink/70">
+                    {crumb.name}
+                  </span>
                 ) : (
-                  <span aria-current={isLast ? "page" : undefined} className={isLast ? "text-foreground" : undefined}>
-                    {item.name}
-                  </span>
+                  <Link href={crumb.path} className="transition-colors hover:text-copper">
+                    {crumb.name}
+                  </Link>
                 )}
-                {!isLast && (
-                  <span aria-hidden="true" className="text-border">
-                    /
-                  </span>
-                )}
+                {!last && <span aria-hidden="true">/</span>}
               </li>
             );
           })}
         </ol>
       </nav>
+      <JsonLd data={breadcrumbSchema(full)} />
     </>
   );
 }

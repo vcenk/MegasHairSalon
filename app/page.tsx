@@ -1,36 +1,72 @@
-import { pageMetadata } from "@/lib/seo";
-import { organizationSchema, websiteSchema } from "@/lib/schema";
-import { JsonLd } from "@/components/seo/JsonLd";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { Hero } from "@/components/sections/Hero";
-import { BrandOrigin } from "@/components/sections/BrandOrigin";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
-import { ReviewsMarquee } from "@/components/sections/ReviewsMarquee";
-import { Artisans } from "@/components/sections/Artisans";
-import { FeaturedWork } from "@/components/sections/FeaturedWork";
+import { Heritage } from "@/components/sections/Heritage";
+import { TeamGrid } from "@/components/sections/TeamGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { InstagramStrip } from "@/components/sections/InstagramStrip";
 import { Visit } from "@/components/sections/Visit";
+import { ButtonLink } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Reveal } from "@/components/ui/Reveal";
+import { FEATURED_SERVICES } from "@/lib/services";
+import { TEAM, TEAM_LEADS } from "@/lib/team";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata = pageMetadata({
-  title: "Hair Salon Coquitlam | Master Colourists Since 1984 | Megas",
+export const metadata: Metadata = pageMeta({
+  title: "Megas Hair Salon Coquitlam | Master Colourists Since 1984",
   description:
-    "Award-worthy hair salon in Coquitlam. Master colourists in balayage, blonde, and precision cuts. Turkish artistry since 1984. Book at (778) 858-0396.",
+    "Turkish-founded hair salon in Coquitlam. Balayage from $350, highlights from $185, precision cuts from $60 — by master stylists with 20–40 years' experience. Book online.",
   path: "/",
 });
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <JsonLd data={organizationSchema} />
-      <JsonLd data={websiteSchema} />
       <Hero />
-      <BrandOrigin />
-      <ServicesGrid />
-      <ReviewsMarquee />
-      <Artisans />
-      <FeaturedWork />
+
+      <ServicesGrid
+        services={FEATURED_SERVICES}
+        eyebrow="What we do"
+        title="Colour is the reason people drive here."
+        intro="Six of the services we are known for. The full list — every cut, colour, treatment, and price — is on the menu."
+        footer={
+          <>
+            <ButtonLink href="/services" variant="outline">
+              All services
+            </ButtonLink>
+            <ButtonLink href="/menu" variant="outline">
+              Full price menu
+            </ButtonLink>
+          </>
+        }
+      />
+
+      <Heritage />
+
+      <section className="shell py-20 md:py-28">
+        <Reveal className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-xl">
+            <Eyebrow className="mb-5">The team</Eyebrow>
+            <h2 className="text-title text-balance">
+              Between them, more than a century behind the chair.
+            </h2>
+          </div>
+          <Link
+            href="/team"
+            className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+          >
+            All {TEAM.length} stylists →
+          </Link>
+        </Reveal>
+
+        <div className="mt-14">
+          <TeamGrid members={TEAM_LEADS} />
+        </div>
+      </section>
+
       <Testimonials />
-      <InstagramStrip />
+
       <Visit />
     </>
   );

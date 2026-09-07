@@ -1,32 +1,36 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
-import { serviceSchema, faqSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
+import { CtaBand } from "@/components/sections/CtaBand";
+import { Faqs } from "@/components/sections/Faqs";
+import { ServiceCard } from "@/components/sections/ServicesGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PageHero } from "@/components/sections/PageHero";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { CtaButton } from "@/components/ui/CtaButton";
+import { BookButton, ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { SERVICES, getService } from "@/lib/services";
-import { TEAM } from "@/lib/team";
-import { BOOKING } from "@/lib/constants";
+import { Reveal } from "@/components/ui/Reveal";
+import { getService, SERVICES } from "@/lib/services";
+import { getTeamMember } from "@/lib/team";
+import { faqSchema, serviceSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return SERVICES.map((s) => ({ slug: s.slug }));
+export function generateStaticParams() {
+  return SERVICES.map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  return pageMetadata({
+
+  return pageMeta({
     title: service.metaTitle,
     description: service.metaDescription,
-    path: `/services/${slug}`,
+    path: `/services/${service.slug}`,
+    image: service.image,
   });
 }
 
@@ -35,434 +39,225 @@ export default async function ServicePage({ params }: Params) {
   const service = getService(slug);
   if (!service) notFound();
 
-  const stylists = service.stylistSlugs
-    .map((s) => TEAM.find((t) => t.slug === s))
-    .filter((t): t is NonNullable<typeof t> => !!t);
-
-  const related = service.related
-    .map((s) => getService(s))
-    .filter((s): s is NonNullable<typeof s> => !!s);
+  const stylists = service.stylists.map(getTeamMember).filter((m) => m !== undefined);
+  const related = service.related.map(getService).filter((s) => s !== undefined);
 
   return (
     <>
-      <JsonLd
-        data={serviceSchema({
-          name: `${service.name} Coquitlam`,
-          serviceType: service.name,
-          description: service.teaser,
-          slug: service.slug,
-          priceMin: service.priceFrom,
-          priceMax: service.priceMax,
-        })}
-      />
-      <JsonLd data={faqSchema(service.faqs.map((f) => ({ q: f.q, a: f.a })))} />
-
-      <PageHero
-        breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
-          { name: service.name },
+      <Breadcrumbs
+        trail={[
+          { name: "Services", path: "/services" },
+          { name: service.name, path: `/services/${service.slug}` },
         ]}
-        eyebrow={service.eyebrow}
-        title={service.h1}
-        subhead={service.subhead}
       />
 
-      {/* Hero image */}
-      <section
-        className="mx-auto px-6 md:px-10 pb-10 md:pb-14"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <FadeIn className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-bg-alt">
-          <Image
-            src={service.image}
-            alt={service.imageAlt}
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover"
-          />
-        </FadeIn>
-        <FadeIn className="mt-6 flex flex-wrap items-center gap-5">
-          <span
-            className="text-[0.7rem] uppercase text-accent"
-            style={{ letterSpacing: "var(--tracking-label)" }}
-          >
-            From ${service.priceFrom}
-            {service.priceMax ? ` – $${service.priceMax}` : ""}
-          </span>
-          <CtaButton href={BOOKING.url} external>Book this service</CtaButton>
-        </FadeIn>
-      </section>
+      {/* Header */}
+      <section className="shell pt-10 md:pt-14">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <Reveal className="lg:col-span-6">
+            <Eyebrow className="mb-5">{service.eyebrow}</Eyebrow>
+            <h1 className="text-title text-balance">{service.headline}</h1>
+            <p className="mt-6 max-w-lg text-lede text-pretty text-muted">{service.lede}</p>
 
-      {/* Approach */}
-      <section
-        className="mx-auto px-6 md:px-10 py-14 md:py-20"
-        style={{ maxWidth: "var(--container-text)" }}
-      >
-        <FadeIn>
-          <Eyebrow>The approach</Eyebrow>
-          <p
-            className="mt-5 text-lg md:text-xl text-foreground"
-            style={{ lineHeight: "var(--leading-body)" }}
-          >
-            {service.approach}
-          </p>
-        </FadeIn>
-      </section>
+            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-ink/12 pt-6">
+              <div>
+                <dt className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
+                  From
+                </dt>
+                <dd className="mt-1 font-display text-2xl text-ink">{service.priceFrom}</dd>
+              </div>
+              <div>
+                <dt className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
+                  Time
+                </dt>
+                <dd className="mt-1 font-display text-2xl text-ink">{service.duration}</dd>
+              </div>
+            </dl>
 
-      {/* Process (optional) */}
-      {service.process && service.process.length > 0 && (
-        <section
-          className="border-y border-border"
-          style={{ backgroundColor: "var(--color-bg-alt)" }}
-        >
-          <div
-            className="mx-auto px-6 md:px-10 py-14 md:py-20"
-            style={{ maxWidth: "var(--container-max)" }}
-          >
-            <FadeIn className="max-w-2xl">
-              <Eyebrow>What to expect</Eyebrow>
-              <h2
-                className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)]"
-                style={{
-                  lineHeight: "var(--leading-tight)",
-                  letterSpacing: "var(--tracking-display)",
-                }}
-              >
-                The {service.name.toLowerCase()} process.
-              </h2>
-            </FadeIn>
-            <ol className="mt-10 md:mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
-              {service.process.map((step, i) => (
-                <FadeIn key={i} delay={(i % 4) * 0.08}>
-                  <li>
-                    <span
-                      className="text-[0.7rem] uppercase text-accent"
-                      style={{ letterSpacing: "var(--tracking-label)" }}
-                    >
-                      Step {i + 1}
-                    </span>
-                    <h3
-                      className="mt-3 font-display text-xl md:text-2xl"
-                      style={{
-                        lineHeight: "var(--leading-tight)",
-                        letterSpacing: "var(--tracking-display)",
-                      }}
-                    >
-                      {step.step}
-                    </h3>
-                    <p
-                      className="mt-3 text-sm md:text-base text-muted"
-                      style={{ lineHeight: "var(--leading-body)" }}
-                    >
-                      {step.body}
-                    </p>
-                  </li>
-                </FadeIn>
-              ))}
-            </ol>
-          </div>
-        </section>
-      )}
+            <div className="mt-8 flex flex-wrap gap-3">
+              <BookButton size="lg" />
+              <ButtonLink href="/menu" variant="outline" size="lg">
+                See all prices
+              </ButtonLink>
+            </div>
+          </Reveal>
 
-      {/* Who it's for (optional) */}
-      {service.whoItsFor && (
-        <section
-          className="mx-auto px-6 md:px-10 py-14 md:py-20"
-          style={{ maxWidth: "var(--container-text)" }}
-        >
-          <FadeIn>
-            <Eyebrow>Who it&apos;s for</Eyebrow>
-            <p
-              className="mt-5 text-lg text-muted"
-              style={{ lineHeight: "var(--leading-body)" }}
-            >
-              {service.whoItsFor}
-            </p>
-          </FadeIn>
-        </section>
-      )}
-
-      {/* Highlights list (optional) */}
-      {service.highlights && service.highlights.length > 0 && (
-        <section
-          className="mx-auto px-6 md:px-10 py-10 md:py-14"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn className="max-w-2xl">
-            <Eyebrow>What we specialise in</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              Every shade of {service.name.toLowerCase()}.
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.05} className="mt-8 grid md:grid-cols-2 gap-x-10 gap-y-4">
-            {service.highlights.map((h) => (
-              <p key={h} className="flex gap-3 text-muted md:text-lg">
-                <span className="text-accent" aria-hidden="true">·</span>
-                <span>{h}</span>
-              </p>
-            ))}
-          </FadeIn>
-        </section>
-      )}
-
-      {/* Pricing */}
-      <section
-        className="mx-auto px-6 md:px-10 py-14 md:py-20"
-        style={{ maxWidth: "var(--container-narrow)" }}
-      >
-        <FadeIn>
-          <Eyebrow>Pricing</Eyebrow>
-          <h2
-            className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)]"
-            style={{
-              lineHeight: "var(--leading-tight)",
-              letterSpacing: "var(--tracking-display)",
-            }}
-          >
-            Honest starting prices.
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <table className="mt-10 w-full text-left">
-            <thead>
-              <tr
-                className="border-b border-border"
-                style={{ letterSpacing: "var(--tracking-label)" }}
-              >
-                <th className="text-[0.7rem] uppercase text-muted pb-4 pr-4 font-medium">
-                  Service
-                </th>
-                <th className="text-[0.7rem] uppercase text-muted pb-4 font-medium text-right">
-                  Starting price
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {service.pricing.map((row, i) => (
-                <tr key={i} className="border-b border-border">
-                  <td className="py-4 pr-4 md:text-lg text-foreground">
-                    {row.label}
-                  </td>
-                  <td className="py-4 md:text-lg text-foreground text-right whitespace-nowrap">
-                    {row.from}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {service.pricingNote && (
-            <p className="mt-6 text-sm text-muted italic">
-              {service.pricingNote}
-            </p>
-          )}
-        </FadeIn>
-      </section>
-
-      {/* Stylists */}
-      {stylists.length > 0 && (
-        <section
-          className="mx-auto px-6 md:px-10 py-14 md:py-20"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn className="max-w-2xl">
-            <Eyebrow>Stylists who specialise</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              Who will be cutting or colouring your hair.
-            </h2>
-          </FadeIn>
-          <div className="mt-10 grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {stylists.map((p, i) => (
-              <FadeIn key={p.slug} delay={(i % 3) * 0.08}>
-                <Link href={`/team/${p.slug}`} className="group block">
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
-                    <Image
-                      src={p.portrait}
-                      alt={p.portraitAlt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, 50vw"
-                      className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                    />
-                  </div>
-                  <h3
-                    className="mt-4 font-display text-xl md:text-2xl"
-                    style={{
-                      lineHeight: "var(--leading-tight)",
-                      letterSpacing: "var(--tracking-display)",
-                    }}
-                  >
-                    {p.name}
-                    {p.alternateName && (
-                      <span className="text-muted"> ({p.alternateName})</span>
-                    )}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted">{p.title}</p>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Gallery */}
-      {service.gallery.length > 0 && (
-        <section
-          className="mx-auto px-6 md:px-10 py-14 md:py-20"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn className="max-w-2xl">
-            <Eyebrow>Recent work</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              {service.name} at Megas.
-            </h2>
-          </FadeIn>
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {service.gallery.map((img, i) => (
-              <FadeIn key={i} delay={(i % 4) * 0.05} className="relative aspect-[4/5] overflow-hidden bg-bg-alt">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                  className="object-cover"
-                />
-              </FadeIn>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* FAQ */}
-      <section
-        className="border-y border-border"
-        style={{ backgroundColor: "var(--color-bg-alt)" }}
-      >
-        <div
-          className="mx-auto px-6 md:px-10 py-14 md:py-20"
-          style={{ maxWidth: "var(--container-narrow)" }}
-        >
-          <FadeIn>
-            <Eyebrow>Questions</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
-            >
-              Common questions about {service.name.toLowerCase()}.
-            </h2>
-          </FadeIn>
-          <dl className="mt-10 divide-y divide-[var(--color-border)] border-t border-border">
-            {service.faqs.map((faq, i) => (
-              <FadeIn key={i} delay={(i % 3) * 0.05}>
-                <div className="py-6 md:py-8">
-                  <dt
-                    className="font-display text-xl md:text-[1.375rem] text-foreground"
-                    style={{ lineHeight: "var(--leading-tight)" }}
-                  >
-                    {faq.q}
-                  </dt>
-                  <dd
-                    className="mt-3 text-muted md:text-lg"
-                    style={{ lineHeight: "var(--leading-body)" }}
-                  >
-                    {faq.a}
-                  </dd>
-                </div>
-              </FadeIn>
-            ))}
-          </dl>
+          <Reveal delay={120} className="lg:col-span-6">
+            <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
+              <Image
+                src={service.image}
+                alt={service.imageAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 48vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section
-        className="mx-auto px-6 md:px-10 py-16 md:py-24 text-center"
-        style={{ maxWidth: "var(--container-narrow)" }}
-      >
-        <FadeIn>
-          <h2
-            className="font-display text-[clamp(2rem,4vw,3rem)]"
-            style={{
-              lineHeight: "var(--leading-tight)",
-              letterSpacing: "var(--tracking-display)",
-            }}
-          >
-            {service.finalCta}
-          </h2>
-          <div className="mt-8 flex justify-center">
-            <CtaButton href={BOOKING.url} external>Book your appointment</CtaButton>
+      {/* Body + what's included */}
+      <section className="shell grid gap-12 py-20 md:py-24 lg:grid-cols-12 lg:gap-16">
+        <Reveal className="lg:col-span-7">
+          <div className="space-y-6 text-lede text-pretty text-muted">
+            {service.body.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
           </div>
-        </FadeIn>
+        </Reveal>
+
+        <Reveal delay={120} className="lg:col-span-5">
+          <div className="rounded-sm bg-sand p-8">
+            <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper">
+              What&apos;s included
+            </h2>
+            <ul className="mt-5 space-y-3">
+              {service.includes.map((item) => (
+                <li key={item} className="flex gap-3 text-[0.9375rem] text-ink">
+                  <span aria-hidden="true" className="mt-2 h-px w-4 shrink-0 bg-copper" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </section>
 
-      {/* Related services */}
-      {related.length > 0 && (
-        <section
-          className="mx-auto px-6 md:px-10 py-10 md:py-16 border-t border-border"
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <FadeIn>
-            <Eyebrow>Related services</Eyebrow>
-            <h2
-              className="mt-3 font-display text-[clamp(1.5rem,3vw,2rem)]"
-              style={{
-                lineHeight: "var(--leading-tight)",
-                letterSpacing: "var(--tracking-display)",
-              }}
+      {/* Process */}
+      <section className="bg-espresso text-bone">
+        <div className="shell py-20 md:py-28">
+          <Reveal className="max-w-xl">
+            <Eyebrow tone="light" className="mb-5">
+              How it goes
+            </Eyebrow>
+            <h2 className="text-title text-balance">The appointment, step by step.</h2>
+          </Reveal>
+
+          <ol className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+            {service.process.map((step, index) => (
+              <Reveal key={step.title} delay={index * 70} as="li">
+                <span className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper-soft">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 font-display text-xl text-bone">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-pretty text-bone/65">
+                  {step.detail}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="shell py-20 md:py-28">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <Reveal className="lg:col-span-4">
+            <Eyebrow className="mb-5">Pricing</Eyebrow>
+            <h2 className="text-title text-balance">{service.name} prices</h2>
+            <p className="mt-5 text-[0.9375rem] leading-relaxed text-muted">
+              Starting prices in CAD. Very long or very dense hair may need extra product and
+              time — we confirm that at the consultation, before we start.
+            </p>
+            <Link
+              href="/menu"
+              className="mt-5 inline-block font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
             >
-              Explore more.
-            </h2>
-          </FadeIn>
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {related.map((s, i) => (
-              <FadeIn key={s.slug} delay={i * 0.08}>
-                <Link href={`/services/${s.slug}`} className="group block">
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
-                    <Image
-                      src={s.image}
-                      alt={s.imageAlt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, 50vw"
-                      className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                    />
-                  </div>
-                  <h3
-                    className="mt-5 font-display text-xl md:text-2xl"
-                    style={{
-                      lineHeight: "var(--leading-tight)",
-                      letterSpacing: "var(--tracking-display)",
-                    }}
-                  >
-                    {s.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted">{s.teaser}</p>
-                </Link>
-              </FadeIn>
+              See the full menu →
+            </Link>
+          </Reveal>
+
+          <Reveal delay={120} className="lg:col-span-8">
+            <table className="w-full">
+              <caption className="sr-only">{service.name} price list</caption>
+              <tbody>
+                {service.pricing.map((row) => (
+                  <tr key={row.name} className="border-t border-ink/12 last:border-b">
+                    <th
+                      scope="row"
+                      className="py-4 pr-4 text-left font-sans text-[0.9375rem] font-normal text-ink"
+                    >
+                      {row.name}
+                    </th>
+                    <td className="py-4 text-right font-display text-lg text-ink">{row.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Who does it */}
+      {stylists.length > 0 && (
+        <section className="bg-sand">
+          <div className="shell py-20 md:py-24">
+            <Reveal className="max-w-xl">
+              <Eyebrow className="mb-5">Who does it</Eyebrow>
+              <h2 className="text-title text-balance">Book this with</h2>
+            </Reveal>
+
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {stylists.map((member, index) => (
+                <Reveal key={member.slug} delay={index * 80}>
+                  <Link href={`/team/${member.slug}`} className="group flex items-center gap-5">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-clay">
+                      <Image
+                        src={member.portrait}
+                        alt={member.portraitAlt}
+                        fill
+                        sizes="80px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg text-ink transition-colors group-hover:text-copper">
+                        {member.name}
+                      </h3>
+                      <p className="mt-0.5 text-sm text-muted">{member.title}</p>
+                      {member.years !== null && (
+                        <p className="mt-0.5 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
+                          {member.years} years
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <Faqs faqs={service.faqs} title={`${service.name} — the questions we get`} />
+
+      {/* Related */}
+      {related.length > 0 && (
+        <section className="shell border-t border-ink/12 py-20 md:py-24">
+          <Reveal>
+            <Eyebrow className="mb-5">Also consider</Eyebrow>
+            <h2 className="text-title text-balance">Related services</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((item, index) => (
+              <ServiceCard key={item.slug} service={item} index={index} />
             ))}
           </div>
         </section>
       )}
+
+      <CtaBand />
+
+      <JsonLd
+        data={serviceSchema({
+          name: service.name,
+          description: service.metaDescription,
+          path: `/services/${service.slug}`,
+          priceValue: service.priceValue,
+        })}
+      />
+      <JsonLd data={faqSchema(service.faqs)} />
     </>
   );
 }

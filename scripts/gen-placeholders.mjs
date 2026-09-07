@@ -1,346 +1,134 @@
-// Generates rich SVG placeholders for the v1 mockup.
-// Run with: node scripts/gen-placeholders.mjs
-//
-// Swap for real AVIF/WebP imagery at launch (see docs/LAUNCH-BLOCKERS.md).
+/**
+ * Generates the placeholder art in public/images/ph/.
+ *
+ * These stand in for the salon's photography, which is being shot once the
+ * Coquitlam build-out finishes. Each file carries the shot description it is
+ * standing in for, so the set doubles as a shot list for the photographer.
+ *
+ * Run: npm run placeholders
+ */
 
-import { writeFileSync, mkdirSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUT = join(__dirname, "..", "public", "images", "placeholder");
-mkdirSync(OUT, { recursive: true });
+const OUT_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "images", "ph");
 
-const PALETTE = {
-  bg: "#FFFFFF",
-  bgAlt: "#ECE7DD",
-  bgDeep: "#E4DFD5",
-  ink: "#1C1C1C",
-  inkSoft: "#3D3A36",
-  muted: "#6E6E6E",
-  border: "#D6CEC0",
-  accent: "#B0925E",
-  accentDark: "#8C7043",
-  accentSoft: "#F1E9DA",
+/** Warm, salon-appropriate gradient families. Keys are used per asset below. */
+const TONES = {
+  copper: ["#D9A276", "#B26B3F", "#7A4326"],
+  bone: ["#F3EADC", "#DFCDB6", "#BFA88E"],
+  espresso: ["#4A3B31", "#2C221C", "#171110"],
+  clay: ["#E4C7B4", "#C39476", "#8C5A3E"],
+  ash: ["#DAD5CB", "#B4AEA1", "#837D6E"],
+  ember: ["#E0B48A", "#C1793F", "#6E3E22"],
 };
 
-const write = (name, svg) =>
-  writeFileSync(join(OUT, `${name}.svg`), svg.trim() + "\n", "utf8");
+function svg({ w, h, tone, label, sub }) {
+  const [c1, c2, c3] = TONES[tone];
+  const id = Math.random().toString(36).slice(2, 8);
+  const diag = Math.round(Math.hypot(w, h));
 
-// ─── Shared fragments ─────────────────────────────────────────────
+  // Soft light streaks, angled like fallen hair.
+  const streaks = Array.from({ length: 7 }, (_, i) => {
+    const x = (w / 8) * (i + 0.5);
+    const sway = w * 0.12;
+    return `<path d="M ${x - sway} -40 C ${x + sway} ${h * 0.3}, ${x - sway} ${h * 0.7}, ${x + sway * 0.6} ${h + 40}" stroke="#FFFFFF" stroke-opacity="${(0.05 + (i % 3) * 0.025).toFixed(3)}" stroke-width="${18 + (i % 4) * 22}" fill="none" filter="url(#soft${id})"/>`;
+  }).join("");
 
-const gradientsBlock = `
+  const labelBlock = label
+    ? `<g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="${w / 2}" y="${h / 2 - 4}" font-size="${Math.round(Math.min(w, h) * 0.055)}" fill="#FFFFFF" fill-opacity="0.82" letter-spacing="1">${label}</text>
+    <text x="${w / 2}" y="${h / 2 + Math.round(Math.min(w, h) * 0.055) + 10}" font-family="Helvetica, Arial, sans-serif" font-size="${Math.round(Math.min(w, h) * 0.026)}" fill="#FFFFFF" fill-opacity="0.5" letter-spacing="${Math.round(Math.min(w, h) * 0.006)}">${sub ?? "PHOTOGRAPHY COMING SOON"}</text>
+  </g>`
+    : "";
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img">
   <defs>
-    <linearGradient id="warmVertical" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${PALETTE.bg}"/>
-      <stop offset="55%" stop-color="${PALETTE.bgAlt}"/>
-      <stop offset="100%" stop-color="${PALETTE.bgDeep}"/>
+    <linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${c1}"/>
+      <stop offset="52%" stop-color="${c2}"/>
+      <stop offset="100%" stop-color="${c3}"/>
     </linearGradient>
-    <linearGradient id="warmDiagonal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${PALETTE.bgAlt}"/>
-      <stop offset="100%" stop-color="${PALETTE.bgDeep}"/>
-    </linearGradient>
-    <radialGradient id="softVignette" cx="50%" cy="50%" r="75%">
-      <stop offset="55%" stop-color="rgba(0,0,0,0)"/>
-      <stop offset="100%" stop-color="rgba(26,26,26,0.20)"/>
+    <radialGradient id="v${id}" cx="50%" cy="42%" r="78%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.34"/>
     </radialGradient>
-    <linearGradient id="inkToAccent" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${PALETTE.ink}"/>
-      <stop offset="70%" stop-color="${PALETTE.inkSoft}"/>
-      <stop offset="100%" stop-color="${PALETTE.accentDark}"/>
-    </linearGradient>
+    <filter id="soft${id}" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="${Math.round(diag * 0.022)}"/>
+    </filter>
+    <filter id="blob${id}" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="${Math.round(diag * 0.055)}"/>
+    </filter>
+    <filter id="grain${id}" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+    </filter>
   </defs>
-`;
 
-// ─── Hero ─────────────────────────────────────────────────────────
-
-function hero() {
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Megas Hair Salon — master colourists in Coquitlam, BC">
-  ${gradientsBlock}
-  <rect width="2400" height="1600" fill="url(#warmVertical)"/>
-
-  <!-- Soft architectural planes suggesting salon interior -->
-  <g opacity="0.55">
-    <rect x="0" y="1050" width="2400" height="550" fill="${PALETTE.bgDeep}"/>
-    <rect x="1550" y="120" width="620" height="1020" fill="${PALETTE.bgAlt}" opacity="0.75"/>
-    <rect x="1580" y="150" width="560" height="960" fill="${PALETTE.bg}" opacity="0.9"/>
-    <line x1="1580" y1="1110" x2="2140" y2="1110" stroke="${PALETTE.accent}" stroke-width="2" opacity="0.7"/>
-  </g>
-
-  <!-- Large M watermark -->
-  <text x="1200" y="1250" font-family="Georgia, 'Times New Roman', serif" font-size="1600" fill="${PALETTE.accent}" fill-opacity="0.07" text-anchor="middle" font-weight="300">M</text>
-
-  <!-- Brand mark -->
-  <text x="140" y="140" font-family="Georgia, 'Times New Roman', serif" font-size="70" fill="${PALETTE.ink}" font-weight="500" letter-spacing="-2">Megas</text>
-  <text x="140" y="200" font-family="Inter, system-ui, sans-serif" font-size="22" fill="${PALETTE.accent}" letter-spacing="6">HAIR · SALON · 1984</text>
-
-  <rect width="2400" height="1600" fill="url(#softVignette)"/>
+  <rect width="${w}" height="${h}" fill="url(#g${id})"/>
+  <ellipse cx="${w * 0.28}" cy="${h * 0.24}" rx="${w * 0.34}" ry="${h * 0.26}" fill="#FFFFFF" fill-opacity="0.17" filter="url(#blob${id})"/>
+  <ellipse cx="${w * 0.78}" cy="${h * 0.74}" rx="${w * 0.32}" ry="${h * 0.3}" fill="#000000" fill-opacity="0.16" filter="url(#blob${id})"/>
+  ${streaks}
+  <rect width="${w}" height="${h}" fill="url(#v${id})"/>
+  <rect width="${w}" height="${h}" filter="url(#grain${id})" opacity="0.5"/>
+  ${labelBlock}
 </svg>
 `;
 }
 
-// ─── Salon interior (abstract architectural) ──────────────────────
+/** [filename, width, height, tone, label] */
+const ASSETS = [
+  ["og-default", 1200, 630, "espresso", "Megas Hair Salon", "COQUITLAM · SINCE 1984"],
+  ["hero", 2000, 1400, "espresso", "", ""],
+  ["hero-portrait", 1100, 1400, "copper", "Hero portrait", "SALON INTERIOR OR COLOUR WORK"],
 
-function interior(seed, width, height) {
-  // Deterministic pseudo-random from seed
-  const h = [...seed].reduce((a, c) => a + c.charCodeAt(0), 0);
-  const offsetX = (h * 37) % 100;
-  const offsetY = (h * 53) % 100;
+  ["salon-1", 1200, 900, "bone", "Styling floor", ""],
+  ["salon-2", 1200, 900, "ash", "Chair & mirror", ""],
+  ["salon-3", 1200, 900, "clay", "Wash station", ""],
+  ["salon-4", 1200, 900, "espresso", "Tools & detail", ""],
+  ["salon-5", 1200, 900, "bone", "Reception", ""],
 
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Megas Hair Salon interior detail">
-  ${gradientsBlock}
-  <rect width="${width}" height="${height}" fill="url(#warmDiagonal)"/>
+  ["work-balayage-1", 1000, 1250, "ember", "Balayage", ""],
+  ["work-balayage-2", 1000, 1250, "copper", "Balayage, close up", ""],
+  ["work-blonde-1", 1000, 1250, "bone", "Platinum blonde", ""],
+  ["work-blonde-2", 1000, 1250, "ash", "Lived-in blonde", ""],
+  ["work-colour-1", 1000, 1250, "espresso", "Rich brunette", ""],
+  ["work-colour-2", 1000, 1250, "clay", "Root touch-up", ""],
+  ["work-cut-1", 1000, 1250, "ash", "Precision cut", ""],
+  ["work-cut-2", 1000, 1250, "espresso", "Men's cut", ""],
+  ["work-blowout-1", 1000, 1250, "copper", "Blowout", ""],
+  ["work-keratin-1", 1000, 1250, "bone", "Keratin finish", ""],
+  ["work-treatment-1", 1000, 1250, "clay", "Treatment ritual", ""],
+  ["work-updo-1", 1000, 1250, "ember", "Bridal updo", ""],
 
-  <!-- Wall plane -->
-  <rect x="0" y="0" width="${width}" height="${height * 0.6}" fill="${PALETTE.bg}" opacity="0.55"/>
+  ["stylist-bulent-bill", 900, 1200, "espresso", "Bülent", "PORTRAIT COMING SOON"],
+  ["stylist-gazi", 900, 1200, "copper", "Gazi", "PORTRAIT COMING SOON"],
+  ["stylist-emir", 900, 1200, "ash", "Emir", "PORTRAIT COMING SOON"],
+  ["stylist-fulya", 900, 1200, "clay", "Fulya", "PORTRAIT COMING SOON"],
+  ["stylist-fara", 900, 1200, "bone", "Fara", "PORTRAIT COMING SOON"],
+  ["stylist-nadia", 900, 1200, "ember", "Nadia", "PORTRAIT COMING SOON"],
+  ["stylist-rain", 900, 1200, "ash", "Rain", "PORTRAIT COMING SOON"],
+  ["stylist-angela", 900, 1200, "copper", "Angela", "PORTRAIT COMING SOON"],
 
-  <!-- Mirror / frame -->
-  <rect x="${width * 0.12 + offsetX}" y="${height * 0.14}" width="${width * 0.35}" height="${height * 0.44}" fill="${PALETTE.bgAlt}" stroke="${PALETTE.border}" stroke-width="2"/>
-  <rect x="${width * 0.12 + offsetX + 12}" y="${height * 0.14 + 12}" width="${width * 0.35 - 24}" height="${height * 0.44 - 24}" fill="${PALETTE.bgDeep}" opacity="0.4"/>
+  ["area-coquitlam", 1400, 900, "bone", "Coquitlam", ""],
+  ["area-port-moody", 1400, 900, "ash", "Port Moody", ""],
+  ["area-port-coquitlam", 1400, 900, "clay", "Port Coquitlam", ""],
+  ["area-vancouver", 1400, 900, "espresso", "Vancouver", ""],
 
-  <!-- Secondary frame -->
-  <rect x="${width * 0.55 + offsetY}" y="${height * 0.2}" width="${width * 0.25}" height="${height * 0.3}" fill="${PALETTE.bgAlt}" stroke="${PALETTE.border}" stroke-width="2"/>
+  ["journal-balayage", 1400, 900, "ember", "Balayage vs highlights", ""],
+  ["journal-keratin", 1400, 900, "bone", "Keratin in winter", ""],
+  ["journal-colourist", 1400, 900, "ash", "Choosing a colourist", ""],
 
-  <!-- Counter line -->
-  <line x1="0" y1="${height * 0.62}" x2="${width}" y2="${height * 0.62}" stroke="${PALETTE.accent}" stroke-width="3" opacity="0.6"/>
-  <rect x="0" y="${height * 0.62}" width="${width}" height="${height * 0.38}" fill="${PALETTE.bgDeep}" opacity="0.6"/>
-
-  <!-- Product bottles suggestion -->
-  <g opacity="0.5">
-    <rect x="${width * 0.16}" y="${height * 0.68}" width="14" height="${height * 0.12}" fill="${PALETTE.inkSoft}"/>
-    <rect x="${width * 0.19}" y="${height * 0.66}" width="14" height="${height * 0.14}" fill="${PALETTE.accent}"/>
-    <rect x="${width * 0.22}" y="${height * 0.7}" width="14" height="${height * 0.1}" fill="${PALETTE.inkSoft}"/>
-    <rect x="${width * 0.25}" y="${height * 0.67}" width="14" height="${height * 0.13}" fill="${PALETTE.ink}"/>
-  </g>
-
-  <!-- Subtle monogram -->
-  <text x="${width * 0.5}" y="${height * 0.5}" font-family="Georgia, 'Times New Roman', serif" font-size="${height * 0.7}" fill="${PALETTE.accent}" fill-opacity="0.03" text-anchor="middle" font-weight="300">M</text>
-
-  <rect width="${width}" height="${height}" fill="url(#softVignette)"/>
-</svg>
-`;
-}
-
-// ─── Salon exterior ───────────────────────────────────────────────
-
-function exterior() {
-  const width = 1600;
-  const height = 1200;
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Megas Hair Salon exterior on Pacific Street, Coquitlam">
-  ${gradientsBlock}
-  <!-- Sky -->
-  <rect width="${width}" height="${height * 0.55}" fill="${PALETTE.bg}"/>
-  <!-- Building face -->
-  <rect x="0" y="${height * 0.15}" width="${width}" height="${height * 0.7}" fill="${PALETTE.bgAlt}"/>
-  <!-- Window bank -->
-  <rect x="${width * 0.1}" y="${height * 0.3}" width="${width * 0.8}" height="${height * 0.4}" fill="${PALETTE.inkSoft}" opacity="0.65"/>
-  <!-- Mullions -->
-  <g stroke="${PALETTE.bgDeep}" stroke-width="3">
-    <line x1="${width * 0.3}" y1="${height * 0.3}" x2="${width * 0.3}" y2="${height * 0.7}"/>
-    <line x1="${width * 0.5}" y1="${height * 0.3}" x2="${width * 0.5}" y2="${height * 0.7}"/>
-    <line x1="${width * 0.7}" y1="${height * 0.3}" x2="${width * 0.7}" y2="${height * 0.7}"/>
-  </g>
-  <!-- Signage -->
-  <rect x="${width * 0.35}" y="${height * 0.18}" width="${width * 0.3}" height="${height * 0.08}" fill="${PALETTE.ink}"/>
-  <text x="${width * 0.5}" y="${height * 0.24}" font-family="Georgia, serif" font-size="56" fill="${PALETTE.bg}" text-anchor="middle" font-weight="500" letter-spacing="-1">Megas</text>
-  <!-- Door -->
-  <rect x="${width * 0.44}" y="${height * 0.55}" width="${width * 0.12}" height="${height * 0.3}" fill="${PALETTE.accent}" opacity="0.85"/>
-  <!-- Sidewalk -->
-  <rect x="0" y="${height * 0.85}" width="${width}" height="${height * 0.15}" fill="${PALETTE.bgDeep}"/>
-  <rect width="${width}" height="${height}" fill="url(#softVignette)"/>
-</svg>
-`;
-}
-
-// ─── Hair result ──────────────────────────────────────────────────
-
-const SERVICE_PALETTE = {
-  "balayage-1": ["#EADFC8", "#A37F4D"],
-  "balayage-2": ["#F1E5CC", "#C3955F"],
-  "blonde-1": ["#FFF5D9", "#E2C37F"],
-  "blonde-2": ["#F6E9C4", "#D5AE6B"],
-  "precision-cut-1": ["#C9B89A", "#3E3328"],
-  "precision-cut-2": ["#AE9A7C", "#2B211A"],
-  "hair-color-1": ["#6E3E2A", "#321A10"],
-  "hair-color-2": ["#B54B2A", "#6B2414"],
-  "keratin-1": ["#D9C4A0", "#7D5B36"],
-  "blow-dry-1": ["#E0C79B", "#8E6B3C"],
-  "root-touch-up-1": ["#8E6B3C", "#3E2A18"],
-  "restorative-1": ["#D9BE8B", "#5E4020"],
-};
-
-function hairResult(slug) {
-  const width = 1200;
-  const height = 1500;
-  const [light, dark] = SERVICE_PALETTE[slug];
-  const gid = `g-${slug}`;
-
-  // Flowing hair strokes — vertical curves
-  const strokes = [];
-  for (let i = 0; i < 22; i++) {
-    const x0 = (width / 21) * i;
-    const sway1 = Math.sin(i * 0.9) * 60;
-    const sway2 = Math.sin(i * 0.7 + 1.5) * 80;
-    const d = `M ${x0} 0 C ${x0 + sway1} ${height * 0.35}, ${x0 + sway2} ${height * 0.7}, ${x0 + sway1 * 0.4} ${height}`;
-    const opacity = 0.18 + (i % 3) * 0.08;
-    const stroke = i % 3 === 0 ? dark : light;
-    const widthStroke = 14 + (i % 4) * 6;
-    strokes.push(
-      `<path d="${d}" fill="none" stroke="${stroke}" stroke-width="${widthStroke}" stroke-linecap="round" opacity="${opacity}"/>`,
-    );
-  }
-
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Hair result mockup — ${slug}">
-  <defs>
-    <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${dark}" stop-opacity="0.92"/>
-      <stop offset="45%" stop-color="${light}" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="${dark}" stop-opacity="0.85"/>
-    </linearGradient>
-    <radialGradient id="shine-${slug}" cx="50%" cy="35%" r="50%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
-      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-    </radialGradient>
-  </defs>
-  <rect width="${width}" height="${height}" fill="url(#${gid})"/>
-  ${strokes.join("\n  ")}
-  <rect width="${width}" height="${height}" fill="url(#shine-${slug})"/>
-  <rect width="${width}" height="${height}" fill="url(#softVignette)"/>
-  ${gradientsBlock}
-</svg>
-`;
-}
-
-// ─── Portrait monogram ────────────────────────────────────────────
-
-function portrait(slug, initial, name, years) {
-  const width = 1200;
-  const height = 1500;
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${name} — Megas Hair Salon, Coquitlam">
-  ${gradientsBlock}
-  <rect width="${width}" height="${height}" fill="url(#inkToAccent)"/>
-
-  <!-- Subtle texture -->
-  <g opacity="0.05">
-    <rect width="${width}" height="${height}" fill="url(#warmVertical)"/>
-  </g>
-
-  <!-- Large serif initial -->
-  <text x="${width / 2}" y="${height * 0.63}" font-family="Georgia, 'Times New Roman', serif" font-size="${height * 0.85}" fill="${PALETTE.bg}" fill-opacity="0.92" text-anchor="middle" font-weight="300">${initial}</text>
-
-  <!-- Bottom brand band -->
-  <rect x="0" y="${height - 140}" width="${width}" height="140" fill="${PALETTE.ink}" opacity="0.7"/>
-  <text x="${width / 2}" y="${height - 82}" font-family="Georgia, serif" font-size="50" fill="${PALETTE.bg}" text-anchor="middle" font-weight="500" letter-spacing="-1">${name}</text>
-  <text x="${width / 2}" y="${height - 36}" font-family="Inter, system-ui, sans-serif" font-size="19" fill="${PALETTE.accent}" text-anchor="middle" letter-spacing="6">${years}</text>
-</svg>
-`;
-}
-
-function action(slug, name) {
-  const width = 1800;
-  const height = 1200;
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${name} — at work at Megas Hair Salon, Coquitlam">
-  ${gradientsBlock}
-  <rect width="${width}" height="${height}" fill="url(#warmDiagonal)"/>
-
-  <!-- Large arc suggesting a styling chair / scene -->
-  <circle cx="${width * 0.35}" cy="${height * 0.6}" r="${height * 0.35}" fill="${PALETTE.bgDeep}" opacity="0.85"/>
-  <circle cx="${width * 0.35}" cy="${height * 0.56}" r="${height * 0.2}" fill="${PALETTE.ink}" opacity="0.85"/>
-
-  <!-- Reflection / mirror -->
-  <rect x="${width * 0.6}" y="${height * 0.1}" width="${width * 0.3}" height="${height * 0.55}" fill="${PALETTE.bg}" opacity="0.9"/>
-  <rect x="${width * 0.6 + 12}" y="${height * 0.1 + 12}" width="${width * 0.3 - 24}" height="${height * 0.55 - 24}" fill="${PALETTE.bgAlt}" opacity="0.8"/>
-
-  <!-- Copper accent line -->
-  <line x1="0" y1="${height * 0.8}" x2="${width}" y2="${height * 0.8}" stroke="${PALETTE.accent}" stroke-width="3" opacity="0.7"/>
-
-  <!-- Name tag -->
-  <text x="60" y="${height - 70}" font-family="Georgia, serif" font-size="64" fill="${PALETTE.ink}" font-weight="500" letter-spacing="-1">${name}</text>
-  <text x="60" y="${height - 26}" font-family="Inter, sans-serif" font-size="20" fill="${PALETTE.accent}" letter-spacing="6">MEGAS · COQUITLAM</text>
-
-  <rect width="${width}" height="${height}" fill="url(#softVignette)"/>
-</svg>
-`;
-}
-
-// ─── OG default ───────────────────────────────────────────────────
-
-function og() {
-  const width = 1200;
-  const height = 630;
-  return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Megas Hair Salon — master colourists in Coquitlam since 1984">
-  ${gradientsBlock}
-  <rect width="${width}" height="${height}" fill="url(#warmVertical)"/>
-
-  <!-- Accent rule -->
-  <rect x="0" y="0" width="${width}" height="8" fill="${PALETTE.accent}"/>
-
-  <!-- M watermark -->
-  <text x="${width * 0.82}" y="${height * 0.85}" font-family="Georgia, serif" font-size="${height * 0.9}" fill="${PALETTE.accent}" fill-opacity="0.08" text-anchor="middle" font-weight="300">M</text>
-
-  <!-- Brand mark -->
-  <text x="72" y="${height * 0.28}" font-family="Inter, sans-serif" font-size="22" fill="${PALETTE.accent}" letter-spacing="7">MEGAS · HAIR · SALON</text>
-
-  <text x="72" y="${height * 0.56}" font-family="Georgia, serif" font-size="76" fill="${PALETTE.ink}" font-weight="500" letter-spacing="-2">Master colourists,</text>
-  <text x="72" y="${height * 0.56 + 88}" font-family="Georgia, serif" font-size="76" fill="${PALETTE.ink}" font-weight="500" letter-spacing="-2">since 1984.</text>
-
-  <text x="72" y="${height * 0.92}" font-family="Inter, sans-serif" font-size="22" fill="${PALETTE.muted}" letter-spacing="3">COQUITLAM · BC · CANADA</text>
-</svg>
-`;
-}
-
-// ─── Emit ─────────────────────────────────────────────────────────
-
-// Hero
-write("hero", hero());
-
-// Interiors (1800×1200 and 1200×1500 mixed)
-write("salon-interior-1", interior("i1", 1800, 1200));
-write("salon-interior-2", interior("i2", 1200, 1500));
-write("salon-interior-3", interior("i3", 1200, 1500));
-write("salon-interior-4", interior("i4", 1800, 1200));
-
-// Exterior
-write("salon-exterior", exterior());
-
-// Hair results
-write("result-balayage-1", hairResult("balayage-1"));
-write("result-balayage-2", hairResult("balayage-2"));
-write("result-blonde-1", hairResult("blonde-1"));
-write("result-blonde-2", hairResult("blonde-2"));
-write("result-precision-cut-1", hairResult("precision-cut-1"));
-write("result-precision-cut-2", hairResult("precision-cut-2"));
-write("result-hair-color-1", hairResult("hair-color-1"));
-write("result-hair-color-2", hairResult("hair-color-2"));
-write("result-keratin-1", hairResult("keratin-1"));
-write("result-blow-dry-1", hairResult("blow-dry-1"));
-write("result-root-touch-up-1", hairResult("root-touch-up-1"));
-write("result-restorative-1", hairResult("restorative-1"));
-
-// Team portraits (initial + name + years)
-const team = [
-  ["bulent", "B", "Bülent", "35 YEARS · MASTER COLOURIST"],
-  ["gazi", "G", "Gazi", "41 YEARS · MASTER STYLIST"],
-  ["emir", "E", "Emir", "23 YEARS · COLOUR & STYLING"],
-  ["fulya", "F", "Fulya", "15 YEARS · DIRECTOR"],
-  ["fara", "F", "Fara", "STYLIST"],
-  ["nadia", "N", "Nadia", "STYLIST"],
-  ["rain", "R", "Rain", "STYLIST"],
-  ["angela", "A", "Angela", "STYLIST"],
+  ["about-heritage", 1200, 1500, "espresso", "Istanbul, 1984", ""],
+  ["about-today", 1200, 1500, "copper", "Coquitlam, today", ""],
 ];
-for (const [slug, initial, name, years] of team) {
-  write(`stylist-${slug}-portrait`, portrait(slug, initial, name, years));
-  write(`stylist-${slug}-action`, action(slug, name));
+
+mkdirSync(OUT_DIR, { recursive: true });
+
+for (const [name, w, h, tone, label, sub] of ASSETS) {
+  writeFileSync(join(OUT_DIR, `${name}.svg`), svg({ w, h, tone, label, sub }), "utf8");
 }
 
-// OG default
-write("og-default", og());
-
-console.log("Generated placeholder SVGs in", OUT);
+console.log(`Generated ${ASSETS.length} placeholders in public/images/ph/`);

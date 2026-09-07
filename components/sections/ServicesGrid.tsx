@@ -1,74 +1,64 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { SERVICES } from "@/lib/services";
+import { Reveal } from "@/components/ui/Reveal";
+import type { Service } from "@/lib/services";
 
-export function ServicesGrid() {
+export function ServiceCard({ service, index = 0 }: { service: Service; index?: number }) {
   return (
-    <section
-      id="services"
-      className="mx-auto px-6 md:px-10 py-16 md:py-24 lg:py-32"
-      style={{ maxWidth: "var(--container-max)" }}
-    >
-      <FadeIn className="max-w-2xl">
-        <Eyebrow>Services</Eyebrow>
-        <h2
-          className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)]"
-          style={{
-            lineHeight: "var(--leading-tight)",
-            letterSpacing: "var(--tracking-display)",
-          }}
-        >
-          A practiced hand for every chapter of your hair.
-        </h2>
-      </FadeIn>
+    <Reveal delay={(index % 3) * 90}>
+      <Link href={`/services/${service.slug}`} className="group block">
+        <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
+          <Image
+            src={service.image}
+            alt={service.imageAlt}
+            fill
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+          />
+        </div>
+        <div className="mt-5 flex items-baseline justify-between gap-4">
+          <h3 className="font-display text-xl text-ink transition-colors duration-300 group-hover:text-copper md:text-2xl">
+            {service.name}
+          </h3>
+          <span className="shrink-0 font-sans text-xs tracking-wide text-muted">
+            from {service.priceFrom}
+          </span>
+        </div>
+        <p className="mt-2 text-sm leading-relaxed text-pretty text-muted">{service.lede}</p>
+      </Link>
+    </Reveal>
+  );
+}
 
-      <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-        {SERVICES.map((service, i) => (
-          <FadeIn key={service.slug} delay={(i % 4) * 0.08}>
-            <Link
-              href={`/services/${service.slug}`}
-              className="group block"
-            >
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-bg-alt">
-                <Image
-                  src={service.image}
-                  alt={service.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                />
-              </div>
-              <div className="mt-5 flex items-baseline justify-between gap-4">
-                <h3
-                  className="font-display text-2xl md:text-[1.625rem]"
-                  style={{
-                    lineHeight: "var(--leading-tight)",
-                    letterSpacing: "var(--tracking-display)",
-                  }}
-                >
-                  {service.name}
-                </h3>
-                <span className="text-xs text-muted whitespace-nowrap">
-                  From ${service.priceFrom}
-                </span>
-              </div>
-              <p className="mt-2 text-sm text-muted">{service.teaser}</p>
-            </Link>
-          </FadeIn>
+export function ServicesGrid({
+  services,
+  eyebrow = "What we do",
+  title = "Services",
+  intro,
+  footer,
+}: {
+  services: readonly Service[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  footer?: React.ReactNode;
+}) {
+  return (
+    <section className="shell py-20 md:py-28">
+      <Reveal className="max-w-2xl">
+        <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
+        <h2 className="text-title text-balance">{title}</h2>
+        {intro && <p className="mt-5 text-lede text-pretty text-muted">{intro}</p>}
+      </Reveal>
+
+      <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service, index) => (
+          <ServiceCard key={service.slug} service={service} index={index} />
         ))}
       </div>
 
-      <FadeIn className="mt-14 md:mt-16 text-center">
-        <Link
-          href="/services"
-          className="inline-block text-xs uppercase text-foreground hover:text-accent transition-colors underline underline-offset-4"
-          style={{ letterSpacing: "var(--tracking-label)" }}
-        >
-          View all services →
-        </Link>
-      </FadeIn>
+      {footer && <div className="mt-14 flex flex-wrap items-center gap-3">{footer}</div>}
     </section>
   );
 }

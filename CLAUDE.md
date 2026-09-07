@@ -1,35 +1,34 @@
-# Megas Hair Salon Redesign
+# Megas Hair Salon — working notes
 
-Premium Turkish hair salon website redesign. Full specification in ./docs.
+Marketing site for a Turkish hair salon in Coquitlam BC. Read `README.md` first;
+it explains the structure and where content lives.
 
-## Critical context
-- Business: Megas Hair Salon, 150-1169 Pacific St, Coquitlam, BC V3B 0J1
-- Phone: (778) 858-0396
-- Rating: 4.8 stars from 146 Google reviews
-- Founded: 1984 (Istanbul) | Vancouver location: 2025
-- Team: Bulent (Bill), Gazi, Emir - master stylists. Fulya - director.
+## Rules that matter here
 
-## Stack
-- Next.js 15 (App Router) + TypeScript
-- Tailwind CSS v4 with custom design tokens from docs/01-design-system.md
-- Framer Motion (animations) + Lenis (smooth scroll)
-- shadcn/ui primitives
-- next/font: Jost (geometric-sans display, uppercase) + Inter (body) — see docs/01-design-system.md
-- Hosting: Vercel
+- **Never invent salon facts.** Prices, stylist experience, reviews, and
+  policies come from the client or from Phorest. If something is unknown, say so
+  in the copy (as the four placeholder stylist profiles do) rather than filling
+  the gap.
+- **`lib/site.ts` is the only place NAP lives.** Address, phone, and hours are
+  reused across the footer, contact page, and every schema block. Do not hardcode
+  them anywhere else.
+- **Phorest is the source of truth for prices.** `lib/menu.ts` and
+  `lib/services.ts` must agree with each other and with Phorest. Update
+  `MENU_UPDATED` whenever they change.
+- **Every page uses `pageMeta()` from `lib/seo.ts`** for its metadata, and gets
+  at least one JSON-LD block. Do not hand-roll `metadata` objects.
+- **Motion is CSS-driven and respects `prefers-reduced-motion`.** The `Reveal`
+  component only flips a data attribute; `app/globals.css` owns the transition
+  and disables it under reduced motion.
 
-## Strategy (per docs/00-strategy.md)
-- Target Coquitlam + Tri-Cities, NOT Vancouver proper
-- Moat keyword: 'Turkish hair salon Vancouver' (low competition)
-- Premium positioning: master colourists, 1984 heritage
+## Design system
 
-## Hard constraints
-- Mobile Lighthouse score must be >= 95
-- All animations must respect prefers-reduced-motion
-- Every page needs unique title, meta description, canonical, OG image
-- Schema markup on every page (LocalBusiness sitewide, Service/Person/FAQPage as appropriate)
-- NAP consistency: 150-1169 Pacific St, Coquitlam, BC V3B 0J1 / (778) 858-0396
+Tokens are in the `@theme` block of `app/globals.css` — warm bone paper, ink,
+and burnished copper, with Fraunces for display and DM Sans for UI. Use the
+semantic colour names (`bone`, `sand`, `clay`, `ink`, `espresso`, `muted`,
+`copper`), not raw hex.
 
-## Workflow rule
-- ALWAYS read the relevant doc in ./docs before building any page or component
-- Reference docs by path: 'per docs/services/balayage-coquitlam.md'
-- Stop and ask if any spec is unclear or conflicts with another doc
+## Before saying something is done
+
+`npm run build` must pass (it type-checks and prerenders all 42 pages), and
+`npx next lint` must be clean.

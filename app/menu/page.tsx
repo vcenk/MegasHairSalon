@@ -1,149 +1,114 @@
-import { pageMetadata } from "@/lib/seo";
-import { breadcrumbSchema, menuSchema } from "@/lib/schema";
+import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
+import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PageHero } from "@/components/sections/PageHero";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { CtaButton } from "@/components/ui/CtaButton";
+import { BookButton } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Visit } from "@/components/sections/Visit";
-import { MENU } from "@/lib/menu";
-import { BOOKING } from "@/lib/constants";
+import { Reveal } from "@/components/ui/Reveal";
+import { MENU, MENU_ITEM_COUNT, MENU_UPDATED } from "@/lib/menu";
+import { offerCatalogSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
+import { BOOKING } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  title: "Price Menu | Hair Colour, Cuts & Treatments in Coquitlam | Megas",
+export const metadata: Metadata = pageMeta({
+  title: "Price Menu | Megas Hair Salon Coquitlam",
   description:
-    "The full service and price menu at Megas Hair Salon, Coquitlam — colour, balayage, cuts, blowouts, keratin, perms, brows, and extensions. Book online on Phorest.",
+    "The full price list at Megas Hair Salon Coquitlam — colour, cuts, styling, treatments, perms, brows, and extensions. Cuts from $20, colour from $85, balayage $350.",
   path: "/menu",
+});
+
+const UPDATED_LABEL = new Date(`${MENU_UPDATED}T12:00:00Z`).toLocaleDateString("en-CA", {
+  year: "numeric",
+  month: "long",
+  timeZone: "UTC",
 });
 
 export default function MenuPage() {
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Menu", path: "/menu" },
-        ])}
-      />
-      <JsonLd data={menuSchema(MENU)} />
+      <Breadcrumbs trail={[{ name: "Prices", path: "/menu" }]} />
 
-      <PageHero
-        breadcrumbs={[{ name: "Home", href: "/" }, { name: "Menu" }]}
-        eyebrow="Menu"
-        title="The full price menu."
-        subhead="Every service we offer, with honest starting prices. Book any of them online — our live availability is on Phorest."
-      />
+      <section className="shell pt-10 md:pt-14">
+        <Reveal className="max-w-3xl">
+          <Eyebrow className="mb-5">Price menu</Eyebrow>
+          <h1 className="text-title text-balance">Every service, every price.</h1>
+          <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
+            All {MENU_ITEM_COUNT} services we offer, in Canadian dollars. Prices are starting
+            points — long or dense hair sometimes needs more product and time, which we confirm
+            before we begin rather than after.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <BookButton size="lg" />
+          </div>
+          <p className="mt-6 text-xs tracking-wide text-muted">
+            Updated {UPDATED_LABEL} from our {BOOKING.provider} booking system.
+          </p>
+        </Reveal>
 
-      {/* Intro + jump nav + primary CTA */}
-      <section
-        className="mx-auto px-6 md:px-10 py-8 md:py-12"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <FadeIn className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <div className="max-w-xl">
-            <p
-              className="text-muted md:text-lg"
-              style={{ lineHeight: "var(--leading-body)" }}
-            >
-              Prices are starting points — final pricing depends on hair length,
-              density, and the work involved, and is always confirmed in-salon
-              before we begin. Lightening services include a toner.
-            </p>
-            <nav aria-label="Menu categories" className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-              {MENU.map((cat) => (
-                <a
-                  key={cat.slug}
-                  href={`#${cat.slug}`}
-                  className="text-[0.7rem] uppercase text-muted hover:text-accent transition-colors"
-                  style={{ letterSpacing: "var(--tracking-label)" }}
-                >
-                  {cat.name}
-                </a>
-              ))}
-            </nav>
-          </div>
-          <div className="flex-none">
-            <CtaButton href={BOOKING.url} external>
-              Book on Phorest
-            </CtaButton>
-          </div>
-        </FadeIn>
+        {/* Jump nav */}
+        <Reveal delay={120} className="mt-12">
+          <nav aria-label="Menu categories" className="rule flex flex-wrap gap-x-6 gap-y-3 pt-6">
+            {MENU.map((category) => (
+              <a
+                key={category.slug}
+                href={`#${category.slug}`}
+                className="font-sans text-sm tracking-wide text-muted transition-colors hover:text-copper"
+              >
+                {category.name}
+              </a>
+            ))}
+          </nav>
+        </Reveal>
       </section>
 
-      {/* Categories */}
-      <section
-        className="mx-auto px-6 md:px-10 pb-6"
-        style={{ maxWidth: "var(--container-max)" }}
-      >
-        <div className="flex flex-col gap-16 md:gap-24">
-          {MENU.map((cat) => (
-            <div key={cat.slug} id={cat.slug} className="scroll-mt-28">
-              <FadeIn className="max-w-2xl">
-                <Eyebrow accent>{cat.name}</Eyebrow>
-                {cat.blurb && (
-                  <p
-                    className="mt-4 text-muted md:text-lg"
-                    style={{ lineHeight: "var(--leading-body)" }}
-                  >
-                    {cat.blurb}
-                  </p>
-                )}
-              </FadeIn>
-              <FadeIn delay={0.05}>
-                <dl className="mt-8 border-t border-border">
-                  {cat.items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="flex items-baseline justify-between gap-6 border-b border-border py-4"
-                    >
-                      <dt className="md:text-lg text-foreground">
+      <div className="shell pb-8 pt-16 md:pt-20">
+        {MENU.map((category) => (
+          <section
+            key={category.slug}
+            id={category.slug}
+            className="grid gap-8 border-t border-ink/12 py-14 first:border-t-0 first:pt-0 lg:grid-cols-12 lg:gap-14"
+          >
+            <Reveal className="lg:col-span-4">
+              <h2 className="text-3xl font-normal text-balance md:text-4xl">{category.name}</h2>
+              <p className="mt-4 max-w-sm text-[0.9375rem] leading-relaxed text-pretty text-muted">
+                {category.blurb}
+              </p>
+            </Reveal>
+
+            <Reveal delay={100} className="lg:col-span-8">
+              <table className="w-full">
+                <caption className="sr-only">{category.name} prices</caption>
+                <tbody>
+                  {category.items.map((item) => (
+                    <tr key={item.name} className="border-t border-ink/10 first:border-t-0">
+                      <th
+                        scope="row"
+                        className="py-3.5 pr-6 text-left font-sans text-[0.9375rem] font-normal text-ink"
+                      >
                         {item.name}
                         {item.note && (
-                          <span className="ml-2 text-sm text-muted">
-                            · {item.note}
-                          </span>
+                          <span className="text-xs text-muted"> ({item.note})</span>
                         )}
-                      </dt>
-                      <dd className="md:text-lg text-foreground text-right whitespace-nowrap">
+                      </th>
+                      <td className="whitespace-nowrap py-3.5 text-right font-display text-lg text-ink">
                         {item.price}
-                      </dd>
-                    </div>
+                      </td>
+                    </tr>
                   ))}
-                </dl>
-              </FadeIn>
-            </div>
-          ))}
-        </div>
-      </section>
+                </tbody>
+              </table>
+            </Reveal>
+          </section>
+        ))}
+      </div>
 
-      {/* Closing CTA */}
-      <section
-        className="mx-auto px-6 md:px-10 py-16 md:py-24 text-center"
-        style={{ maxWidth: "var(--container-narrow)" }}
-      >
-        <FadeIn>
-          <h2
-            className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)]"
-            style={{
-              lineHeight: "var(--leading-tight)",
-              letterSpacing: "var(--tracking-display)",
-            }}
-          >
-            Found your service?
-          </h2>
-          <p className="mt-4 text-muted md:text-lg">
-            Pick a stylist and a time on Phorest, or call us — most same-week
-            slots are filled by phone.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <CtaButton href={BOOKING.url} external>
-              Book on Phorest
-            </CtaButton>
-          </div>
-        </FadeIn>
-      </section>
+      <CtaBand
+        title="Prices are one thing. Fit is another."
+        body="A complimentary consultation takes twenty minutes and tells you exactly what your hair needs — and what it will cost — before you commit to anything."
+        secondary={{ href: "/services", label: "Browse services" }}
+      />
 
-      <Visit />
+      <JsonLd data={offerCatalogSchema()} />
     </>
   );
 }

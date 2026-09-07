@@ -1,50 +1,56 @@
+import Image from "next/image";
+import type { ReactNode } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
+import { Reveal } from "@/components/ui/Reveal";
 
-type Props = {
-  eyebrow?: string;
-  title: string;
-  subhead?: string;
-  breadcrumbs?: Crumb[];
-  align?: "left" | "center";
-};
-
+/**
+ * Standard inner-page header. Sits under the fixed header, so it carries the
+ * top padding for the whole site.
+ */
 export function PageHero({
   eyebrow,
   title,
-  subhead,
-  breadcrumbs,
-  align = "left",
-}: Props) {
+  lede,
+  image,
+  imageAlt,
+  children,
+}: {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  image?: string;
+  imageAlt?: string;
+  children?: ReactNode;
+}) {
   return (
-    <section
-      className="mx-auto px-6 md:px-10 pt-10 md:pt-16 pb-10 md:pb-16"
-      style={{ maxWidth: "var(--container-max)" }}
-    >
-      {breadcrumbs && breadcrumbs.length > 0 && (
-        <Breadcrumbs items={breadcrumbs} className="mb-8 md:mb-12" />
-      )}
-      <FadeIn className={align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-3xl"}>
-        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-        <h1
-          className="mt-4 font-display font-light uppercase text-[clamp(2.25rem,4.5vw,3.75rem)]"
-          style={{
-            lineHeight: "var(--leading-tight)",
-            letterSpacing: "var(--tracking-display-caps)",
-          }}
-        >
-          {title}
-        </h1>
-        {subhead && (
-          <p
-            className="mt-6 text-lg md:text-xl text-muted"
-            style={{ lineHeight: "var(--leading-body)" }}
-          >
-            {subhead}
-          </p>
-        )}
-      </FadeIn>
+    <section className="relative pt-[7.5rem] md:pt-36">
+      <div className="shell">
+        <div className="grid items-end gap-10 lg:grid-cols-12">
+          <Reveal className="lg:col-span-7">
+            {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
+            <h1 className="text-title text-balance">{title}</h1>
+            {lede && (
+              <p className="mt-6 max-w-xl text-lede text-pretty text-muted">{lede}</p>
+            )}
+            {children && <div className="mt-8 flex flex-wrap items-center gap-3">{children}</div>}
+          </Reveal>
+
+          {image && (
+            <Reveal delay={120} className="lg:col-span-5">
+              <div className="relative aspect-4/3 overflow-hidden rounded-sm">
+                <Image
+                  src={image}
+                  alt={imageAlt ?? ""}
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </Reveal>
+          )}
+        </div>
+      </div>
     </section>
   );
 }

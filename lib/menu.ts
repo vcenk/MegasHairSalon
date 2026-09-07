@@ -1,21 +1,22 @@
-// Full salon price menu, mirroring the live Phorest booking menu.
-//
-// SOURCE OF TRUTH IS PHOREST (https://megashairsalon.phorest.me). This is a
-// manual snapshot — if the salon edits services or prices in Phorest, update
-// this file (and MENU_UPDATED) to match. All prices are in CAD and are
-// starting points ("from"); final pricing is confirmed in-salon.
-//
-// The Phorest "Extra Service" category (Academi, Extra Service Time, Redo) is
-// intentionally omitted here — those are internal booking helpers, not
-// client-facing menu items.
+/**
+ * Full salon price menu, mirroring the live Phorest booking menu.
+ *
+ * PHOREST IS THE SOURCE OF TRUTH (https://megashairsalon.phorest.me). This file
+ * is a manual snapshot — if the salon edits services or prices in Phorest,
+ * update this file and MENU_UPDATED to match. All prices are CAD and are
+ * starting points ("from"); final pricing is confirmed in-salon.
+ *
+ * Phorest's internal "Extra Service" category (Academi, Extra Service Time,
+ * Redo) is intentionally omitted — those are booking helpers, not menu items.
+ */
 
 export const MENU_UPDATED = "2026-07-31";
 
 export type MenuItem = {
   readonly name: string;
-  /** Display price, e.g. "$350", "From $500", "Consultation", "Complimentary". */
+  /** Display price, e.g. "$350", "From $500", "Consultation". */
   readonly price: string;
-  /** Numeric starting price, for schema/sorting. Omit for consult/free items. */
+  /** Numeric starting price, for schema and sorting. Omit for consults. */
   readonly priceValue?: number;
   readonly note?: string;
 };
@@ -23,16 +24,16 @@ export type MenuItem = {
 export type MenuCategory = {
   readonly slug: string;
   readonly name: string;
-  readonly blurb?: string;
+  readonly blurb: string;
   readonly items: readonly MenuItem[];
 };
 
 export const MENU: readonly MenuCategory[] = [
   {
     slug: "colour",
-    name: "Colour Services",
+    name: "Colour",
     blurb:
-      "Custom-mixed colour by our master colourists — from a single-process refresh to full transformations. Most lightening services include a toner.",
+      "Custom-mixed colour by our master colourists — from a single-process refresh to a full transformation. Most lightening services include a toner.",
     items: [
       { name: "Complimentary consultation", price: "Complimentary" },
       { name: "Root retouch", price: "$95", priceValue: 95 },
@@ -67,9 +68,9 @@ export const MENU: readonly MenuCategory[] = [
   },
   {
     slug: "cut",
-    name: "Cut Services",
+    name: "Cuts",
     blurb:
-      "Precision cuts for every hair type, cut to your face, texture, and the way you actually wear your hair.",
+      "Precision cuts for every hair type — cut to your face, your texture, and the way you actually wear your hair.",
     items: [
       { name: "Women's cut, short hair", price: "$60", priceValue: 60 },
       { name: "Women's cut, long or thick hair", price: "$75", priceValue: 75 },
@@ -83,8 +84,9 @@ export const MENU: readonly MenuCategory[] = [
   },
   {
     slug: "style",
-    name: "Style Services",
-    blurb: "Blowouts and finished styling — from everyday polish to event-ready glamour.",
+    name: "Styling",
+    blurb:
+      "Blowouts and finished styling — from everyday polish to event-ready glamour.",
     items: [
       { name: "Short hair blowout", price: "$50", priceValue: 50 },
       { name: "Long hair blowout", price: "$65", priceValue: 65 },
@@ -128,7 +130,7 @@ export const MENU: readonly MenuCategory[] = [
   },
   {
     slug: "brows",
-    name: "Brow Services",
+    name: "Brows & Threading",
     blurb: "Lamination, tinting, and threading.",
     items: [
       { name: "Brow lamination", price: "$85", priceValue: 85 },
@@ -140,11 +142,14 @@ export const MENU: readonly MenuCategory[] = [
   },
   {
     slug: "extensions",
-    name: "Hair Extensions",
-    blurb: "Length and volume, fitted and blended. Booked after a consultation.",
+    name: "Extensions",
+    blurb:
+      "Length and volume, fitted and blended. Booked after a consultation.",
     items: [
       { name: "Hair extensions", price: "From $500", priceValue: 500 },
       { name: "Extensions consultation", price: "Consultation" },
     ],
   },
 ];
+
+export const MENU_ITEM_COUNT = MENU.reduce((n, c) => n + c.items.length, 0);

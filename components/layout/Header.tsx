@@ -1,100 +1,139 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
-import { PRIMARY_NAV } from "@/lib/nav";
-import { BOOKING } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { MobileNav } from "./MobileNav";
-
-const SCROLL_THRESHOLD = 80;
+import { BookButton } from "@/components/ui/Button";
+import { PRIMARY_NAV } from "@/lib/nav";
+import { CONTACT } from "@/lib/site";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  /** Only the homepage has a dark full-bleed hero for the bar to float over. */
+  const canOverlay = pathname === "/";
+  const overlaying = canOverlay && !scrolled && !menuOpen;
 
   useEffect(() => {
-    // Close the mobile menu whenever client-side navigation changes the route.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <>
-      <header
-        className={cn(
-          "sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-300 ease-out",
-          scrolled
-            ? "backdrop-blur-md border-b border-border"
-            : "border-b border-transparent",
-        )}
-        style={{
-          backgroundColor: scrolled
-            ? "color-mix(in srgb, var(--color-bg) 88%, transparent)"
-            : "transparent",
-        }}
-      >
-        <div
-          className={cn(
-            "mx-auto flex items-center justify-between px-6 md:px-10 transition-[padding] duration-300 ease-out",
-            scrolled ? "py-3 md:py-4" : "py-5 md:py-7",
-          )}
-          style={{ maxWidth: "var(--container-max)" }}
-        >
-          <Logo size={scrolled ? "sm" : "md"} />
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
-          <nav
-            aria-label="Primary"
-            className="hidden md:flex items-center gap-8"
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const linkTone = overlaying ? "text-bone/85 hover:text-bone" : "text-ink/70 hover:text-ink";
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        overlaying
+          ? "bg-transparent"
+          : "border-b border-ink/10 bg-bone/90 backdrop-blur-md supports-[backdrop-filter]:bg-bone/75"
+      }`}
+    >
+      <div className="shell flex h-[4.5rem] items-center justify-between gap-6 md:h-20">
+        <Logo tone={overlaying ? "light" : "ink"} />
+
+        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+          {PRIMARY_NAV.map((link) => {
+            const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`font-sans text-[0.8125rem] tracking-wide transition-colors duration-300 ${linkTone} ${
+                  active ? (overlaying ? "!text-bone" : "!text-copper") : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <a
+            href={CONTACT.phoneHref}
+            className={`hidden font-sans text-[0.8125rem] tracking-wide transition-colors duration-300 md:inline ${linkTone}`}
           >
-            <ul className="flex items-center gap-7">
-              {PRIMARY_NAV.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-[0.75rem] uppercase text-foreground hover:text-accent transition-colors"
-                    style={{ letterSpacing: "var(--tracking-label)" }}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <a
-              href={BOOKING.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-foreground text-background rounded-full px-6 py-3 text-[0.7rem] uppercase hover:bg-accent transition-colors"
-              style={{ letterSpacing: "0.08em" }}
-            >
-              Book Now
-            </a>
-          </nav>
+            {CONTACT.phone}
+          </a>
+          <BookButton variant={overlaying ? "quiet" : "primary"} className="hidden sm:inline-flex">
+            Book
+          </BookButton>
 
           <button
             type="button"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={mobileOpen}
-            className="md:hidden p-2 -m-2 text-foreground hover:text-accent transition-colors"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className={`flex h-10 w-10 items-center justify-center lg:hidden ${
+              overlaying ? "text-bone" : "text-ink"
+            }`}
           >
-            <Menu size={26} strokeWidth={1.25} />
+            <span className="sr-only">Menu</span>
+            <svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true">
+              <path
+                d={menuOpen ? "M2 1 L20 13" : "M0 1.5 H22"}
+                stroke="currentColor"
+                strokeWidth="1.5"
+                fill="none"
+              />
+              <path
+                d={menuOpen ? "M20 1 L2 13" : "M0 12.5 H22"}
+                stroke="currentColor"
+                strokeWidth="1.5"
+                fill="none"
+              />
+              {!menuOpen && <path d="M0 7 H14" stroke="currentColor" strokeWidth="1.5" fill="none" />}
+            </svg>
           </button>
         </div>
-      </header>
+      </div>
 
-      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </>
+      {/* Mobile panel */}
+      <div
+        id="mobile-nav"
+        hidden={!menuOpen}
+        className="border-t border-ink/10 bg-bone lg:hidden"
+      >
+        <nav aria-label="Mobile" className="shell flex flex-col py-6">
+          {PRIMARY_NAV.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="border-b border-ink/8 py-4 font-display text-2xl text-ink"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="mt-6 flex flex-col gap-3">
+            <BookButton size="lg" />
+            <a
+              href={CONTACT.phoneHref}
+              className="text-center font-sans text-sm tracking-wide text-muted"
+            >
+              {CONTACT.phone}
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }
