@@ -2,6 +2,25 @@
 
 Everything that must be resolved before this goes live.
 
+## ⛔ Cannot ship as-is
+
+The site is currently dressed as a **complete demo** for the client to review.
+Three things in it are presented as real and are not. None of them are subtle
+once you know, and none of them are visible on the page — which is exactly why
+they are listed first.
+
+- [ ] **The eight stylist portraits are stock models.** Real names and titles,
+      someone else's face. This is a misrepresentation of identifiable people
+      and falls outside the Pexels License, which does not cover using a person
+      in a way that implies they endorse a business. Replace with real
+      portraits, or pull the portraits entirely, before this is public.
+- [ ] **Fara, Nadia, Rain and Angela have written-for-demo bios.** Their names,
+      titles, and Phorest levels are real; the prose is not. It was written to
+      avoid stating anything falsifiable — no years, no training, no awards, no
+      previous employers — but it is still not their words. See
+      `SENIOR_PROFILES` in `lib/team.ts`.
+- [ ] **The reviews are invented.** See below.
+
 ## Blocking — content we do not have
 
 - [ ] **Reviews are placeholders.** `lib/reviews.ts` contains illustrative
@@ -14,12 +33,8 @@ Everything that must be resolved before this goes live.
       licence-clean for commercial use, but they are not Megas — no client
       should recognise their own hair, and no shot shows the actual Coquitlam
       room. Replace with the real shoot, keeping the filenames.
-- [ ] **Stylist portraits are still abstract placeholders** in
-      `public/images/ph/`. This is deliberate: a stock model's face under a
-      named stylist's bio invents a person. Only real portraits go here.
-- [ ] **Bios for Fara, Nadia, Rain and Angela.** Currently honest placeholders
-      ("a fuller profile is on its way"), `years: null`, no invented experience.
-      Need real title, bio, years, and specialties per person.
+- [ ] **Bios for Fara, Nadia, Rain and Angela in their own words** — replacing
+      the demo copy described above.
 - [ ] **Confirm the Instagram and Facebook handles** in `lib/site.ts`. They are
       currently guessed from the business name and feed the `sameAs` schema.
 

@@ -7,13 +7,15 @@ export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: nu
   return (
     <Reveal delay={(index % 4) * 80}>
       <Link href={`/team/${member.slug}`} className="group block">
+        {/* Desaturated so eight portraits shot by eight different people read
+            as one team; colour returns on hover. */}
         <div className="relative aspect-3/4 overflow-hidden rounded-sm bg-clay">
           <Image
             src={member.portrait}
             alt={member.portraitAlt}
             fill
             sizes="(min-width: 1024px) 24vw, (min-width: 640px) 45vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+            className="object-cover grayscale transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:grayscale-0"
           />
         </div>
         <h3 className="mt-5 font-display text-xl text-ink transition-colors duration-300 group-hover:text-copper">
@@ -23,11 +25,11 @@ export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: nu
           )}
         </h3>
         <p className="mt-1 text-sm text-muted">{member.title}</p>
-        {member.years !== null && (
-          <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
-            {member.years} years
-          </p>
-        )}
+        {/* Years where we have them; otherwise the Phorest booking level, which
+            is real data — never a blank slot and never an invented number. */}
+        <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
+          {member.years !== null ? `${member.years} years` : member.level}
+        </p>
       </Link>
     </Reveal>
   );

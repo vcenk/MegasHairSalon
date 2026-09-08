@@ -6,9 +6,11 @@
  * photography — swap each file for the real shoot when it lands, keeping the
  * filenames so nothing in lib/ has to change.
  *
- * Deliberately NOT covered here: stylist portraits. Putting a stock model's
- * face under "Bülent, 35 years experience" would be inventing a person, so
- * those stay as generated placeholders until real portraits arrive.
+ * ⚠️ The `stylist-*` entries are the sensitive ones. They are stock models
+ * standing in for named, real people so the client can review a complete demo.
+ * They must be replaced before this site is published — see
+ * docs/LAUNCH-CHECKLIST.md. The Pexels License does not cover using an
+ * identifiable person in a way that implies they endorse a business.
  *
  * Run: npm run photos
  */
@@ -52,6 +54,18 @@ const PHOTOS = [
   // About
   [3992850, "about-heritage", 1400],
   [27165067, "about-today", 1400],
+
+  // Stylist portraits — DEMO ONLY, see the warning above. Chosen at work
+  // rather than as ID-style headshots, and rendered desaturated in the UI so
+  // eight unrelated stock frames read as one team.
+  [8867400, "stylist-bulent-bill", 1000],
+  [5188606, "stylist-gazi", 1000],
+  [32329615, "stylist-emir", 1000],
+  [26759527, "stylist-fulya", 1000],
+  [28743778, "stylist-fara", 1000],
+  [8834023, "stylist-nadia", 1000],
+  [3993455, "stylist-rain", 1000],
+  [7879790, "stylist-angela", 1000],
 
   // Areas
   [7195799, "area-coquitlam", 1600],

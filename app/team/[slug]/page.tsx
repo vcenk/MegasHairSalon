@@ -58,7 +58,7 @@ export default async function TeamMemberPage({ params }: Params) {
                 fill
                 priority
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover"
+                className="object-cover grayscale"
               />
             </div>
           </Reveal>
@@ -71,13 +71,6 @@ export default async function TeamMemberPage({ params }: Params) {
             <h1 className="text-title text-balance">{member.headline}</h1>
 
             <p className="mt-7 text-lede text-pretty text-muted">{member.bio}</p>
-
-            {member.isPlaceholder && (
-              <p className="mt-6 rounded-sm border border-copper/25 bg-sand px-5 py-4 text-sm text-muted">
-                A full profile for {member.name} — training, specialties, and featured work —
-                is being written. Booking is already open.
-              </p>
-            )}
 
             <div className="mt-8 rule pt-6">
               <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">

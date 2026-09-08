@@ -66,12 +66,16 @@ attribution. These stand in for the salon's own photography; when the real
 shoot lands, overwrite the files keeping the same names and nothing in `lib/`
 has to change.
 
-**`public/images/ph/` — generated placeholders.** Only the eight stylist
-portraits still use these, and deliberately: putting a stock model's face under
-"Bülent, 35 years' experience" would be inventing a person. Those stay abstract
-until real portraits arrive. Regenerate with `npm run placeholders`.
+That set includes the eight `stylist-*` portraits. **Those are the one thing
+here that cannot ship** — they are stock models under real people's names, added
+so the client could review a complete demo. They are rendered desaturated so
+eight unrelated frames read as one team, which also makes them easy to spot.
+See [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
 
-Once real portraits land, drop `dangerouslyAllowSVG` from `next.config.ts`.
+**`public/images/ph/` — generated placeholder art.** No longer wired into any
+page; kept because `npm run placeholders` regenerates it, and it is a useful
+shot list for the photographer. Once nothing references it, drop
+`dangerouslyAllowSVG` from `next.config.ts`.
 
 ## SEO
 

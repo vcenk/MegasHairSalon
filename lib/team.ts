@@ -1,9 +1,16 @@
 /**
  * The Megas team. Bios for the four founding members are the salon's own copy.
  *
- * Fara, Nadia, Rain and Angela are confirmed names with PLACEHOLDER profiles —
- * neutral copy, `years: null`, no invented credentials. Replace each one as the
- * client supplies real titles, bios, and portraits.
+ * ⚠️ TWO THINGS HERE ARE NOT REAL, and both must be replaced before launch:
+ *
+ * 1. Every `portrait` is a stock photograph of someone else. They were added so
+ *    the client could review a complete demo. A stock model's face under a
+ *    named person's bio is a misrepresentation, and it is outside what the
+ *    Pexels License permits — this cannot ship.
+ * 2. Fara, Nadia, Rain and Angela have demo bios (see SENIOR_PROFILES below).
+ *    Their names, titles, and Phorest levels ARE real; the prose is not.
+ *
+ * See docs/LAUNCH-CHECKLIST.md.
  */
 
 export type TeamMember = {
@@ -37,7 +44,7 @@ const FOUNDERS: readonly TeamMember[] = [
     title: "Founder & Master Colourist",
     level: "Master Hairstylist LV.1",
     years: 35,
-    portrait: "/images/ph/stylist-bulent-bill.svg",
+    portrait: "/images/photos/stylist-bulent-bill.jpg",
     portraitAlt:
       "Portrait of Bülent (Bill), founder and master colourist at Megas Hair Salon, Coquitlam",
     metaTitle:
@@ -70,7 +77,7 @@ const FOUNDERS: readonly TeamMember[] = [
     title: "Master Stylist",
     level: "Master Hairstylist LV.3",
     years: 41,
-    portrait: "/images/ph/stylist-gazi.svg",
+    portrait: "/images/photos/stylist-gazi.jpg",
     portraitAlt:
       "Portrait of Gazi, master stylist and colour sculptor at Megas Hair Salon, Coquitlam",
     metaTitle: "Gazi — Master Stylist & Colour Sculptor | Megas Hair Salon Coquitlam",
@@ -97,7 +104,7 @@ const FOUNDERS: readonly TeamMember[] = [
     title: "Colour & Styling Master",
     level: "Master Hairstylist LV.2",
     years: 23,
-    portrait: "/images/ph/stylist-emir.svg",
+    portrait: "/images/photos/stylist-emir.jpg",
     portraitAlt:
       "Portrait of Emir, colour and styling master at Megas Hair Salon, Coquitlam",
     metaTitle: "Emir — Colour & Styling Master | Megas Hair Salon Coquitlam",
@@ -124,7 +131,7 @@ const FOUNDERS: readonly TeamMember[] = [
     title: "Owner & Director",
     level: "Owner",
     years: 15,
-    portrait: "/images/ph/stylist-fulya.svg",
+    portrait: "/images/photos/stylist-fulya.jpg",
     portraitAlt: "Portrait of Fulya, owner and director at Megas Hair Salon, Coquitlam",
     metaTitle: "Fulya — Owner & Director | Megas Hair Salon Coquitlam",
     metaDescription:
@@ -146,22 +153,96 @@ const FOUNDERS: readonly TeamMember[] = [
   },
 ];
 
+/**
+ * ⚠️ DEMO COPY. The four senior stylists are real, confirmed people, but every
+ * word below was written to fill a client demo — not supplied by them.
+ *
+ * It is written to be replaceable rather than believable-and-wrong: no years of
+ * experience, no training history, no awards, no former employers, no invented
+ * personal story. Each bio describes the salon's own standard of work, which is
+ * true of the chair regardless of who is in it.
+ *
+ * The `level` values ARE real — they come from the Phorest booking system.
+ *
+ * Replace each entry with the stylist's own words before launch.
+ */
+const SENIOR_PROFILES: Record<
+  (typeof PLACEHOLDER_NAMES)[number],
+  {
+    headline: string;
+    focus: string;
+    bio: string;
+    specialties: string[];
+    gallery: { src: string; alt: string }[];
+  }
+> = {
+  Fara: {
+    headline: "Fara — colour, and the patience it takes.",
+    focus: "Colour & foils",
+    bio: "Fara works across the salon's colour menu, from a root retouch on a working lunch break to a full head of foils that takes the afternoon. She is unhurried by temperament, which is the right temperament for lightening — the difference between a good result and a brassy one is usually the twenty minutes somebody was not willing to wait. Book her for highlights, grey coverage, and gloss refreshes.",
+    specialties: ["Highlights & foils", "Grey coverage", "Toners & glossing", "Blow-dry"],
+    gallery: [
+      { src: "/images/photos/work-blonde-2.jpg", alt: "Lived-in blonde foils by Fara at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/work-colour-2.jpg", alt: "Seamless root retouch by Fara, Megas Coquitlam" },
+      { src: "/images/photos/work-balayage-2.jpg", alt: "Foil placement detail by Fara, Megas Coquitlam" },
+      { src: "/images/photos/work-colour-1.jpg", alt: "Glossed brunette by Fara, Megas Coquitlam" },
+    ],
+  },
+  Nadia: {
+    headline: "Nadia — cut first, then everything else.",
+    focus: "Cutting & finishing",
+    bio: "Nadia's consultations happen dry and standing up, because that is how you will wear your hair. She cuts to your growth pattern and your actual morning routine rather than to a photograph, and she will tell you when a shape needs two visits instead of one. Book her for restyles, fringes, and cuts that need to survive being air-dried.",
+    specialties: ["Precision cutting", "Fringes", "Restyles", "Blow-dry & styling"],
+    gallery: [
+      { src: "/images/photos/work-cut-1.jpg", alt: "Precision cut by Nadia at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/work-cut-2.jpg", alt: "Short restyle by Nadia, Megas Coquitlam" },
+      { src: "/images/photos/work-keratin-1.jpg", alt: "Smooth blunt finish by Nadia, Megas Coquitlam" },
+      { src: "/images/photos/work-blowout-1.jpg", alt: "Cut and blow-dry by Nadia, Megas Coquitlam" },
+    ],
+  },
+  Rain: {
+    headline: "Rain — smoothing, repair, and the long game.",
+    focus: "Treatments & smoothing",
+    bio: "Rain handles the salon's treatment work — keratin smoothing, hair botox, Aveda rituals, and the scalp treatments most people never think to book. Her starting question is always what the hair has already been through, because that decides what it can take next. Book her when your hair needs rebuilding before it needs changing.",
+    specialties: ["Keratin smoothing", "Hair botox", "Scalp & Aveda treatments", "Blow-dry"],
+    gallery: [
+      { src: "/images/photos/work-treatment-1.jpg", alt: "Scalp treatment at the basin by Rain, Megas Coquitlam" },
+      { src: "/images/photos/work-keratin-1.jpg", alt: "Post-keratin smooth finish by Rain, Megas Coquitlam" },
+      { src: "/images/photos/journal-keratin.jpg", alt: "Repair treatment applied by Rain, Megas Coquitlam" },
+      { src: "/images/photos/work-colour-1.jpg", alt: "Condition and shine after treatment by Rain, Megas Coquitlam" },
+    ],
+  },
+  Angela: {
+    headline: "Angela — texture, curl, and finished styling.",
+    focus: "Texture & styling",
+    bio: "Angela works with curl and texture, which means cutting for shrinkage, styling without fighting the hair's own pattern, and being honest about what a round brush will and will not do. She also takes on the salon's event work: updos, evening styles, and the wedding-morning bookings that have to hold for twelve hours. Book her for curls, occasions, and blowouts.",
+    specialties: ["Curly & textured hair", "Updos & evening styles", "Blowouts", "Braiding"],
+    gallery: [
+      { src: "/images/photos/work-updo-1.jpg", alt: "Bridal updo by Angela at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/work-blowout-1.jpg", alt: "Finished blowout by Angela, Megas Coquitlam" },
+      { src: "/images/photos/work-balayage-1.jpg", alt: "Textured waves by Angela, Megas Coquitlam" },
+      { src: "/images/photos/work-blonde-1.jpg", alt: "Evening style by Angela, Megas Coquitlam" },
+    ],
+  },
+};
+
 const SENIORS: readonly TeamMember[] = PLACEHOLDER_NAMES.map((name) => {
   const slug = name.toLowerCase();
+  const profile = SENIOR_PROFILES[name];
   return {
     slug,
     name,
     title: "Senior Stylist",
     level: "Senior LV.1",
     years: null,
-    portrait: `/images/ph/stylist-${slug}.svg`,
+    portrait: `/images/photos/stylist-${slug}.jpg`,
     portraitAlt: `Portrait of ${name}, senior stylist at Megas Hair Salon, Coquitlam`,
     metaTitle: `${name} — Senior Stylist | Megas Hair Salon Coquitlam`,
-    metaDescription: `Meet ${name}, senior stylist at Megas Hair Salon in Coquitlam. Book cuts, colour, and styling online or call (778) 858-0396.`,
-    headline: `${name}.`,
-    bio: `${name} is part of the senior styling team at Megas Hair Salon in Coquitlam, working across cutting, colour, and finishing. A fuller profile — training, specialties, and featured work — is on its way. In the meantime, you can book with ${name} online.`,
-    specialties: ["Cutting", "Colour", "Blow-dry & styling"],
-    gallery: [],
+    metaDescription: `Meet ${name}, senior stylist at Megas Hair Salon in Coquitlam — ${profile.focus.toLowerCase()}. Book online or call (778) 858-0396.`,
+    headline: profile.headline,
+    bio: profile.bio,
+    specialties: profile.specialties,
+    gallery: profile.gallery,
     relatedServices: ["precision-haircut-coquitlam", "hair-color-coquitlam", "blow-dry-coquitlam"],
     isPlaceholder: true,
   } satisfies TeamMember;
