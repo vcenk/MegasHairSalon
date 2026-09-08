@@ -3,34 +3,39 @@
 /* ─────────────────────────────────────────────────────────────────────────
    Design tokens
 
-   Warm, editorial, salon-appropriate. The palette is built around bone paper
-   and burnished copper — copper because it reads as hair colour, and because
-   it keeps the site from looking like every other minimal salon template.
+   Typography follows Salon Haze: a light geometric sans in uppercase with
+   wide tracking for navigation and buttons, tighter tracking at display
+   sizes. Haze runs Brandon Grotesque (Adobe Fonts, licensed) over Rubik —
+   we use Jost as the Brandon stand-in and Rubik itself for UI text.
+
+   Colour keeps Megas distinct: Haze's near-white airiness, warmed slightly,
+   with burnished copper as the single accent.
    ───────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-bone: #f8f4ee;
-  --color-sand: #efe6d9;
-  --color-clay: #e0d2c0;
-  --color-ink: #14100c;
-  --color-espresso: #241c17;
-  --color-muted: #6b6058;
-  --color-copper: #a65f38;
-  --color-copper-deep: #7e462a;
-  --color-copper-soft: #c9906a;
+  --color-bone: #fcfaf7;
+  --color-sand: #f4f0ea;
+  --color-clay: #e2dad0;
+  --color-ink: #1c1917;
+  --color-espresso: #211d1a;
+  --color-muted: #6f665e;
+  --color-copper: #a15c33;
+  --color-copper-deep: #7c4425;
+  --color-copper-soft: #c99269;
 
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jost), "Futura", ui-sans-serif, sans-serif;
+  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
 
-  --text-display: clamp(2.75rem, 7vw, 5.75rem);
-  --text-display--line-height: 0.98;
-  --text-display--letter-spacing: -0.025em;
+  /* Display sizes are set in uppercase, so they carry negative tracking. */
+  --text-display: clamp(2.25rem, 6vw, 4.75rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.02em;
 
-  --text-title: clamp(2rem, 4.2vw, 3.25rem);
-  --text-title--line-height: 1.06;
-  --text-title--letter-spacing: -0.02em;
+  --text-title: clamp(1.75rem, 3.6vw, 2.875rem);
+  --text-title--line-height: 1.1;
+  --text-title--letter-spacing: -0.015em;
 
-  --text-lede: clamp(1.0625rem, 1.5vw, 1.3125rem);
-  --text-lede--line-height: 1.6;
+  --text-lede: clamp(1rem, 1.4vw, 1.1875rem);
+  --text-lede--line-height: 1.7;
 
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -45,17 +50,25 @@
     background-color: var(--color-bone);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-feature-settings: "kern", "liga", "cv11";
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Display type is Fraunces at a low optical size for a softer, warmer curve. */
   h1,
   h2,
   h3,
   .font-display {
     font-family: var(--font-display);
-    font-variation-settings: "SOFT" 30, "WONK" 1;
+    font-weight: 300;
+  }
+
+  /* Haze sets its display moments in light uppercase geometric sans. Kept to
+     h1/h2 on purpose — running it through .font-display would also capitalise
+     review quotes, FAQ questions, and the address, which reads as shouting. */
+  h1,
+  h2 {
+    text-transform: uppercase;
   }
 
   ::selection {
@@ -69,7 +82,6 @@
     border-radius: 2px;
   }
 
-  /* Scroll-margin so anchor jumps clear the sticky header. */
   [id] {
     scroll-margin-top: 6rem;
   }
@@ -89,9 +101,14 @@
     }
   }
 
-  /* A hairline that reads as a deliberate rule rather than a border. */
   .rule {
     border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  /* Nav links and buttons: uppercase, widely tracked — Haze's signature. */
+  .tracked {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
   }
 }
 
@@ -107,7 +124,7 @@
   /* Reveal-on-scroll. The IntersectionObserver in <Reveal> flips data-shown. */
   .reveal {
     opacity: 0;
-    transform: translateY(1.25rem);
+    transform: translateY(1rem);
     transition:
       opacity 0.8s var(--ease-out-soft),
       transform 0.8s var(--ease-out-soft);
@@ -125,19 +142,6 @@
       transform: none;
     }
   }
-
-  .marquee-track {
-    animation: marquee 46s linear infinite;
-  }
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -149,10 +153,6 @@
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .marquee-track {
-    animation: none;
   }
 
   *,

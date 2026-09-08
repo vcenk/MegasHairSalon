@@ -37,7 +37,7 @@ export const POSTS: readonly Post[] = [
     date: "2026-08-18",
     readingTime: "5 min read",
     category: "Colour",
-    image: "/images/ph/journal-balayage.svg",
+    image: "/images/photos/journal-balayage.jpg",
     imageAlt: "Comparison of balayage and foil highlight placement",
     relatedService: "balayage-coquitlam",
     body: [
@@ -75,7 +75,7 @@ export const POSTS: readonly Post[] = [
     date: "2026-08-04",
     readingTime: "4 min read",
     category: "Treatments",
-    image: "/images/ph/journal-keratin.svg",
+    image: "/images/photos/journal-keratin.jpg",
     imageAlt: "Smooth, frizz-free hair after a keratin treatment",
     relatedService: "keratin-treatment-coquitlam",
     body: [
@@ -106,7 +106,7 @@ export const POSTS: readonly Post[] = [
     date: "2026-07-21",
     readingTime: "4 min read",
     category: "Salon",
-    image: "/images/ph/journal-colourist.svg",
+    image: "/images/photos/journal-colourist.jpg",
     imageAlt: "A colourist consulting with a client in natural light",
     relatedService: "blonde-specialist-coquitlam",
     body: [

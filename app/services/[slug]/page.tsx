@@ -230,7 +230,7 @@ export default async function ServicePage({ params }: Params) {
         </section>
       )}
 
-      <Faqs faqs={service.faqs} title={`${service.name} — the questions we get`} />
+      <Faqs faqs={service.faqs} title={`${service.name} questions`} />
 
       {/* Related */}
       {related.length > 0 && (

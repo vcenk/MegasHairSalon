@@ -45,7 +45,7 @@ export function Header() {
           : "border-b border-ink/10 bg-bone/90 backdrop-blur-md supports-[backdrop-filter]:bg-bone/75"
       }`}
     >
-      <div className="shell flex h-[4.5rem] items-center justify-between gap-6 md:h-20">
+      <div className="shell flex h-[4.5rem] items-center justify-between gap-6 md:h-24">
         <Logo tone={overlaying ? "light" : "ink"} />
 
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
@@ -56,7 +56,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`font-sans text-[0.8125rem] tracking-wide transition-colors duration-300 ${linkTone} ${
+                className={`font-sans text-[0.875rem] uppercase tracking-[0.14em] transition-colors duration-300 ${linkTone} ${
                   active ? (overlaying ? "!text-bone" : "!text-copper") : ""
                 }`}
               >
@@ -69,7 +69,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href={CONTACT.phoneHref}
-            className={`hidden font-sans text-[0.8125rem] tracking-wide transition-colors duration-300 md:inline ${linkTone}`}
+            className={`hidden font-sans text-[0.875rem] tracking-[0.1em] transition-colors duration-300 md:inline ${linkTone}`}
           >
             {CONTACT.phone}
           </a>
@@ -118,7 +118,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="border-b border-ink/8 py-4 font-display text-2xl text-ink"
+              className="border-b border-ink/8 py-4 font-display text-2xl uppercase tracking-[0.12em] text-ink"
             >
               {link.label}
             </Link>
@@ -127,7 +127,7 @@ export function Header() {
             <BookButton size="lg" />
             <a
               href={CONTACT.phoneHref}
-              className="text-center font-sans text-sm tracking-wide text-muted"
+              className="tracked text-center font-sans text-[0.6875rem] text-muted"
             >
               {CONTACT.phone}
             </a>

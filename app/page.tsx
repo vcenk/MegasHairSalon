@@ -28,7 +28,7 @@ export default function HomePage() {
       <ServicesGrid
         services={FEATURED_SERVICES}
         eyebrow="What we do"
-        title="Colour is the reason people drive here."
+        title="Colour is why people drive here"
         intro="Six of the services we are known for. The full list — every cut, colour, treatment, and price — is on the menu."
         footer={
           <>
@@ -48,9 +48,7 @@ export default function HomePage() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-xl">
             <Eyebrow className="mb-5">The team</Eyebrow>
-            <h2 className="text-title text-balance">
-              Between them, more than a century behind the chair.
-            </h2>
+            <h2 className="text-title text-balance">A century behind the chair</h2>
           </div>
           <Link
             href="/team"

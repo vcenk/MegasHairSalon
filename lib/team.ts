@@ -53,10 +53,10 @@ const FOUNDERS: readonly TeamMember[] = [
       "Restorative treatments",
     ],
     gallery: [
-      { src: "/images/ph/work-balayage-1.svg", alt: "Balayage by Bülent at Megas Hair Salon, Coquitlam" },
-      { src: "/images/ph/work-blonde-1.svg", alt: "Platinum blonde transformation by Bülent, Megas Coquitlam" },
-      { src: "/images/ph/work-blonde-2.svg", alt: "Lived-in blonde with root depth by Bülent, Megas Coquitlam" },
-      { src: "/images/ph/work-balayage-2.svg", alt: "Hand-painted balayage detail by Bülent, Megas Coquitlam" },
+      { src: "/images/photos/work-balayage-1.jpg", alt: "Balayage by Bülent at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/work-blonde-1.jpg", alt: "Platinum blonde transformation by Bülent, Megas Coquitlam" },
+      { src: "/images/photos/work-blonde-2.jpg", alt: "Lived-in blonde with root depth by Bülent, Megas Coquitlam" },
+      { src: "/images/photos/work-balayage-2.jpg", alt: "Hand-painted balayage detail by Bülent, Megas Coquitlam" },
     ],
     quote: {
       text: "I had been looking for someone like Bill in Vancouver for years — truly, he has magic hands.",
@@ -80,10 +80,10 @@ const FOUNDERS: readonly TeamMember[] = [
     bio: "Since 1984, Gazi has been more than a hairstylist — he has been a force in hair artistry. Fast, innovative, and instinctively skilled, Gazi doesn't just style hair; he leaves his mark. Clients often describe his work not as a service, but as a transformation. For Gazi, hair is not simply cut. It is sculpted. It speaks. It becomes you.",
     specialties: ["Precision colour placement", "Custom cuts", "Transformative restyles", "Men's grooming"],
     gallery: [
-      { src: "/images/ph/work-cut-1.svg", alt: "Precision cut by Gazi at Megas Hair Salon, Coquitlam" },
-      { src: "/images/ph/work-cut-2.svg", alt: "Men's precision haircut by Gazi, Megas Coquitlam" },
-      { src: "/images/ph/work-colour-1.svg", alt: "Custom colour placement by Gazi, Megas Coquitlam" },
-      { src: "/images/ph/work-balayage-2.svg", alt: "Sculpted colour detail by Gazi, Megas Coquitlam" },
+      { src: "/images/photos/work-cut-1.jpg", alt: "Precision cut by Gazi at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/work-cut-2.jpg", alt: "Men's precision haircut by Gazi, Megas Coquitlam" },
+      { src: "/images/photos/work-colour-1.jpg", alt: "Custom colour placement by Gazi, Megas Coquitlam" },
+      { src: "/images/photos/work-balayage-2.jpg", alt: "Sculpted colour detail by Gazi, Megas Coquitlam" },
     ],
     quote: {
       text: "Bülent and Gazi started with a thorough consultation, really listening to my preferences. The results exceeded my expectations.",
@@ -107,10 +107,10 @@ const FOUNDERS: readonly TeamMember[] = [
     bio: "With 23 years of hands-on expertise across both Türkiye and Canada, Emir is a sculptor of confidence. His mastery in colouring, styling, and especially blow-drying sets him apart as a true craftsman of modern beauty. He is constantly evolving, bringing current trends to life with skill, speed, and precision — and he brings a warm, upbeat energy to every session. Emir has worked with industry-leading brands including L'Oréal, Kérastase, and Wella, and has completed multiple advanced training programmes in his field.",
     specialties: ["Hair colour", "Blow-drying", "Keratin smoothing", "Modern styling"],
     gallery: [
-      { src: "/images/ph/work-blowout-1.svg", alt: "Signature blowout by Emir at Megas Hair Salon, Coquitlam" },
-      { src: "/images/ph/work-colour-2.svg", alt: "Copper colour work by Emir, Megas Coquitlam" },
-      { src: "/images/ph/work-keratin-1.svg", alt: "Post-keratin smooth finish styled by Emir, Megas Coquitlam" },
-      { src: "/images/ph/work-cut-2.svg", alt: "Modern men's styling by Emir, Megas Coquitlam" },
+      { src: "/images/photos/work-blowout-1.jpg", alt: "Signature blowout by Emir at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/work-colour-2.jpg", alt: "Copper colour work by Emir, Megas Coquitlam" },
+      { src: "/images/photos/work-keratin-1.jpg", alt: "Post-keratin smooth finish styled by Emir, Megas Coquitlam" },
+      { src: "/images/photos/work-cut-2.jpg", alt: "Modern men's styling by Emir, Megas Coquitlam" },
     ],
     quote: {
       text: "Clients call him the best at what he does — not just for the results, but for how they feel afterward.",
@@ -133,10 +133,10 @@ const FOUNDERS: readonly TeamMember[] = [
     bio: "A strong vision, refined leadership, and an unwavering commitment to excellence — Fulya is the driving force behind the experience at Megas. With business education across Türkiye, the United States, and Canada, she brings a globally informed perspective to the beauty industry. As director and client relations lead, she oversees every part of the client journey: appointments, team coordination, service quality, and long-term satisfaction. To her, beauty is not just appearance; it is trust, connection, and consistency. The Vancouver chapter of the Megas story was shaped under her leadership.",
     specialties: ["Client experience", "Salon operations", "Service quality"],
     gallery: [
-      { src: "/images/ph/salon-1.svg", alt: "Megas Hair Salon interior, styling floor — Coquitlam" },
-      { src: "/images/ph/salon-2.svg", alt: "Styling chair and mirror detail at Megas Hair Salon, Coquitlam" },
-      { src: "/images/ph/salon-3.svg", alt: "Wash station and product shelf at Megas Hair Salon, Coquitlam" },
-      { src: "/images/ph/salon-4.svg", alt: "Tools and materials detail at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/salon-1.jpg", alt: "Megas Hair Salon interior, styling floor — Coquitlam" },
+      { src: "/images/photos/salon-2.jpg", alt: "Styling chair and mirror detail at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/salon-3.jpg", alt: "Wash station and product shelf at Megas Hair Salon, Coquitlam" },
+      { src: "/images/photos/salon-4.jpg", alt: "Tools and materials detail at Megas Hair Salon, Coquitlam" },
     ],
     quote: {
       text: "Fulya made me feel welcomed from the moment I walked in, and follows up after every visit. That level of care is rare.",

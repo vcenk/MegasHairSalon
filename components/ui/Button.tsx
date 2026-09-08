@@ -5,19 +5,20 @@ import { BOOKING } from "@/lib/site";
 type Variant = "primary" | "outline" | "light" | "quiet";
 type Size = "md" | "lg";
 
+// Haze's buttons are uppercase pills with wide tracking at a small size.
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium tracking-wide transition-colors duration-300 whitespace-nowrap";
+  "inline-flex items-center justify-center gap-2 rounded-full font-sans uppercase tracking-[0.18em] transition-colors duration-300 whitespace-nowrap";
 
 const VARIANTS: Record<Variant, string> = {
   primary: "bg-copper text-bone hover:bg-copper-deep",
-  outline: "border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-bone",
+  outline: "border border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-bone",
   light: "bg-bone text-ink hover:bg-clay",
-  quiet: "border border-bone/35 text-bone hover:bg-bone hover:text-ink",
+  quiet: "border border-bone/50 text-bone hover:bg-bone hover:text-ink",
 };
 
 const SIZES: Record<Size, string> = {
-  md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-[0.9375rem]",
+  md: "px-7 py-3 text-[0.75rem]",
+  lg: "px-9 py-4 text-[0.8125rem]",
 };
 
 export function buttonClass(variant: Variant = "primary", size: Size = "md") {

@@ -22,9 +22,7 @@ export default function TeamPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">The team</Eyebrow>
-          <h1 className="text-title text-balance">
-            Eight stylists. Between the leads alone, over a century of it.
-          </h1>
+          <h1 className="text-title text-balance">Eight stylists</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             Experience is not a marketing word in colour work — it is pattern recognition.
             Having seen this exact hair, this exact failure, this exact request, before.

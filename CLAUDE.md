@@ -23,10 +23,15 @@ it explains the structure and where content lives.
 
 ## Design system
 
-Tokens are in the `@theme` block of `app/globals.css` — warm bone paper, ink,
-and burnished copper, with Fraunces for display and DM Sans for UI. Use the
+Tokens are in the `@theme` block of `app/globals.css` — near-white warm paper,
+ink, and burnished copper, with Jost for display and Rubik for UI. Use the
 semantic colour names (`bone`, `sand`, `clay`, `ink`, `espresso`, `muted`,
 `copper`), not raw hex.
+
+Display type follows Salon Haze: light weight, uppercase, wide tracking on nav
+and buttons. Uppercase is applied to `h1`/`h2` only — never through
+`.font-display`, which would also capitalise review quotes and FAQ questions.
+Keep headings short; they are set in caps and long ones read as shouting.
 
 ## Before saying something is done
 

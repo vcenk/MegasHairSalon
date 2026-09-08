@@ -3,15 +3,21 @@
 Marketing site for Megas Hair Salon — 150-1169 Pacific St, Coquitlam BC. Turkish
 salon founded in Istanbul in 1984, opened in Coquitlam in 2025.
 
-**Design direction:** Salon Haze's restraint (whitespace, few sections, quiet
-type) with Salon Zazou's content depth (grouped footer, service pages, area
-pages, journal). Megas has no training academy, so Zazou's Academy column
-becomes **Visit** rather than inventing an offering.
+**Design direction:** Salon Haze's restraint (whitespace, few sections, light
+uppercase type, one full-bleed hero photo) with Salon Zazou's content depth
+(grouped footer, service pages, area pages, journal). Megas has no training
+academy, so Zazou's Academy column becomes **Visit** rather than inventing an
+offering.
+
+Haze sets its display type in Brandon Grotesque, which is licensed through
+Adobe Fonts. We use **Jost** as the free stand-in — same Futura lineage, same
+behaviour in light weights and uppercase — over **Rubik**, which is Haze's own
+UI face and is on Google Fonts.
 
 ## Stack
 
 - Next.js 15 (App Router) · TypeScript · Tailwind CSS v4
-- Fonts: Fraunces (display) + DM Sans (body), via `next/font`
+- Fonts: Jost (display) + Rubik (body), via `next/font`
 - Fully static — 42 prerendered pages, no database, no API routes
 - Booking is external: every CTA links to Phorest
 
@@ -52,13 +58,20 @@ address redirects to Phorest's own marketing site instead of the booking flow.
 
 ## Images
 
-Every image is a generated placeholder in `public/images/ph/`, produced by
-`scripts/gen-placeholders.mjs`. Each one is labelled with the shot it stands in
-for, so the set doubles as a brief for the photographer.
+Two sets, on purpose.
 
-When real photos arrive: drop them in `public/images/photos/`, update the `src`
-values in `lib/` (keep the alt text), and remove `dangerouslyAllowSVG` from
-`next.config.ts`.
+**`public/images/photos/` — interim stock.** 27 photographs from Pexels, pulled
+by `npm run photos`. The Pexels License allows free commercial use without
+attribution. These stand in for the salon's own photography; when the real
+shoot lands, overwrite the files keeping the same names and nothing in `lib/`
+has to change.
+
+**`public/images/ph/` — generated placeholders.** Only the eight stylist
+portraits still use these, and deliberately: putting a stock model's face under
+"Bülent, 35 years' experience" would be inventing a person. Those stay abstract
+until real portraits arrive. Regenerate with `npm run placeholders`.
+
+Once real portraits land, drop `dangerouslyAllowSVG` from `next.config.ts`.
 
 ## SEO
 

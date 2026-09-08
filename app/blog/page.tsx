@@ -23,9 +23,7 @@ export default function BlogPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Journal</Eyebrow>
-          <h1 className="text-title text-balance">
-            The answers we give in the chair, written down.
-          </h1>
+          <h1 className="text-title text-balance">Answers we give in the chair</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             No trend roundups. Just the questions clients actually ask, answered by people
             who have been doing this for decades.

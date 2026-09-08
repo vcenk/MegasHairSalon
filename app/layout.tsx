@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { Jost, Rubik } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,17 +7,22 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { localBusinessSchema } from "@/lib/schema";
 import { BUSINESS, SITE } from "@/lib/site";
 
-const fraunces = Fraunces({
+/**
+ * Salon Haze sets its display type in Brandon Grotesque, which is licensed
+ * through Adobe Fonts. Jost is the closest free geometric equivalent — same
+ * Futura lineage, same behaviour in light weights and uppercase.
+ */
+const jost = Jost({
   subsets: ["latin"],
   display: "swap",
-  axes: ["SOFT", "WONK"],
-  variable: "--font-fraunces",
+  variable: "--font-jost",
 });
 
-const dmSans = DM_Sans({
+/** Haze's own UI face, and it is on Google Fonts, so we use the real thing. */
+const rubik = Rubik({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dm-sans",
+  variable: "--font-rubik",
 });
 
 export const metadata: Metadata = {
@@ -35,14 +40,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f8f4ee",
+  themeColor: "#fcfaf7",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA" className={`${fraunces.variable} ${dmSans.variable}`}>
+    <html lang="en-CA" className={`${jost.variable} ${rubik.variable}`}>
       <body className="min-h-screen bg-bone antialiased">
         <a
           href="#main"

@@ -9,7 +9,7 @@ export const SITE = {
   url: "https://megashairsalon.ca",
   locale: "en_CA",
   name: "Megas Hair Salon",
-  ogImage: "/images/ph/og-default.svg",
+  ogImage: "/images/photos/hero.jpg",
 } as const;
 
 export const BUSINESS = {

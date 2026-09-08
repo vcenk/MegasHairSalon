@@ -72,9 +72,7 @@ export default function AboutPage() {
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal className="lg:col-span-7">
             <Eyebrow className="mb-5">Our story</Eyebrow>
-            <h1 className="text-title text-balance">
-              A salon that has been getting this right since 1984.
-            </h1>
+            <h1 className="text-title text-balance">Getting this right since 1984</h1>
             <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
               Two salons in Istanbul, one in Coquitlam, and a way of working that has not
               changed in forty years.
@@ -84,7 +82,7 @@ export default function AboutPage() {
           <Reveal delay={120} className="lg:col-span-5">
             <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
               <Image
-                src="/images/ph/about-heritage.svg"
+                src="/images/photos/about-heritage.jpg"
                 alt="The origins of Megas Hair Salon in Istanbul, 1984"
                 fill
                 priority
@@ -123,7 +121,7 @@ export default function AboutPage() {
         <Reveal delay={120} className="lg:col-span-5">
           <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
             <Image
-              src="/images/ph/about-today.svg"
+              src="/images/photos/about-today.jpg"
               alt="Megas Hair Salon today, on Pacific Street in Coquitlam"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"

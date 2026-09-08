@@ -10,7 +10,7 @@ export function Heritage() {
         <Reveal className="lg:col-span-5">
           <div className="relative aspect-4/5 overflow-hidden rounded-sm">
             <Image
-              src="/images/ph/about-heritage.svg"
+              src="/images/photos/about-heritage.jpg"
               alt="Megas Hair Salon's origins in Istanbul, 1984"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"

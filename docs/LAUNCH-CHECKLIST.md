@@ -9,8 +9,14 @@ Everything that must be resolved before this goes live.
       Google reviews before launch. Do not publish invented testimonials.
       (Schema only emits the aggregate 4.8/146 rating, never these quotes — keep
       it that way unless the reviews are real and attributable.)
-- [ ] **All photography is placeholder art.** 37 generated SVGs in
-      `public/images/ph/`. Shoot list = the labels on those files.
+- [ ] **All photography is interim stock.** 27 Pexels photographs in
+      `public/images/photos/` stand in for the salon's own work. They are
+      licence-clean for commercial use, but they are not Megas — no client
+      should recognise their own hair, and no shot shows the actual Coquitlam
+      room. Replace with the real shoot, keeping the filenames.
+- [ ] **Stylist portraits are still abstract placeholders** in
+      `public/images/ph/`. This is deliberate: a stock model's face under a
+      named stylist's bio invents a person. Only real portraits go here.
 - [ ] **Bios for Fara, Nadia, Rain and Angela.** Currently honest placeholders
       ("a fuller profile is on its way"), `years: null`, no invented experience.
       Need real title, bio, years, and specialties per person.
@@ -31,9 +37,10 @@ Everything that must be resolved before this goes live.
 ## Technical, before going live
 
 - [ ] Point `SITE.url` in `lib/site.ts` at the real domain.
-- [ ] Remove `dangerouslyAllowSVG` from `next.config.ts` once real photos land.
+- [ ] Remove `dangerouslyAllowSVG` from `next.config.ts` once real portraits land.
 - [ ] Replace `app/icon.svg` with the salon's real mark, plus an apple-touch icon.
-- [ ] Add a real `og-default` image (currently generated placeholder art).
+- [ ] Point `SITE.ogImage` at a purpose-made 1200×630 share image (it currently
+      reuses the hero photo, which crops awkwardly at that ratio).
 - [ ] Run Lighthouse on mobile across home / service / team / menu templates.
 - [ ] Verify the Google Business Profile NAP matches the site exactly.
 - [ ] Submit the sitemap to Google Search Console and Bing Webmaster Tools.

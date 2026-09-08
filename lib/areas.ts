@@ -32,7 +32,7 @@ export const AREAS: readonly Area[] = [
     eyebrow: "Coquitlam · Home salon",
     headline: "Your hair salon in Coquitlam.",
     lede: "On Pacific Street in Burquitlam, minutes from the SkyTrain and the whole Tri-Cities.",
-    image: "/images/ph/area-coquitlam.svg",
+    image: "/images/photos/area-coquitlam.jpg",
     imageAlt: "Megas Hair Salon on Pacific Street in Coquitlam, British Columbia",
     body: [
       "Megas is a Coquitlam salon by address and by temperament. We are on Pacific Street, in the stretch of Burquitlam that has grown up fast around the SkyTrain — and most of our chairs are filled by people who live within fifteen minutes of the door.",
@@ -71,7 +71,7 @@ export const AREAS: readonly Area[] = [
     eyebrow: "Port Moody · 10 minutes away",
     headline: "A Port Moody drive worth making.",
     lede: "Ten minutes down the hill from Newport Village for colour work you would otherwise cross a bridge for.",
-    image: "/images/ph/area-port-moody.svg",
+    image: "/images/photos/area-port-moody.jpg",
     imageAlt: "The route from Port Moody to Megas Hair Salon in Coquitlam",
     body: [
       "Port Moody clients make up a steady share of our chairs, and the reason is usually colour. Balayage, blonde correction, and grey coverage are specialist work, and the pool of colourists with thirty-plus years behind the chair is small anywhere in the Lower Mainland.",
@@ -111,7 +111,7 @@ export const AREAS: readonly Area[] = [
     eyebrow: "Port Coquitlam · 15 minutes away",
     headline: "PoCo's colour appointment.",
     lede: "Fifteen minutes west along Lougheed, with parking at the door.",
-    image: "/images/ph/area-port-coquitlam.svg",
+    image: "/images/photos/area-port-coquitlam.jpg",
     imageAlt: "The route from Port Coquitlam to Megas Hair Salon in Coquitlam",
     body: [
       "From downtown Port Coquitlam it is roughly fifteen minutes west along Lougheed Highway to our door on Pacific Street. No bridge, no downtown parking, no meter anxiety.",
@@ -151,7 +151,7 @@ export const AREAS: readonly Area[] = [
     eyebrow: "Vancouver · Turkish salon",
     headline: "A Turkish salon, forty years in.",
     lede: "Istanbul training and Istanbul standards, twenty-five minutes east of downtown Vancouver.",
-    image: "/images/ph/area-vancouver.svg",
+    image: "/images/photos/area-vancouver.jpg",
     imageAlt: "Megas Hair Salon — a Turkish hair salon serving Greater Vancouver from Coquitlam",
     body: [
       "If you have had your hair done in Istanbul, you know the difference is not a technique — it is a set of assumptions. That the consultation matters. That colour gets mixed for your head, not poured from a pre-made bowl. That a stylist with thirty years of experience is normal rather than remarkable.",
