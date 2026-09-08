@@ -45,6 +45,16 @@ export function Header() {
           : "border-b border-ink/10 bg-bone/90 backdrop-blur-md supports-[backdrop-filter]:bg-bone/75"
       }`}
     >
+      {/* Reading progress, driven by the scroll timeline rather than JS.
+          Hidden while the bar floats over the hero, where it would just be a
+          line across a photograph. */}
+      <div
+        aria-hidden="true"
+        className={`scroll-progress absolute inset-x-0 bottom-0 h-px origin-left bg-copper transition-opacity duration-500 ${
+          overlaying ? "opacity-0" : "opacity-100"
+        }`}
+      />
+
       <div className="shell flex h-20 items-center justify-between gap-6 md:h-28">
         <Logo tone={overlaying ? "light" : "ink"} />
 

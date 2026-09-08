@@ -7,7 +7,7 @@ export function Visit({ heading = "Come and find us." }: { heading?: string }) {
   return (
     <section className="bg-sand">
       <div className="shell grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-5">
+        <Reveal className="rv-left lg:col-span-5">
           <Eyebrow className="mb-5">Visit</Eyebrow>
           <h2 className="mask-line text-title text-balance">{heading}</h2>
 
@@ -69,7 +69,7 @@ export function Visit({ heading = "Come and find us." }: { heading?: string }) {
           <BookButton className="mt-9" size="lg" />
         </Reveal>
 
-        <Reveal delay={120} className="lg:col-span-7">
+        <Reveal delay={120} className="rv-right lg:col-span-7">
           <div className="relative aspect-4/3 overflow-hidden rounded-sm border border-ink/10 bg-clay lg:aspect-auto lg:h-full lg:min-h-[26rem]">
             <iframe
               title="Map showing Megas Hair Salon at 150-1169 Pacific St, Coquitlam"

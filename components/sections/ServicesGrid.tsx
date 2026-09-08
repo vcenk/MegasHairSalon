@@ -5,10 +5,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import type { Service } from "@/lib/services";
 
 export function ServiceCard({ service, index = 0 }: { service: Service; index?: number }) {
+  // Curtain wipe rather than a fade, staggered across the row.
   return (
-    <Reveal delay={(index % 3) * 90}>
+    <Reveal delay={(index % 3) * 120} className="rv-curtain">
       <Link href={`/services/${service.slug}`} className="group block">
-        <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
+        <div className="curtain relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
           <Image
             src={service.image}
             alt={service.imageAlt}

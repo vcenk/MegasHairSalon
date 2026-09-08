@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/Button";
+import { CountUp } from "@/components/ui/CountUp";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -7,19 +8,22 @@ export function Heritage() {
   return (
     <section className="bg-sand">
       <div className="shell grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-5">
+        {/* Image closes in from the left while the copy closes in from the
+            right, and the photograph drifts against the scroll inside its
+            frame — this section moves differently from the grids above it. */}
+        <Reveal className="rv-left lg:col-span-5">
           <div className="relative aspect-4/5 overflow-hidden rounded-sm">
             <Image
               src="/images/photos/about-heritage.jpg"
               alt="Megas Hair Salon's origins in Istanbul, 1984"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-cover"
+              className="parallax object-cover"
             />
           </div>
         </Reveal>
 
-        <Reveal delay={120} className="lg:col-span-7">
+        <Reveal delay={120} className="rv-right lg:col-span-7">
           <Eyebrow className="mb-5">Our story</Eyebrow>
           <h2 className="mask-line text-title text-balance">
             It started in Istanbul, in 1984.
@@ -39,16 +43,18 @@ export function Heritage() {
 
           <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-ink/12 pt-8">
             {[
-              { value: "1984", label: "Founded in Istanbul" },
-              { value: "40+", label: "Years of colour work" },
-              { value: "8", label: "Stylists on the floor" },
+              { to: 1984, suffix: "", label: "Founded in Istanbul" },
+              { to: 40, suffix: "+", label: "Years of colour work" },
+              { to: 8, suffix: "", label: "Stylists on the floor" },
             ].map((stat) => (
               <div key={stat.label}>
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="block font-display text-3xl text-ink md:text-4xl">
-                    {stat.value}
-                  </span>
+                  <CountUp
+                    to={stat.to}
+                    suffix={stat.suffix}
+                    className="block font-display text-3xl tabular-nums text-ink md:text-4xl"
+                  />
                   <span className="mt-2 block text-xs leading-snug tracking-wide text-muted">
                     {stat.label}
                   </span>

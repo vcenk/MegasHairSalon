@@ -70,7 +70,7 @@ export default function AboutPage() {
 
       <section className="shell pt-10 md:pt-14">
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
-          <Reveal className="lg:col-span-7">
+          <Reveal className="rv-left lg:col-span-7">
             <Eyebrow className="mb-5">Our story</Eyebrow>
             <h1 className="mask-line text-title text-balance">Getting this right since 1984</h1>
             <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
@@ -79,7 +79,7 @@ export default function AboutPage() {
             </p>
           </Reveal>
 
-          <Reveal delay={120} className="lg:col-span-5">
+          <Reveal delay={120} className="rv-right lg:col-span-5">
             <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
               <Image
                 src="/images/photos/about-heritage.jpg"
@@ -118,7 +118,7 @@ export default function AboutPage() {
           </div>
         </Reveal>
 
-        <Reveal delay={120} className="lg:col-span-5">
+        <Reveal delay={120} className="rv-right lg:col-span-5">
           <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
             <Image
               src="/images/photos/about-today.jpg"

@@ -54,7 +54,7 @@ export default async function ServicePage({ params }: Params) {
       {/* Header */}
       <section className="shell pt-10 md:pt-14">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-          <Reveal className="lg:col-span-6">
+          <Reveal className="rv-left lg:col-span-6">
             <Eyebrow className="mb-5">{service.eyebrow}</Eyebrow>
             <h1 className="mask-line text-title text-balance">{service.headline}</h1>
             <p className="mt-6 max-w-lg text-lede text-pretty text-muted">{service.lede}</p>
@@ -82,7 +82,7 @@ export default async function ServicePage({ params }: Params) {
             </div>
           </Reveal>
 
-          <Reveal delay={120} className="lg:col-span-6">
+          <Reveal delay={120} className="rv-right lg:col-span-6">
             <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-clay">
               <Image
                 src={service.image}
@@ -90,7 +90,7 @@ export default async function ServicePage({ params }: Params) {
                 fill
                 priority
                 sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
+                className="parallax object-cover"
               />
             </div>
           </Reveal>
@@ -136,7 +136,7 @@ export default async function ServicePage({ params }: Params) {
 
           <ol className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
             {service.process.map((step, index) => (
-              <Reveal key={step.title} delay={index * 70} as="li">
+              <Reveal key={step.title} delay={index * 130} as="li" className="rv-snap">
                 <span className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper-soft">
                   {String(index + 1).padStart(2, "0")}
                 </span>

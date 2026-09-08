@@ -5,11 +5,11 @@ import type { TeamMember } from "@/lib/team";
 
 export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: number }) {
   return (
-    <Reveal delay={(index % 4) * 80}>
+    <Reveal delay={(index % 4) * 110} className="rv-curtain">
       <Link href={`/team/${member.slug}`} className="group block">
         {/* Desaturated so eight portraits shot by eight different people read
             as one team; colour returns on hover. */}
-        <div className="relative aspect-3/4 overflow-hidden rounded-sm bg-clay">
+        <div className="curtain relative aspect-3/4 overflow-hidden rounded-sm bg-clay">
           <Image
             src={member.portrait}
             alt={member.portraitAlt}

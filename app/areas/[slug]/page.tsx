@@ -50,7 +50,7 @@ export default async function AreaPage({ params }: Params) {
 
       <section className="shell pt-10 md:pt-14">
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
-          <Reveal className="lg:col-span-6">
+          <Reveal className="rv-left lg:col-span-6">
             <Eyebrow className="mb-5">{area.eyebrow}</Eyebrow>
             <h1 className="mask-line text-title text-balance">{area.headline}</h1>
             <p className="mt-6 max-w-lg text-lede text-pretty text-muted">{area.lede}</p>
@@ -62,7 +62,7 @@ export default async function AreaPage({ params }: Params) {
             </div>
           </Reveal>
 
-          <Reveal delay={120} className="lg:col-span-6">
+          <Reveal delay={120} className="rv-right lg:col-span-6">
             <div className="relative aspect-16/10 overflow-hidden rounded-sm bg-clay">
               <Image
                 src={area.image}
@@ -70,7 +70,7 @@ export default async function AreaPage({ params }: Params) {
                 fill
                 priority
                 sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
+                className="parallax object-cover"
               />
             </div>
           </Reveal>
