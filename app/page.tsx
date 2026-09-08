@@ -48,7 +48,7 @@ export default function HomePage() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-xl">
             <Eyebrow className="mb-5">The team</Eyebrow>
-            <h2 className="text-title text-balance">A century behind the chair</h2>
+            <h2 className="mask-line text-title text-balance">A century behind the chair</h2>
           </div>
           <Link
             href="/team"

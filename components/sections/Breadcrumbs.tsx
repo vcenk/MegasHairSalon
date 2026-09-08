@@ -9,7 +9,7 @@ export function Breadcrumbs({ trail }: { trail: readonly Crumb[] }) {
 
   return (
     <>
-      <nav aria-label="Breadcrumb" className="shell pt-28 md:pt-32">
+      <nav aria-label="Breadcrumb" className="shell pt-28 md:pt-36">
         <ol className="flex flex-wrap items-center gap-2 font-sans text-xs tracking-wide text-muted">
           {full.map((crumb, index) => {
             const last = index === full.length - 1;

@@ -21,7 +21,7 @@ export function Heritage() {
 
         <Reveal delay={120} className="lg:col-span-7">
           <Eyebrow className="mb-5">Our story</Eyebrow>
-          <h2 className="text-title text-balance">
+          <h2 className="mask-line text-title text-balance">
             It started in Istanbul, in 1984.
           </h2>
           <div className="mt-6 space-y-5 text-lede text-pretty text-muted">

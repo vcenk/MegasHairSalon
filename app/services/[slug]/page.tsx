@@ -56,7 +56,7 @@ export default async function ServicePage({ params }: Params) {
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal className="lg:col-span-6">
             <Eyebrow className="mb-5">{service.eyebrow}</Eyebrow>
-            <h1 className="text-title text-balance">{service.headline}</h1>
+            <h1 className="mask-line text-title text-balance">{service.headline}</h1>
             <p className="mt-6 max-w-lg text-lede text-pretty text-muted">{service.lede}</p>
 
             <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-ink/12 pt-6">
@@ -131,7 +131,7 @@ export default async function ServicePage({ params }: Params) {
             <Eyebrow tone="light" className="mb-5">
               How it goes
             </Eyebrow>
-            <h2 className="text-title text-balance">The appointment, step by step.</h2>
+            <h2 className="mask-line text-title text-balance">The appointment, step by step.</h2>
           </Reveal>
 
           <ol className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
@@ -155,7 +155,7 @@ export default async function ServicePage({ params }: Params) {
         <div className="grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <Eyebrow className="mb-5">Pricing</Eyebrow>
-            <h2 className="text-title text-balance">{service.name} prices</h2>
+            <h2 className="mask-line text-title text-balance">{service.name} prices</h2>
             <p className="mt-5 text-[0.9375rem] leading-relaxed text-muted">
               Starting prices in CAD. Very long or very dense hair may need extra product and
               time — we confirm that at the consultation, before we start.
@@ -195,7 +195,7 @@ export default async function ServicePage({ params }: Params) {
           <div className="shell py-20 md:py-24">
             <Reveal className="max-w-xl">
               <Eyebrow className="mb-5">Who does it</Eyebrow>
-              <h2 className="text-title text-balance">Book this with</h2>
+              <h2 className="mask-line text-title text-balance">Book this with</h2>
             </Reveal>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -237,7 +237,7 @@ export default async function ServicePage({ params }: Params) {
         <section className="shell border-t border-ink/12 py-20 md:py-24">
           <Reveal>
             <Eyebrow className="mb-5">Also consider</Eyebrow>
-            <h2 className="text-title text-balance">Related services</h2>
+            <h2 className="mask-line text-title text-balance">Related services</h2>
           </Reveal>
           <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((item, index) => (

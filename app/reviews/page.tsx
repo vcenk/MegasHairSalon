@@ -22,7 +22,7 @@ export default function ReviewsPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Reviews</Eyebrow>
-          <h1 className="text-title text-balance">
+          <h1 className="mask-line text-title text-balance">
             {RATING.value} stars, across {RATING.count} Google reviews.
           </h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">

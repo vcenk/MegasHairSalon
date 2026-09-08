@@ -22,7 +22,7 @@ export default function TermsPage() {
 
       <section className="shell pt-10 pb-24 md:pt-14 md:pb-32">
         <Eyebrow className="mb-5">Legal</Eyebrow>
-        <h1 className="text-title text-balance">Terms of use</h1>
+        <h1 className="mask-line text-title text-balance">Terms of use</h1>
 
         <div className="mt-10 max-w-2xl space-y-8 text-[0.9375rem] leading-relaxed text-muted">
           <p>

@@ -48,7 +48,7 @@ export function ServicesGrid({
     <section className="shell py-20 md:py-28">
       <Reveal className="max-w-2xl">
         <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
-        <h2 className="text-title text-balance">{title}</h2>
+        <h2 className="mask-line text-title text-balance">{title}</h2>
         {intro && <p className="mt-5 text-lede text-pretty text-muted">{intro}</p>}
       </Reveal>
 

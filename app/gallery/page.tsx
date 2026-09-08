@@ -21,7 +21,7 @@ export default function GalleryPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Gallery</Eyebrow>
-          <h1 className="text-title text-balance">The work, and the room</h1>
+          <h1 className="mask-line text-title text-balance">The work, and the room</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             Our Coquitlam build-out is finishing now, and the salon&apos;s own photography is
             being shot as soon as it is done. These stand in until then.

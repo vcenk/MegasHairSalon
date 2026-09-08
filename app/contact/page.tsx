@@ -52,7 +52,7 @@ export default function ContactPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Contact</Eyebrow>
-          <h1 className="text-title text-balance">Three ways to reach us.</h1>
+          <h1 className="mask-line text-title text-balance">Three ways to reach us.</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             Booking online is the fastest — it shows real availability for every stylist. For
             anything else, the phone is answered during opening hours.

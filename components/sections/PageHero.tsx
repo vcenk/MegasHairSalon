@@ -23,12 +23,12 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative pt-[7.5rem] md:pt-36">
+    <section className="relative pt-32 md:pt-40">
       <div className="shell">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
             {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
-            <h1 className="text-title text-balance">{title}</h1>
+            <h1 className="mask-line text-title text-balance">{title}</h1>
             {lede && (
               <p className="mt-6 max-w-xl text-lede text-pretty text-muted">{lede}</p>
             )}

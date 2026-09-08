@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BookButton } from "@/components/ui/Button";
-import { FOOTER_SALON, FOOTER_VISIT } from "@/lib/nav";
+import { FOOTER_PRODUCTS, FOOTER_SALON, FOOTER_VISIT } from "@/lib/nav";
 import { SERVICES } from "@/lib/services";
 import { BUSINESS, CONTACT, HOURS_DISPLAY, SOCIAL } from "@/lib/site";
 
@@ -33,7 +33,7 @@ export function Footer() {
         </div>
 
         {/* Grouped columns */}
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           <FooterColumn title="Salon">
             {FOOTER_SALON.map((link) => (
               <FooterLink key={link.href} href={link.href}>
@@ -51,6 +51,14 @@ export function Footer() {
             <FooterLink href="/menu" accent>
               Full price menu
             </FooterLink>
+          </FooterColumn>
+
+          <FooterColumn title="Products">
+            {FOOTER_PRODUCTS.map((link) => (
+              <FooterLink key={link.href} href={link.href}>
+                {link.label}
+              </FooterLink>
+            ))}
           </FooterColumn>
 
           <FooterColumn title="Visit">

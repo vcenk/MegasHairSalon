@@ -55,7 +55,7 @@ export default async function PostPage({ params }: Params) {
         <header className="shell pt-10 md:pt-14">
           <Reveal className="mx-auto max-w-3xl">
             <Eyebrow className="mb-5">{post.category}</Eyebrow>
-            <h1 className="text-title text-balance">{post.title}</h1>
+            <h1 className="mask-line text-title text-balance">{post.title}</h1>
             <p className="mt-6 text-lede text-pretty text-muted">{post.excerpt}</p>
             <p className="mt-6 text-xs tracking-wide text-muted">
               <time dateTime={post.date}>{formatPostDate(post.date)}</time> · {post.readingTime}
@@ -112,7 +112,7 @@ export default async function PostPage({ params }: Params) {
             <div className="shell py-16 md:py-20">
               <Reveal className="max-w-xl">
                 <Eyebrow className="mb-5">Mentioned in this piece</Eyebrow>
-                <h2 className="text-title text-balance">{service.name}</h2>
+                <h2 className="mask-line text-title text-balance">{service.name}</h2>
               </Reveal>
               <div className="mt-10 max-w-sm">
                 <ServiceCard service={service} />
@@ -125,7 +125,7 @@ export default async function PostPage({ params }: Params) {
           <section className="shell py-16 md:py-20">
             <Reveal>
               <Eyebrow className="mb-5">Keep reading</Eyebrow>
-              <h2 className="text-title text-balance">More from the journal</h2>
+              <h2 className="mask-line text-title text-balance">More from the journal</h2>
             </Reveal>
             <div className="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-2">
               {more.map((item, index) => (

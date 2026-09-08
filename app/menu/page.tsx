@@ -31,7 +31,7 @@ export default function MenuPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Price menu</Eyebrow>
-          <h1 className="text-title text-balance">Every service, every price.</h1>
+          <h1 className="mask-line text-title text-balance">Every service, every price.</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             All {MENU_ITEM_COUNT} services we offer, in Canadian dollars. Prices are starting
             points — long or dense hair sometimes needs more product and time, which we confirm

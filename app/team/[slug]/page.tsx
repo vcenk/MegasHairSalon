@@ -68,7 +68,7 @@ export default async function TeamMemberPage({ params }: Params) {
               {member.title}
               {member.years !== null && ` · ${member.years} years`}
             </Eyebrow>
-            <h1 className="text-title text-balance">{member.headline}</h1>
+            <h1 className="mask-line text-title text-balance">{member.headline}</h1>
 
             <p className="mt-7 text-lede text-pretty text-muted">{member.bio}</p>
 
@@ -123,7 +123,7 @@ export default async function TeamMemberPage({ params }: Params) {
         <section className="shell py-20 md:py-24">
           <Reveal>
             <Eyebrow className="mb-5">Selected work</Eyebrow>
-            <h2 className="text-title text-balance">{member.name}&apos;s work</h2>
+            <h2 className="mask-line text-title text-balance">{member.name}&apos;s work</h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {member.gallery.map((shot, index) => (
@@ -147,7 +147,7 @@ export default async function TeamMemberPage({ params }: Params) {
         <section className="shell border-t border-ink/12 py-20 md:py-24">
           <Reveal>
             <Eyebrow className="mb-5">Book with {member.name}</Eyebrow>
-            <h2 className="text-title text-balance">Services</h2>
+            <h2 className="mask-line text-title text-balance">Services</h2>
           </Reveal>
           <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (

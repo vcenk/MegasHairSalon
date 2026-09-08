@@ -10,7 +10,7 @@ export function Testimonials() {
       <Reveal className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
           <Eyebrow className="mb-5">In their words</Eyebrow>
-          <h2 className="text-title text-balance">
+          <h2 className="mask-line text-title text-balance">
             {RATING.value} stars, {RATING.count} reviews.
           </h2>
         </div>

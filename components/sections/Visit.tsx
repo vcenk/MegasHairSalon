@@ -9,7 +9,7 @@ export function Visit({ heading = "Come and find us." }: { heading?: string }) {
       <div className="shell grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
           <Eyebrow className="mb-5">Visit</Eyebrow>
-          <h2 className="text-title text-balance">{heading}</h2>
+          <h2 className="mask-line text-title text-balance">{heading}</h2>
 
           <div className="mt-8 space-y-7">
             <div>

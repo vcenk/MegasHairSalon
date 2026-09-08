@@ -24,7 +24,7 @@ export default function ServicesPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Services</Eyebrow>
-          <h1 className="text-title text-balance">What we are known for</h1>
+          <h1 className="mask-line text-title text-balance">What we are known for</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             These are the services people travel for. The complete list runs to{" "}
             {MENU_ITEM_COUNT} items, all priced, all bookable online.

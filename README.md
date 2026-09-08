@@ -42,6 +42,8 @@ these files. To change the site, change these:
 | `lib/services.ts` | The 8 SEO service pages — copy, pricing tables, FAQs. |
 | `lib/team.ts` | The 8 stylists. |
 | `lib/areas.ts` | The 4 local-SEO area pages. |
+| `lib/faqs.ts` | The salon FAQ, grouped. Feeds `/faq` and its FAQPage schema. |
+| `lib/products.ts` | In-salon retail categories. Aveda is the only brand named — see the file header. |
 | `lib/blog.ts` | Journal posts. |
 | `lib/reviews.ts` | Testimonials. **Currently placeholders — see the launch checklist.** |
 | `lib/gallery.ts` | Gallery grid. |
@@ -76,6 +78,22 @@ See [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
 page; kept because `npm run placeholders` regenerates it, and it is a useful
 shot list for the photographer. Once nothing references it, drop
 `dangerouslyAllowSVG` from `next.config.ts`.
+
+## Motion
+
+All of it is CSS, driven by the `data-shown` flag that `components/ui/Reveal.tsx`
+sets from one IntersectionObserver: staggered entrance on the hero, a mask wipe
+on section headings, images settling out of a slight overscale, and a swept
+underline on nav links. Tokens and keyframes live in the utilities layer of
+`app/globals.css`.
+
+No motion library. GSAP or Framer would add 25–50 kB of JavaScript to a static
+marketing site to do work the compositor already does, and would turn server
+components into client ones. Worth revisiting only for real choreography —
+scrubbed scroll timelines, SVG morphing, physics.
+
+Everything is disabled under `prefers-reduced-motion`, and pinned visible under
+`@media (scripting: none)` so the site is not blank with JS off.
 
 ## SEO
 

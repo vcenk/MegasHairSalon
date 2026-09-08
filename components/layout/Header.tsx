@@ -45,10 +45,10 @@ export function Header() {
           : "border-b border-ink/10 bg-bone/90 backdrop-blur-md supports-[backdrop-filter]:bg-bone/75"
       }`}
     >
-      <div className="shell flex h-[4.5rem] items-center justify-between gap-6 md:h-24">
+      <div className="shell flex h-20 items-center justify-between gap-6 md:h-28">
         <Logo tone={overlaying ? "light" : "ink"} />
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
           {PRIMARY_NAV.map((link) => {
             const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
@@ -56,7 +56,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`font-sans text-[0.875rem] uppercase tracking-[0.14em] transition-colors duration-300 ${linkTone} ${
+                className={`sweep font-sans text-[0.9375rem] whitespace-nowrap uppercase tracking-[0.13em] transition-colors duration-300 ${linkTone} ${
                   active ? (overlaying ? "!text-bone" : "!text-copper") : ""
                 }`}
               >
@@ -69,7 +69,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href={CONTACT.phoneHref}
-            className={`hidden font-sans text-[0.875rem] tracking-[0.1em] transition-colors duration-300 md:inline ${linkTone}`}
+            className={`hidden font-sans text-[0.9375rem] whitespace-nowrap tracking-[0.08em] transition-colors duration-300 md:inline ${linkTone}`}
           >
             {CONTACT.phone}
           </a>
@@ -83,7 +83,7 @@ export function Header() {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className={`flex h-10 w-10 items-center justify-center lg:hidden ${
+            className={`flex h-10 w-10 items-center justify-center xl:hidden ${
               overlaying ? "text-bone" : "text-ink"
             }`}
           >
@@ -111,7 +111,7 @@ export function Header() {
       <div
         id="mobile-nav"
         hidden={!menuOpen}
-        className="border-t border-ink/10 bg-bone lg:hidden"
+        className="border-t border-ink/10 bg-bone xl:hidden"
       >
         <nav aria-label="Mobile" className="shell flex flex-col py-6">
           {PRIMARY_NAV.map((link) => (

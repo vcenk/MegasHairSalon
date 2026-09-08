@@ -17,7 +17,7 @@ export function Hero() {
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="hero-zoom object-cover"
       />
       <div
         aria-hidden="true"
@@ -25,15 +25,17 @@ export function Hero() {
       />
 
       <div className="shell relative z-10 flex flex-col items-center py-28 text-center">
-        <p className="text-[0.625rem] tracking-[0.34em] text-bone/70 uppercase">
+        <p className="enter enter-1 text-[0.8125rem] font-medium tracking-[0.3em] text-bone/75 uppercase">
           Istanbul 1984 · Coquitlam today
         </p>
 
-        <h1 className="mt-7 max-w-4xl text-display tracking-[0.06em] text-balance text-bone">
+        {/* Heavier than the h1/h2 default of 300 — this is the one place on
+            the site where the type carries the whole composition. */}
+        <h1 className="enter enter-2 mt-7 max-w-5xl text-display font-normal tracking-[0.04em] text-balance text-bone">
           Hair salon in Coquitlam since 1984
         </h1>
 
-        <p className="mt-7 max-w-lg text-lede text-pretty text-bone/80">
+        <p className="enter enter-3 mt-8 max-w-xl text-[1.0625rem] leading-relaxed text-pretty text-bone/80 md:text-[1.25rem]">
           Balayage, blonde work, keratin, and cuts that still hold their shape at week
           six — by stylists with 20–40 years behind the chair.
         </p>
@@ -42,23 +44,23 @@ export function Hero() {
           href={BOOKING.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="tracked mt-10 inline-flex items-center rounded-full border border-bone/60 px-11 py-4 text-[0.8125rem] text-bone transition-colors duration-300 hover:bg-bone hover:text-ink"
+          className="tracked enter enter-4 mt-11 inline-flex items-center rounded-full border border-bone/70 px-12 py-5 text-[0.9375rem] font-medium text-bone transition-colors duration-300 hover:bg-bone hover:text-ink"
         >
           Book your appointment
         </a>
 
         <Link
           href="/menu"
-          className="tracked mt-5 text-[0.6875rem] text-bone/60 underline-offset-8 transition-colors duration-300 hover:text-bone hover:underline"
+          className="tracked sweep enter enter-5 mt-6 text-[0.8125rem] text-bone/65 transition-colors duration-300 hover:text-bone"
         >
           See prices
         </Link>
 
-        <dl className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-bone/20 pt-6 text-[0.6875rem] tracking-[0.12em] text-bone/65 uppercase">
-          <div className="flex items-baseline gap-2">
+        <dl className="enter enter-6 mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 border-t border-bone/25 pt-7 text-[0.8125rem] tracking-[0.12em] text-bone/70 uppercase">
+          <div className="flex items-baseline gap-2.5">
             <dt className="sr-only">Google rating</dt>
-            <dd className="font-display text-base text-bone">{RATING.value}</dd>
-            <span aria-hidden="true" className="text-copper-soft">
+            <dd className="font-display text-xl font-normal text-bone">{RATING.value}</dd>
+            <span aria-hidden="true" className="text-sm text-copper-soft">
               ★★★★★
             </span>
             <span>{RATING.count} reviews</span>

@@ -19,7 +19,7 @@ export function CtaBand({
           <Eyebrow tone="light" className="mb-5">
             Book with {BOOKING.provider}
           </Eyebrow>
-          <h2 className="text-title text-balance">{title}</h2>
+          <h2 className="mask-line text-title text-balance">{title}</h2>
           <p className="mx-auto mt-5 max-w-xl text-lede text-pretty text-bone/70">{body}</p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <BookButton variant="light" size="lg" />

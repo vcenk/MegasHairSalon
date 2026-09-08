@@ -17,7 +17,7 @@ export function Faqs({
       <div className="grid gap-10 lg:grid-cols-12">
         <Reveal className="lg:col-span-4">
           <Eyebrow className="mb-4">{eyebrow}</Eyebrow>
-          <h2 className="text-title text-balance">{title}</h2>
+          <h2 className="mask-line text-title text-balance">{title}</h2>
         </Reveal>
 
         <div className="lg:col-span-8">

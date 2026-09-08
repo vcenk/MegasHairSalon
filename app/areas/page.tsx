@@ -23,7 +23,7 @@ export default function AreasPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Areas we serve</Eyebrow>
-          <h1 className="text-title text-balance">One salon, the whole Tri-Cities.</h1>
+          <h1 className="mask-line text-title text-balance">One salon, the whole Tri-Cities.</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             We are on Pacific Street in Coquitlam — a short walk from Burquitlam Station and a
             straightforward drive from anywhere east of the Second Narrows.

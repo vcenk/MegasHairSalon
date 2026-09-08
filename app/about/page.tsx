@@ -72,7 +72,7 @@ export default function AboutPage() {
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal className="lg:col-span-7">
             <Eyebrow className="mb-5">Our story</Eyebrow>
-            <h1 className="text-title text-balance">Getting this right since 1984</h1>
+            <h1 className="mask-line text-title text-balance">Getting this right since 1984</h1>
             <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
               Two salons in Istanbul, one in Coquitlam, and a way of working that has not
               changed in forty years.
@@ -138,7 +138,7 @@ export default function AboutPage() {
             <Eyebrow tone="light" className="mb-5">
               Forty years
             </Eyebrow>
-            <h2 className="text-title text-balance">Istanbul to Coquitlam.</h2>
+            <h2 className="mask-line text-title text-balance">Istanbul to Coquitlam.</h2>
           </Reveal>
 
           <ol className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -159,7 +159,7 @@ export default function AboutPage() {
       <section className="shell py-20 md:py-28">
         <Reveal className="max-w-xl">
           <Eyebrow className="mb-5">How we work</Eyebrow>
-          <h2 className="text-title text-balance">Four things we do not compromise on.</h2>
+          <h2 className="mask-line text-title text-balance">Four things we do not compromise on.</h2>
         </Reveal>
 
         <div className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-2">
@@ -179,7 +179,7 @@ export default function AboutPage() {
         <div className="shell py-20 md:py-24">
           <Reveal className="max-w-xl">
             <Eyebrow className="mb-5">The people</Eyebrow>
-            <h2 className="text-title text-balance">Who you will be sitting with.</h2>
+            <h2 className="mask-line text-title text-balance">Who you will be sitting with.</h2>
           </Reveal>
           <div className="mt-12">
             <TeamGrid members={TEAM_LEADS} />

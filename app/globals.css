@@ -26,8 +26,8 @@
   --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
 
   /* Display sizes are set in uppercase, so they carry negative tracking. */
-  --text-display: clamp(2.25rem, 6vw, 4.75rem);
-  --text-display--line-height: 1.04;
+  --text-display: clamp(2.5rem, 7.2vw, 6rem);
+  --text-display--line-height: 1.02;
   --text-display--letter-spacing: -0.02em;
 
   --text-title: clamp(1.75rem, 3.6vw, 2.875rem);
@@ -83,7 +83,7 @@
   }
 
   [id] {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 8.5rem;
   }
 }
 
@@ -141,6 +141,119 @@
       opacity: 1;
       transform: none;
     }
+
+    .reveal .mask-line {
+      clip-path: none;
+    }
+
+    .reveal img {
+      transform: none;
+    }
+  }
+
+  /* ── Motion ──────────────────────────────────────────────────────────────
+     All of this is CSS, driven by the same data-shown flag the Reveal
+     component already sets. A motion library (GSAP, Framer) would add 25–50 kB
+     of JavaScript to a static marketing site to do work the compositor already
+     does for free, and would turn half these server components into client
+     ones. Worth revisiting only for genuine choreography — scrubbed timelines,
+     SVG morphing, physics.
+     ──────────────────────────────────────────────────────────────────────── */
+
+  /* Headings wipe up from behind a mask rather than only fading. Applied to a
+     child of a Reveal, so one wrapper drives both the fade and the wipe. */
+  .reveal .mask-line {
+    clip-path: inset(0 0 105% 0);
+    transition: clip-path 1.1s var(--ease-out-soft);
+  }
+
+  .reveal[data-shown="true"] .mask-line {
+    /* Negative bottom inset so descenders are not clipped at rest. */
+    clip-path: inset(0 0 -25% 0);
+  }
+
+  /* Images settle out of a slight overscale as they enter view. Uses
+     `transform`, while Tailwind v4's scale-* utilities use the standalone
+     `scale` property — so card hover scaling composes on top rather than
+     fighting this. */
+  .reveal img {
+    transform: scale(1.06);
+    transition: transform 1.5s var(--ease-out-soft);
+  }
+
+  .reveal[data-shown="true"] img {
+    transform: scale(1);
+  }
+
+  /* Hero: a very slow push in, so the still photograph is not quite still. */
+  .hero-zoom {
+    animation: hero-zoom 24s var(--ease-out-soft) both;
+  }
+
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.1);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  /* Hero copy arrives in sequence on load rather than all at once. */
+  .enter {
+    animation: enter-up 1s var(--ease-out-soft) both;
+  }
+
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .enter-1 {
+    animation-delay: 0.1s;
+  }
+  .enter-2 {
+    animation-delay: 0.22s;
+  }
+  .enter-3 {
+    animation-delay: 0.36s;
+  }
+  .enter-4 {
+    animation-delay: 0.5s;
+  }
+  .enter-5 {
+    animation-delay: 0.66s;
+  }
+  .enter-6 {
+    animation-delay: 0.82s;
+  }
+
+  /* Underline that draws in from the left. */
+  .sweep {
+    position: relative;
+  }
+
+  .sweep::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.35em;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out-soft);
+  }
+
+  .sweep:hover::after,
+  .sweep:focus-visible::after {
+    transform: scaleX(1);
   }
 }
 
@@ -149,9 +262,28 @@
     scroll-behavior: auto;
   }
 
-  .reveal {
+  .reveal,
+  .enter {
     opacity: 1;
     transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  .reveal .mask-line,
+  .reveal[data-shown="true"] .mask-line {
+    clip-path: none;
+    transition: none;
+  }
+
+  .reveal img,
+  .hero-zoom {
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  .sweep::after {
     transition: none;
   }
 

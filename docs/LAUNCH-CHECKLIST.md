@@ -38,6 +38,16 @@ they are listed first.
 - [ ] **Confirm the Instagram and Facebook handles** in `lib/site.ts`. They are
       currently guessed from the business name and feed the `sameAs` schema.
 
+## Confirm with the client — retail
+
+- [ ] **Which brands does the salon actually retail?** `lib/products.ts` names
+      Aveda only, because Aveda is the one brand evidenced by the Phorest
+      service menu. The page is written to survive more brands being added, but
+      none should be added on a guess. (Emir's bio mentions L'Oréal, Kérastase
+      and Wella — that is his training history, not the retail shelf.)
+- [ ] **Does the salon sell gift cards?** The FAQ currently says "call us",
+      which is true but weak. Phorest supports gift cards if they want them sold.
+
 ## Confirm with the client
 
 - [ ] Postal code V3B 0J1 — verify against the Google Business Profile.

@@ -52,7 +52,7 @@ export default async function AreaPage({ params }: Params) {
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal className="lg:col-span-6">
             <Eyebrow className="mb-5">{area.eyebrow}</Eyebrow>
-            <h1 className="text-title text-balance">{area.headline}</h1>
+            <h1 className="mask-line text-title text-balance">{area.headline}</h1>
             <p className="mt-6 max-w-lg text-lede text-pretty text-muted">{area.lede}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BookButton size="lg" />
@@ -107,7 +107,7 @@ export default async function AreaPage({ params }: Params) {
         <div className="shell py-20 md:py-24">
           <Reveal className="max-w-xl">
             <Eyebrow className="mb-5">Popular with {area.name} clients</Eyebrow>
-            <h2 className="text-title text-balance">What people book</h2>
+            <h2 className="mask-line text-title text-balance">What people book</h2>
           </Reveal>
           <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURED_SERVICES.slice(0, 3).map((service, index) => (

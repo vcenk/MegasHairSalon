@@ -40,7 +40,7 @@ export default function BookPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Booking</Eyebrow>
-          <h1 className="text-title text-balance">Book in about ninety seconds.</h1>
+          <h1 className="mask-line text-title text-balance">Book in about ninety seconds.</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
             Our booking runs on {BOOKING.provider}, which shows real-time availability for
             every stylist. It opens in a new tab, so you will not lose your place here.

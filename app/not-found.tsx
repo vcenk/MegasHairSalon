@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <section className="shell flex min-h-[70svh] flex-col justify-center py-32">
       <Eyebrow className="mb-5">404</Eyebrow>
-      <h1 className="text-title text-balance">This page has grown out.</h1>
+      <h1 className="mask-line text-title text-balance">This page has grown out.</h1>
       <p className="mt-6 max-w-lg text-lede text-pretty text-muted">
         The link you followed does not exist any more. The services, the price menu, and the
         booking page are all still where you left them.
