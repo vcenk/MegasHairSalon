@@ -59,6 +59,18 @@ they are listed first.
       invent it).
 - [ ] Have `/privacy` and `/terms` reviewed against PIPEDA and BC PIPA.
 
+## Dependencies
+
+- [x] **Next.js patched to 15.5.25** — 15.5.4 carried CVE-2025-66478, which
+      Vercel flags on every deploy. Stayed on the 15.5 line rather than jumping
+      to 16 so the fix carried no breaking changes.
+- [ ] **Plan the Next 16 upgrade.** `npm audit` still reports two advisories in
+      the PostCSS that Next bundles, and the only fix npm offers is Next 16 (a
+      semver major). Both are build-time issues — a stringify XSS and a file
+      read, reachable through attacker-controlled CSS input, which a site whose
+      CSS we author entirely ourselves does not have. Worth doing deliberately,
+      not under deadline.
+
 ## Technical, before going live
 
 - [ ] Point `SITE.url` in `lib/site.ts` at the real domain.
