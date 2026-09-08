@@ -25,10 +25,12 @@
   --font-display: var(--font-jost), "Futura", ui-sans-serif, sans-serif;
   --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
 
-  /* Display sizes are set in uppercase, so they carry negative tracking. */
-  --text-display: clamp(2.5rem, 7.2vw, 6rem);
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.02em;
+  /* Display sizes are set in uppercase, so they carry negative tracking.
+     The cap matters more than the vw factor here — past about 1500px the
+     headline stops reading as a headline and starts reading as a wall. */
+  --text-display: clamp(2.25rem, 5.4vw, 4.75rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.015em;
 
   --text-title: clamp(1.75rem, 3.6vw, 2.875rem);
   --text-title--line-height: 1.1;

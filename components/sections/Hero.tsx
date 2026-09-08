@@ -31,11 +31,11 @@ export function Hero() {
 
         {/* Heavier than the h1/h2 default of 300 — this is the one place on
             the site where the type carries the whole composition. */}
-        <h1 className="enter enter-2 mt-7 max-w-5xl text-display font-normal tracking-[0.04em] text-balance text-bone">
+        <h1 className="enter enter-2 mt-6 max-w-4xl text-display font-normal tracking-[0.04em] text-balance text-bone">
           Hair salon in Coquitlam since 1984
         </h1>
 
-        <p className="enter enter-3 mt-8 max-w-xl text-[1.0625rem] leading-relaxed text-pretty text-bone/80 md:text-[1.25rem]">
+        <p className="enter enter-3 mt-7 max-w-lg text-[1.0625rem] leading-relaxed text-pretty text-bone/80 md:text-[1.125rem]">
           Balayage, blonde work, keratin, and cuts that still hold their shape at week
           six — by stylists with 20–40 years behind the chair.
         </p>
@@ -44,7 +44,7 @@ export function Hero() {
           href={BOOKING.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="tracked enter enter-4 mt-11 inline-flex items-center rounded-full border border-bone/70 px-12 py-5 text-[0.9375rem] font-medium text-bone transition-colors duration-300 hover:bg-bone hover:text-ink"
+          className="tracked enter enter-4 mt-10 inline-flex items-center rounded-full border border-bone/70 px-11 py-4 text-[0.875rem] font-medium text-bone transition-colors duration-300 hover:bg-bone hover:text-ink"
         >
           Book your appointment
         </a>
