@@ -1,10 +1,8 @@
 /**
  * In-salon retail.
  *
- * The salon sells the professional lines it uses on the floor. **Aveda is the
- * only brand named here**, and only because it appears on the live Phorest
- * service menu (Aveda Botanical, Nutriplenish, and Scalp treatments). Any other
- * brand has to come from the client before it goes on this page.
+ * The salon sells the professional lines it uses on the floor. Aveda and Wella
+ * Professionals are named here as product partners at the client's direction.
  *
  * There are no prices for the same reason — retail pricing was never supplied.
  * The page is written to send people to their stylist or the phone, which is
@@ -22,14 +20,38 @@ export type ProductCategory = {
   readonly imageAlt: string;
 };
 
-export const RETAIL_BRANDS = ["Aveda"] as const;
+export type ProductPartner = {
+  readonly name: string;
+  readonly focus: string;
+  readonly description: string;
+  readonly strengths: readonly string[];
+};
+
+export const PRODUCT_PARTNERS: readonly ProductPartner[] = [
+  {
+    name: "Aveda",
+    focus: "Plant-powered care",
+    description:
+      "Our choice for thoughtful hair and scalp care rooted in high-performance, plant-derived technology. From Botanical Repair to Nutriplenish and Scalp Solutions, Aveda helps us build routines around strength, hydration, and a healthier-feeling scalp.",
+    strengths: ["Bond-building repair", "Deep hydration", "Scalp care"],
+  },
+  {
+    name: "Wella Professionals",
+    focus: "Colour expertise",
+    description:
+      "A professional colour authority trusted for precision, tone, and luminous results. We work with Wella Professionals across colour, repair, and styling so the finish created in the salon can be supported with considered care at home.",
+    strengths: ["Professional colour", "Tone & vibrancy", "Repair & styling"],
+  },
+] as const;
+
+export const RETAIL_BRANDS = PRODUCT_PARTNERS.map((partner) => partner.name);
 
 export const PRODUCT_CATEGORIES: readonly ProductCategory[] = [
   {
     slug: "colour-care",
     name: "Colour care",
     summary:
-      "Sulphate-free shampoo and conditioner, plus purple toning for blondes. This is the category that decides how long your colour looks like it did the day you left.",
+      "Colour-safe shampoo and conditioner, plus toning care for blondes. With professional options from Aveda and Wella, this is the category that helps your colour hold onto its tone, shine, and fresh-from-the-salon finish.",
     forYouIf: [
       "You have highlights, balayage, or a full colour",
       "Your blonde is turning brassy between appointments",
@@ -42,14 +64,14 @@ export const PRODUCT_CATEGORIES: readonly ProductCategory[] = [
     slug: "repair",
     name: "Masks & repair",
     summary:
-      "Weekly masks and leave-in treatments, including the Aveda lines we use at the basin. The at-home version of the treatment your stylist does in the chair.",
+      "Weekly masks, bond-building care, and leave-in treatments from our professional partners. Think of it as the at-home continuation of the care your stylist begins in the chair.",
     forYouIf: [
       "Your ends feel dry or your hair has lost elasticity",
       "You are lightening and want to keep lightening",
       "You have had a keratin or botox treatment to protect",
     ],
     image: "/images/photos/work-treatment-1.jpg",
-    imageAlt: "Aveda masks and repair treatments retailed at Megas Hair Salon, Coquitlam",
+    imageAlt: "Professional masks and repair treatments at Megas Hair Salon, Coquitlam",
   },
   {
     slug: "scalp",
@@ -62,7 +84,7 @@ export const PRODUCT_CATEGORIES: readonly ProductCategory[] = [
       "You have had a scalp treatment with us and want to keep it going",
     ],
     image: "/images/photos/journal-keratin.jpg",
-    imageAlt: "Aveda scalp care products at Megas Hair Salon, Coquitlam",
+    imageAlt: "Professional scalp care at Megas Hair Salon, Coquitlam",
   },
   {
     slug: "styling",

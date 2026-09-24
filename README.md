@@ -43,7 +43,7 @@ these files. To change the site, change these:
 | `lib/team.ts` | The 8 stylists. |
 | `lib/areas.ts` | The 4 local-SEO area pages. |
 | `lib/faqs.ts` | The salon FAQ, grouped. Feeds `/faq` and its FAQPage schema. |
-| `lib/products.ts` | In-salon retail categories. Aveda is the only brand named — see the file header. |
+| `lib/products.ts` | In-salon retail categories and the Aveda / Wella Professionals product partnerships. |
 | `lib/blog.ts` | Journal posts. |
 | `lib/reviews.ts` | Testimonials. **Currently placeholders — see the launch checklist.** |
 | `lib/gallery.ts` | Gallery grid. |
