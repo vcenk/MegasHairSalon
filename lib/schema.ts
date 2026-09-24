@@ -23,7 +23,7 @@ export function localBusinessSchema() {
     name: BUSINESS.name,
     legalName: BUSINESS.legalName,
     url: SITE.url,
-    telephone: [CONTACT.phone, CONTACT.secondaryPhone],
+    telephone: CONTACT.phone,
     email: CONTACT.email,
     priceRange: BUSINESS.priceRange,
     foundingDate: BUSINESS.foundingDate,

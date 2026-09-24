@@ -21,7 +21,7 @@ const FAQS = [
   {
     question: "How do I book an appointment?",
     answer:
-      "Online through our Phorest booking page, at any hour — you can choose your stylist, your service, and your time. Or call 778-858-0396 or 236-479-3672 during opening hours and we will book you in.",
+      "Online through our Phorest booking page, at any hour — you can choose your stylist, your service, and your time. Or call 778-858-0396 during opening hours and we will book you in.",
   },
   {
     question: "Do you take walk-ins?",
@@ -75,23 +75,12 @@ export default function ContactPage() {
             <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
               Call
             </h2>
-            <div className="mt-3 space-y-1">
-              <a
-                href={CONTACT.phoneHref}
-                className="block font-display text-xl text-ink transition-colors hover:text-copper"
-              >
-                {CONTACT.phone}
-              </a>
-              <a
-                href={CONTACT.secondaryPhoneHref}
-                className="block font-display text-xl text-ink transition-colors hover:text-copper"
-              >
-                <span className="mr-2 font-sans text-[0.6875rem] uppercase tracking-[0.16em] text-muted">
-                  Tel 2
-                </span>
-                {CONTACT.secondaryPhone}
-              </a>
-            </div>
+            <a
+              href={CONTACT.phoneHref}
+              className="mt-3 block font-display text-xl text-ink transition-colors hover:text-copper"
+            >
+              {CONTACT.phone}
+            </a>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               Monday to Saturday, 10am–6pm. Best for questions about a big change.
             </p>
