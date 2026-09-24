@@ -172,7 +172,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       },
       {
         question: "What are your hours?",
-        answer: "Monday to Saturday, 10:00 am to 6:00 pm. We are closed on Sundays.",
+        answer: "Monday to Saturday, 9:00 am to 6:00 pm. We are closed on Sundays.",
       },
       {
         question: "Where do I park?",

@@ -71,7 +71,7 @@ export function Hero() {
           </div>
           <div>
             <dt className="sr-only">Hours</dt>
-            <dd>Mon–Sat 10–6</dd>
+            <dd>Mon–Sat 9–6</dd>
           </div>
         </dl>
       </div>

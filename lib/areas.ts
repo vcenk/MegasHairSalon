@@ -53,7 +53,7 @@ export const AREAS: readonly Area[] = [
       },
       {
         question: "What are your hours?",
-        answer: "Monday to Saturday, 10:00 am to 6:00 pm. Closed Sundays.",
+        answer: "Monday to Saturday, 9:00 am to 6:00 pm. Closed Sundays.",
       },
       {
         question: "Do I need an appointment?",

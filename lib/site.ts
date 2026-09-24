@@ -65,18 +65,18 @@ type DayKey =
   | "sunday";
 
 export const HOURS: Record<DayKey, { opens: string; closes: string } | null> = {
-  monday: { opens: "10:00", closes: "18:00" },
-  tuesday: { opens: "10:00", closes: "18:00" },
-  wednesday: { opens: "10:00", closes: "18:00" },
-  thursday: { opens: "10:00", closes: "18:00" },
-  friday: { opens: "10:00", closes: "18:00" },
-  saturday: { opens: "10:00", closes: "18:00" },
+  monday: { opens: "09:00", closes: "18:00" },
+  tuesday: { opens: "09:00", closes: "18:00" },
+  wednesday: { opens: "09:00", closes: "18:00" },
+  thursday: { opens: "09:00", closes: "18:00" },
+  friday: { opens: "09:00", closes: "18:00" },
+  saturday: { opens: "09:00", closes: "18:00" },
   sunday: null,
 };
 
 /** Grouped for display — consecutive identical days collapse into one row. */
 export const HOURS_DISPLAY = [
-  { label: "Monday – Saturday", value: "10:00 am – 6:00 pm" },
+  { label: "Monday – Saturday", value: "9:00 am – 6:00 pm" },
   { label: "Sunday", value: "Closed" },
 ] as const;
 

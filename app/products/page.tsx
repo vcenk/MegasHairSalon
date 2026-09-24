@@ -21,7 +21,7 @@ const FAQS = [
   {
     question: "Can I buy products without booking an appointment?",
     answer:
-      "Yes — come in during opening hours, Monday to Saturday 10am to 6pm, and someone will help you find the right thing. You do not need to be booked in.",
+      "Yes — come in during opening hours, Monday to Saturday 9am to 6pm, and someone will help you find the right thing. You do not need to be booked in.",
   },
   {
     question: "Can you set something aside for me?",

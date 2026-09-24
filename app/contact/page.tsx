@@ -35,7 +35,7 @@ const FAQS = [
   },
   {
     question: "What are your hours?",
-    answer: "Monday to Saturday, 10:00 am to 6:00 pm. We are closed on Sundays.",
+    answer: "Monday to Saturday, 9:00 am to 6:00 pm. We are closed on Sundays.",
   },
   {
     question: "Do you speak Turkish?",
@@ -90,7 +90,7 @@ export default function ContactPage() {
               </a>
             </div>
             <p className="mt-2 text-sm leading-relaxed text-muted">
-              Monday to Saturday, 10am–6pm. Best for questions about a big change.
+              Monday to Saturday, 9am–6pm. Best for questions about a big change.
             </p>
             <WhatsAppButton className="mt-5" />
           </Reveal>
