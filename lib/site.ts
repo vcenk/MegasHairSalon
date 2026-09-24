@@ -44,6 +44,14 @@ export const CONTACT = {
     "https://www.google.com/maps?q=1169+Pacific+St,+Coquitlam,+BC+V3B+0J1&output=embed",
 } as const;
 
+export const PARKING = {
+  street: "Paid street parking is available along Pacific Street.",
+  underground: "Paid underground parking is available behind the salon building.",
+  free: "Free street parking is available on Glen Drive.",
+  warning:
+    "Please do not park in the Coquitlam Square parking lot. It is reserved for the stores in the square, and vehicles may be towed.",
+} as const;
+
 type DayKey =
   | "monday"
   | "tuesday"

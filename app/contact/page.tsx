@@ -8,12 +8,12 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { faqSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
-import { BOOKING, CONTACT } from "@/lib/site";
+import { BOOKING, CONTACT, PARKING } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
   title: "Contact & Directions | Megas Hair Salon Coquitlam",
   description:
-    "Megas Hair Salon, 150-1169 Pacific St, Coquitlam BC. Call (778) 858-0396, email us, or book online. Open Monday to Saturday, 10am–6pm.",
+    "Contact Megas Hair Salon at 150-1169 Pacific St, Coquitlam. Find booking details, opening hours, directions, and street, underground, and free parking options.",
   path: "/contact",
 });
 
@@ -31,7 +31,7 @@ const FAQS = [
   {
     question: "Where do I park?",
     answer:
-      "There is street and building parking on Pacific Street. If you are arriving by SkyTrain, Burquitlam Station is a short walk away.",
+      "Paid street parking is available along Pacific Street using the Flowbird app, and paid underground parking is behind the salon building. Free parking is available on Glen Drive. Please do not use the Coquitlam Square parking lot; vehicles may be towed.",
   },
   {
     question: "What are your hours?",
@@ -106,6 +106,60 @@ export default function ContactPage() {
       <div className="mt-16 md:mt-20">
         <Visit heading="150-1169 Pacific Street." />
       </div>
+
+      <section id="parking-information" className="bg-bone">
+        <div className="shell py-16 md:py-24">
+          <Reveal className="grid gap-8 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <Eyebrow className="mb-5">Arriving by car</Eyebrow>
+              <h2 className="mask-line text-title text-balance">Parking information.</h2>
+              <p className="mt-5 max-w-sm text-[0.9375rem] leading-7 text-pretty text-muted">
+                Three nearby options make it easy to plan where you will leave your car before
+                your appointment.
+              </p>
+            </div>
+
+            <div className="lg:col-span-8">
+              <div className="grid gap-7 sm:grid-cols-3">
+                <div className="rule pt-5">
+                  <p className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper">
+                    01 · Street
+                  </p>
+                  <p className="mt-4 text-[0.9375rem] leading-7 text-ink">
+                    {PARKING.street} Pay with the {" "}
+                    <strong className="font-semibold text-ink">Flowbird app</strong>.
+                  </p>
+                </div>
+
+                <div className="rule pt-5">
+                  <p className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper">
+                    02 · Underground
+                  </p>
+                  <p className="mt-4 text-[0.9375rem] leading-7 text-ink">
+                    {PARKING.underground}
+                  </p>
+                </div>
+
+                <div className="rule pt-5">
+                  <p className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper">
+                    03 · Free
+                  </p>
+                  <p className="mt-4 text-[0.9375rem] leading-7 text-ink">{PARKING.free}</p>
+                </div>
+              </div>
+
+              <aside className="mt-9 border-l-2 border-copper bg-sand px-6 py-5 md:flex md:items-start md:gap-8 md:px-8">
+                <p className="shrink-0 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-copper-deep">
+                  Important
+                </p>
+                <p className="mt-2 text-[0.9375rem] font-medium leading-7 text-pretty text-ink md:mt-0">
+                  {PARKING.warning}
+                </p>
+              </aside>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <Faqs faqs={FAQS} title="Before you come in" eyebrow="Good to know" />
 
