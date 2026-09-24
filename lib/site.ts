@@ -82,12 +82,8 @@ export const HOURS_DISPLAY = [
 
 export const BOOKING = {
   provider: "Phorest",
-  /**
-   * The salon's direct Phorest booking subdomain. Do not swap this for
-   * phorest.com/book/salons/... — that URL redirects to Phorest's own
-   * marketing site instead of the salon's booking flow.
-   */
-  url: "https://megashairsalon.phorest.me",
+  /** The salon's canonical Phorest booking URL supplied by the client. */
+  url: "https://phorest.com/book/salons/megashairsalon",
 } as const;
 
 export const SOCIAL = {

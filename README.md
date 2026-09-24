@@ -51,12 +51,11 @@ these files. To change the site, change these:
 
 ## Prices
 
-Phorest (`megashairsalon.phorest.me`) is authoritative. `lib/menu.ts` and
+Phorest (`phorest.com/book/salons/megashairsalon`) is authoritative. `lib/menu.ts` and
 `lib/services.ts` are a manual snapshot taken 2026-07-31 — if the salon edits
 anything in Phorest, update both files and bump `MENU_UPDATED`.
 
-Do not swap the booking URL for `phorest.com/book/salons/megashairsalon`; that
-address redirects to Phorest's own marketing site instead of the booking flow.
+Every booking CTA reads this canonical URL from `BOOKING` in `lib/site.ts`.
 
 ## Images
 

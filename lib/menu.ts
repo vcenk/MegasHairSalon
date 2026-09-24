@@ -1,7 +1,7 @@
 /**
  * Full salon price menu, mirroring the live Phorest booking menu.
  *
- * PHOREST IS THE SOURCE OF TRUTH (https://megashairsalon.phorest.me). This file
+ * PHOREST IS THE SOURCE OF TRUTH (https://phorest.com/book/salons/megashairsalon). This file
  * is a manual snapshot — if the salon edits services or prices in Phorest,
  * update this file and MENU_UPDATED to match. All prices are CAD and are
  * starting points ("from"); final pricing is confirmed in-salon.
