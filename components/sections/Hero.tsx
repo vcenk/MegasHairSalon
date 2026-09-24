@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BookButton } from "@/components/ui/Button";
 import { BOOKING, CONTACT, RATING } from "@/lib/site";
 
 /**
@@ -40,14 +41,13 @@ export function Hero() {
           six — by stylists with 20–40 years behind the chair.
         </p>
 
-        <a
-          href={BOOKING.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="tracked enter enter-4 mt-10 inline-flex items-center rounded-full border border-bone/70 px-11 py-4 text-[0.875rem] font-medium text-bone transition-colors duration-300 hover:bg-bone hover:text-ink"
+        <BookButton
+          variant="light"
+          size="lg"
+          className="enter enter-4 mt-10 min-w-[15rem] shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
         >
-          Book your appointment
-        </a>
+          Book with {BOOKING.provider}
+        </BookButton>
 
         <Link
           href="/menu"
