@@ -74,6 +74,20 @@ export default async function TeamMemberPage({ params }: Params) {
 
             <div className="mt-8 rule pt-6">
               <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
+                Languages
+              </h2>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {member.languages.map((language) => (
+                  <li
+                    key={language}
+                    className="rounded-full border border-copper/35 bg-copper/5 px-4 py-1.5 text-sm text-ink"
+                  >
+                    {language}
+                  </li>
+                ))}
+              </ul>
+
+              <h2 className="mt-7 font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
                 Specialties
               </h2>
               <ul className="mt-4 flex flex-wrap gap-2">
@@ -168,6 +182,7 @@ export default async function TeamMemberPage({ params }: Params) {
           path: `/team/${member.slug}`,
           image: member.portrait,
           knowsAbout: member.specialties,
+          knowsLanguage: member.languages,
         })}
       />
     </>

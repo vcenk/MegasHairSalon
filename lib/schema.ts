@@ -95,6 +95,7 @@ export function personSchema(input: {
   path: string;
   image: string;
   knowsAbout: readonly string[];
+  knowsLanguage: readonly string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -106,6 +107,7 @@ export function personSchema(input: {
     url: `${SITE.url}${input.path}`,
     image: `${SITE.url}${input.image}`,
     knowsAbout: [...input.knowsAbout],
+    knowsLanguage: [...input.knowsLanguage],
     worksFor: { "@id": BUSINESS_ID },
   };
 }

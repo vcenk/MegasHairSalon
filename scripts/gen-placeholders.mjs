@@ -110,7 +110,7 @@ const ASSETS = [
   ["stylist-fara", 900, 1200, "bone", "Fara", "PORTRAIT COMING SOON"],
   ["stylist-nadia", 900, 1200, "ember", "Nadia", "PORTRAIT COMING SOON"],
   ["stylist-rain", 900, 1200, "ash", "Rain", "PORTRAIT COMING SOON"],
-  ["stylist-angela", 900, 1200, "copper", "Angela", "PORTRAIT COMING SOON"],
+  ["stylist-sima", 900, 1200, "copper", "Sima", "PORTRAIT COMING SOON"],
 
   ["area-coquitlam", 1400, 900, "bone", "Coquitlam", ""],
   ["area-port-moody", 1400, 900, "ash", "Port Moody", ""],

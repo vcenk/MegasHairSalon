@@ -65,7 +65,7 @@ const PHOTOS = [
   [28743778, "stylist-fara", 1000],
   [8834023, "stylist-nadia", 1000],
   [3993455, "stylist-rain", 1000],
-  [7879790, "stylist-angela", 1000],
+  [7879790, "stylist-sima", 1000],
 
   // Areas
   [7195799, "area-coquitlam", 1600],

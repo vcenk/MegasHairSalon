@@ -10,7 +10,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Our Team | Master Stylists & Colourists in Coquitlam",
   description:
-    "Meet the eight stylists at Megas Hair Salon Coquitlam — Bülent, Gazi, Emir, Fulya, Fara, Nadia, Rain, and Angela. Master colourists with 20–40 years' experience.",
+    "Meet the eight stylists at Megas Hair Salon Coquitlam — Bülent, Gazi, Emir, Fulya, Fara, Nadia, Rain, and Sima. Choose by specialty, experience, and languages spoken.",
   path: "/team",
 });
 

@@ -30,6 +30,12 @@ export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: nu
         <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
           {member.years !== null ? `${member.years} years` : member.level}
         </p>
+        <p className="mt-3 text-xs leading-relaxed text-muted">
+          <span className="mr-2 font-sans font-medium uppercase tracking-[0.16em] text-ink">
+            Languages
+          </span>
+          {member.languages.join(" · ")}
+        </p>
       </Link>
     </Reveal>
   );

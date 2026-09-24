@@ -14,7 +14,7 @@ they are listed first.
       and falls outside the Pexels License, which does not cover using a person
       in a way that implies they endorse a business. Replace with real
       portraits, or pull the portraits entirely, before this is public.
-- [ ] **Fara, Nadia, Rain and Angela have written-for-demo bios.** Their names,
+- [ ] **Fara, Nadia, Rain and Sima have written-for-demo bios.** Their names,
       titles, and Phorest levels are real; the prose is not. It was written to
       avoid stating anything falsifiable — no years, no training, no awards, no
       previous employers — but it is still not their words. See
@@ -33,7 +33,7 @@ they are listed first.
       licence-clean for commercial use, but they are not Megas — no client
       should recognise their own hair, and no shot shows the actual Coquitlam
       room. Replace with the real shoot, keeping the filenames.
-- [ ] **Bios for Fara, Nadia, Rain and Angela in their own words** — replacing
+- [ ] **Bios for Fara, Nadia, Rain and Sima in their own words** — replacing
       the demo copy described above.
 - [ ] **Confirm the Instagram and Facebook handles** in `lib/site.ts`. They are
       currently guessed from the business name and feed the `sameAs` schema.
