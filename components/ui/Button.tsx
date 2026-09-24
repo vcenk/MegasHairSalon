@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
-import { BOOKING } from "@/lib/site";
+import { BOOKING, CONTACT } from "@/lib/site";
 
 type Variant = "primary" | "outline" | "light" | "quiet";
 type Size = "md" | "lg";
@@ -70,6 +70,43 @@ export function BookButton({
       rel="noopener noreferrer"
       className={`${buttonClass(variant, size)} ${className}`}
     >
+      {children}
+    </a>
+  );
+}
+
+export function WhatsAppButton({
+  variant = "outline",
+  size = "md",
+  className = "",
+  children = "WhatsApp",
+}: {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <a
+      href={CONTACT.whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Message Megas Hair Salon on WhatsApp at ${CONTACT.phone}`}
+      className={`${buttonClass(variant, size)} ${className}`}
+    >
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none">
+        <path
+          d="M20 11.7a8 8 0 0 1-11.7 7.1L4 20l1.2-4.1A8 8 0 1 1 20 11.7Z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.4 7.8c.2-.4.4-.4.7-.4h.5c.2 0 .3.1.4.4l.7 1.7c.1.3 0 .5-.2.7l-.5.6c-.2.2-.1.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.2.6 0l.7-.8c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.2-.6 1.6-.4.5-1.1.8-1.8.8-1.1 0-2.7-.6-4.4-2.1-1.3-1.2-2.4-2.8-2.6-4-.2-.8.1-1.6.6-2.3Z"
+          fill="currentColor"
+        />
+      </svg>
       {children}
     </a>
   );

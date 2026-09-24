@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { BookButton } from "@/components/ui/Button";
+import { BookButton, WhatsAppButton } from "@/components/ui/Button";
 import { PRIMARY_NAV } from "@/lib/nav";
 import { CONTACT } from "@/lib/site";
 
@@ -135,11 +135,18 @@ export function Header() {
           ))}
           <div className="mt-6 flex flex-col gap-3">
             <BookButton size="lg" />
+            <WhatsAppButton size="lg" />
             <a
               href={CONTACT.phoneHref}
               className="tracked text-center font-sans text-[0.6875rem] text-muted"
             >
               {CONTACT.phone}
+            </a>
+            <a
+              href={CONTACT.secondaryPhoneHref}
+              className="tracked text-center font-sans text-[0.6875rem] text-muted"
+            >
+              Tel 2: {CONTACT.secondaryPhone}
             </a>
           </div>
         </nav>

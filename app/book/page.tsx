@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
-import { BookButton } from "@/components/ui/Button";
+import { BookButton, WhatsAppButton } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { MENU_ITEM_COUNT } from "@/lib/menu";
@@ -11,7 +11,7 @@ import { BOOKING, CONTACT, HOURS_DISPLAY } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Book an Appointment | Megas Hair Salon Coquitlam",
   description:
-    "Book online at Megas Hair Salon in Coquitlam — choose your stylist, service, and time on our Phorest page. Complimentary consultations. Or call (778) 858-0396.",
+    "Book online at Megas Hair Salon in Coquitlam — choose your stylist, service, and time on our Phorest page. Complimentary consultations. Or call 778-858-0396.",
   path: "/book",
 });
 
@@ -53,6 +53,7 @@ export default function BookPage() {
             >
               Or call {CONTACT.phone}
             </a>
+            <WhatsAppButton size="lg" />
           </div>
         </Reveal>
       </section>

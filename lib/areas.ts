@@ -49,7 +49,7 @@ export const AREAS: readonly Area[] = [
       {
         question: "Where exactly is Megas Hair Salon in Coquitlam?",
         answer:
-          "We are at 150-1169 Pacific St, Coquitlam, BC V3B 0J1 — in Burquitlam, a short walk from Burquitlam SkyTrain Station. Call (778) 858-0396 if you have trouble finding the entrance.",
+          "We are at 150-1169 Pacific St, Coquitlam, BC V3B 0J1 — in Burquitlam, a short walk from Burquitlam SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
       },
       {
         question: "What are your hours?",

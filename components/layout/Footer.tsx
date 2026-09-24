@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookButton } from "@/components/ui/Button";
+import { BookButton, WhatsAppButton } from "@/components/ui/Button";
 import { FOOTER_PRODUCTS, FOOTER_SALON, FOOTER_VISIT } from "@/lib/nav";
 import { SERVICES } from "@/lib/services";
 import { BUSINESS, CONTACT, HOURS_DISPLAY, SOCIAL } from "@/lib/site";
@@ -21,14 +21,9 @@ export function Footer() {
               {BUSINESS.longTagline}
             </p>
           </div>
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap items-center gap-3">
             <BookButton variant="light" size="lg" />
-            <a
-              href={CONTACT.phoneHref}
-              className="inline-flex items-center rounded-full border border-bone/30 px-8 py-4 font-sans text-[0.9375rem] tracking-wide transition-colors duration-300 hover:bg-bone hover:text-ink"
-            >
-              {CONTACT.phone}
-            </a>
+            <WhatsAppButton variant="quiet" size="lg" />
           </div>
         </div>
 
@@ -83,8 +78,20 @@ export function Footer() {
                 {CONTACT.address.postalCode}
               </a>
               <a
-                href={CONTACT.emailHref}
+                href={CONTACT.phoneHref}
                 className="mt-3 block text-sm text-bone/70 transition-colors hover:text-bone"
+              >
+                {CONTACT.phone}
+              </a>
+              <a
+                href={CONTACT.secondaryPhoneHref}
+                className="mt-1 block text-sm text-bone/70 transition-colors hover:text-bone"
+              >
+                Tel 2: {CONTACT.secondaryPhone}
+              </a>
+              <a
+                href={CONTACT.emailHref}
+                className="mt-1 block text-sm text-bone/70 transition-colors hover:text-bone"
               >
                 {CONTACT.email}
               </a>

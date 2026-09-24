@@ -3,7 +3,7 @@ import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { Faqs } from "@/components/sections/Faqs";
 import { Visit } from "@/components/sections/Visit";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { BookButton } from "@/components/ui/Button";
+import { BookButton, WhatsAppButton } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { faqSchema } from "@/lib/schema";
@@ -21,7 +21,7 @@ const FAQS = [
   {
     question: "How do I book an appointment?",
     answer:
-      "Online through our Phorest booking page, at any hour — you can choose your stylist, your service, and your time. Or call (778) 858-0396 during opening hours and we will book you in.",
+      "Online through our Phorest booking page, at any hour — you can choose your stylist, your service, and your time. Or call 778-858-0396 or 236-479-3672 during opening hours and we will book you in.",
   },
   {
     question: "Do you take walk-ins?",
@@ -75,15 +75,27 @@ export default function ContactPage() {
             <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
               Call
             </h2>
-            <a
-              href={CONTACT.phoneHref}
-              className="mt-3 block font-display text-xl text-ink transition-colors hover:text-copper"
-            >
-              {CONTACT.phone}
-            </a>
+            <div className="mt-3 space-y-1">
+              <a
+                href={CONTACT.phoneHref}
+                className="block font-display text-xl text-ink transition-colors hover:text-copper"
+              >
+                {CONTACT.phone}
+              </a>
+              <a
+                href={CONTACT.secondaryPhoneHref}
+                className="block font-display text-xl text-ink transition-colors hover:text-copper"
+              >
+                <span className="mr-2 font-sans text-[0.6875rem] uppercase tracking-[0.16em] text-muted">
+                  Tel 2
+                </span>
+                {CONTACT.secondaryPhone}
+              </a>
+            </div>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               Monday to Saturday, 10am–6pm. Best for questions about a big change.
             </p>
+            <WhatsAppButton className="mt-5" />
           </Reveal>
 
           <Reveal delay={180} className="rule pt-6">

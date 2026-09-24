@@ -25,7 +25,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "How do I book an appointment at Megas?",
         answer:
-          "Online through our Phorest booking page, at any hour — you choose your service, your stylist, and your time from live availability. You can also call (778) 858-0396 during opening hours and we will book you in.",
+          "Online through our Phorest booking page, at any hour — you choose your service, your stylist, and your time from live availability. You can also call 778-858-0396 during opening hours and we will book you in.",
       },
       {
         question: "Do you take walk-ins?",
@@ -50,7 +50,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "What is your cancellation policy?",
         answer:
-          "Cancellation and rescheduling terms are shown on your Phorest booking confirmation. If you need to change an appointment, the fastest thing is to call us on (778) 858-0396 so we can offer the slot to someone else.",
+          "Cancellation and rescheduling terms are shown on your Phorest booking confirmation. If you need to change an appointment, the fastest thing is to call us on 778-858-0396 so we can offer the slot to someone else.",
       },
       {
         question: "How do I pay?",
@@ -124,7 +124,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "Do you do bridal and wedding party hair?",
         answer:
-          "Yes. Updos are $110 and evening styles $90 per person. For a full wedding party, call (778) 858-0396 so we can block the right stylists and enough time. We recommend a trial four to six weeks out — bring your headpiece.",
+          "Yes. Updos are $110 and evening styles $90 per person. For a full wedding party, call 778-858-0396 so we can block the right stylists and enough time. We recommend a trial four to six weeks out — bring your headpiece.",
       },
     ],
   },
@@ -168,7 +168,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "Where are you?",
         answer:
-          "150-1169 Pacific St, Coquitlam, BC V3B 0J1 — in Burquitlam, a short walk from Burquitlam SkyTrain Station. Call (778) 858-0396 if you have trouble finding the entrance.",
+          "150-1169 Pacific St, Coquitlam, BC V3B 0J1 — in Burquitlam, a short walk from Burquitlam SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
       },
       {
         question: "What are your hours?",
@@ -219,7 +219,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "Do you sell gift cards?",
         answer:
-          "Please call us on (778) 858-0396 — we will confirm what is available and arrange it for you.",
+          "Please call us on 778-858-0396 — we will confirm what is available and arrange it for you.",
       },
     ],
   },

@@ -420,7 +420,7 @@ export const SERVICES: readonly Service[] = [
       {
         question: "Do you do bridal and wedding party hair?",
         answer:
-          "Yes — updos are $110 and evening styles $90 per person. For a full wedding party, call us at (778) 858-0396 so we can block the right stylists and time.",
+          "Yes — updos are $110 and evening styles $90 per person. For a full wedding party, call us at 778-858-0396 so we can block the right stylists and time.",
       },
       {
         question: "Should I book a trial before my wedding?",

@@ -20,7 +20,7 @@ export const BUSINESS = {
   foundingLocation: "Istanbul, Türkiye",
   vancouverSince: "2025",
   tagline: "Master colourists since 1984.",
-  longTagline: "Four decades of Turkish hair artistry — now in Coquitlam.",
+  longTagline: "Four decades of European hair artistry — now in Coquitlam.",
   priceRange: "$$",
 } as const;
 
@@ -33,8 +33,11 @@ export const CONTACT = {
     addressCountry: "CA",
   },
   addressLine: "150-1169 Pacific St, Coquitlam, BC V3B 0J1",
-  phone: "(778) 858-0396",
+  phone: "778-858-0396",
   phoneHref: "tel:+17788580396",
+  secondaryPhone: "236-479-3672",
+  secondaryPhoneHref: "tel:+12364793672",
+  whatsappHref: "https://wa.me/17788580396",
   email: "megashairsalon@gmail.com",
   emailHref: "mailto:megashairsalon@gmail.com",
   geo: { latitude: 49.2814, longitude: -122.7905 },

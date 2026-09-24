@@ -238,7 +238,7 @@ const SENIORS: readonly TeamMember[] = PLACEHOLDER_NAMES.map((name) => {
     portrait: `/images/photos/stylist-${slug}.jpg`,
     portraitAlt: `Portrait of ${name}, senior stylist at Megas Hair Salon, Coquitlam`,
     metaTitle: `${name} — Senior Stylist | Megas Hair Salon Coquitlam`,
-    metaDescription: `Meet ${name}, senior stylist at Megas Hair Salon in Coquitlam — ${profile.focus.toLowerCase()}. Book online or call (778) 858-0396.`,
+    metaDescription: `Meet ${name}, senior stylist at Megas Hair Salon in Coquitlam — ${profile.focus.toLowerCase()}. Book online or call 778-858-0396.`,
     headline: profile.headline,
     bio: profile.bio,
     specialties: profile.specialties,
