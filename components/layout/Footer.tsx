@@ -84,6 +84,12 @@ export function Footer() {
                 {CONTACT.phone}
               </a>
               <a
+                href={CONTACT.secondaryPhoneHref}
+                className="mt-1 block text-sm text-bone/70 transition-colors hover:text-bone"
+              >
+                {CONTACT.secondaryPhone}
+              </a>
+              <a
                 href={CONTACT.emailHref}
                 className="mt-1 block text-sm text-bone/70 transition-colors hover:text-bone"
               >

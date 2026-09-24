@@ -142,6 +142,12 @@ export function Header() {
             >
               {CONTACT.phone}
             </a>
+            <a
+              href={CONTACT.secondaryPhoneHref}
+              className="tracked text-center font-sans text-[0.6875rem] text-muted"
+            >
+              {CONTACT.secondaryPhone}
+            </a>
           </div>
         </nav>
       </div>

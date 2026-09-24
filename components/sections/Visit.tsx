@@ -57,6 +57,12 @@ export function Visit({ heading = "Come and find us." }: { heading?: string }) {
                   {CONTACT.phone}
                 </a>
                 <a
+                  href={CONTACT.secondaryPhoneHref}
+                  className="text-[0.9375rem] text-ink underline decoration-copper/40 underline-offset-4 transition-colors hover:text-copper"
+                >
+                  {CONTACT.secondaryPhone}
+                </a>
+                <a
                   href={CONTACT.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
