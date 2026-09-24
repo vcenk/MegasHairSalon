@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BlogCard } from "@/components/sections/BlogCard";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { ServiceCard } from "@/components/sections/ServicesGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
-import { formatPostDate, getPost, POSTS } from "@/lib/blog";
+import { formatPostDate, getPost, getRelatedPosts, POSTS } from "@/lib/blog";
 import { getService } from "@/lib/services";
 import { articleSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
@@ -40,7 +41,7 @@ export default async function PostPage({ params }: Params) {
   if (!post) notFound();
 
   const service = post.relatedService ? getService(post.relatedService) : undefined;
-  const more = POSTS.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const more = getRelatedPosts(post);
 
   return (
     <>
@@ -98,6 +99,24 @@ export default async function PostPage({ params }: Params) {
                   </Reveal>
                 );
               }
+              if (block.type === "link") {
+                return (
+                  <Reveal
+                    key={index}
+                    as="p"
+                    className="mt-6 text-[1.0625rem] leading-relaxed text-pretty text-muted"
+                  >
+                    {block.before}
+                    <Link
+                      href={block.href}
+                      className="font-medium text-copper underline decoration-copper/35 underline-offset-4 transition-colors hover:text-copper-deep"
+                    >
+                      {block.label}
+                    </Link>
+                    {block.after}
+                  </Reveal>
+                );
+              }
               return (
                 <Reveal key={index} as="p" className="mt-6 text-[1.0625rem] leading-relaxed text-pretty text-muted">
                   {block.text}
@@ -124,26 +143,13 @@ export default async function PostPage({ params }: Params) {
         {more.length > 0 && (
           <section className="shell py-16 md:py-20">
             <Reveal>
-              <Eyebrow className="mb-5">Keep reading</Eyebrow>
-              <h2 className="mask-line text-title text-balance">More from the journal</h2>
+              <Eyebrow className="mb-5">Continue the topic</Eyebrow>
+              <h2 className="mask-line text-title text-balance">Related hair guides</h2>
             </Reveal>
-            <div className="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-2">
+            <div className="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-3">
               {more.map((item, index) => (
                 <Reveal key={item.slug} delay={index * 90}>
-                  <Link href={`/blog/${item.slug}`} className="group block">
-                    <div className="relative aspect-16/10 overflow-hidden rounded-sm bg-clay">
-                      <Image
-                        src={item.image}
-                        alt={item.imageAlt}
-                        fill
-                        sizes="(min-width: 768px) 48vw, 100vw"
-                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                      />
-                    </div>
-                    <h3 className="mt-5 font-display text-xl text-balance text-ink transition-colors group-hover:text-copper">
-                      {item.title}
-                    </h3>
-                  </Link>
+                  <BlogCard post={item} headingLevel="h3" />
                 </Reveal>
               ))}
             </div>
