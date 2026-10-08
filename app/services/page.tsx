@@ -10,9 +10,9 @@ import { MENU_ITEM_COUNT } from "@/lib/menu";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Hair Services in Coquitlam | Colour, Cuts & Treatments",
+  title: "Hair Services Coquitlam | Colour, Haircuts & Keratin | Megas",
   description:
-    "Balayage, blonde specialists, hair colour, precision cuts, keratin smoothing, blowouts, and restorative treatments at Megas Hair Salon in Coquitlam. Prices from $20.",
+    "Explore hair services in Coquitlam: balayage, blonde highlights, custom colour, women's and men's haircuts, keratin smoothing, blowouts, and treatments.",
   path: "/services",
 });
 
@@ -24,10 +24,11 @@ export default function ServicesPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Services</Eyebrow>
-          <h1 className="mask-line text-title text-balance">What we are known for</h1>
+          <h1 className="mask-line text-title text-balance">Hair services in Coquitlam</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
-            These are the services people travel for. The complete list runs to{" "}
-            {MENU_ITEM_COUNT} items, all priced, all bookable online.
+            Balayage, blonde highlights, custom colour, women&apos;s and men&apos;s
+            haircuts, keratin smoothing, and restorative treatments. The complete list runs
+            to {MENU_ITEM_COUNT} items, all priced and bookable online.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/menu">Full price menu</ButtonLink>

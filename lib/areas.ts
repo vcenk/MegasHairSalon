@@ -28,28 +28,28 @@ export const AREAS: readonly Area[] = [
     name: "Coquitlam",
     metaTitle: "Hair Salon in Coquitlam | Master Colourists Since 1984 | Megas",
     metaDescription:
-      "Megas Hair Salon on Pacific St in Coquitlam. Balayage, blonde specialists, precision cuts, and keratin — by stylists with 20–40 years' experience. Book online.",
-    eyebrow: "Coquitlam · Home salon",
+      "Megas Hair Salon near Coquitlam Centre on Pacific St. Balayage, blonde highlights, women's and men's cuts, colour, and keratin. Book online.",
+    eyebrow: "Coquitlam Centre · Home salon",
     headline: "Your hair salon in Coquitlam.",
-    lede: "On Pacific Street in Burquitlam, minutes from the SkyTrain and the whole Tri-Cities.",
+    lede: "On Pacific Street near Coquitlam Centre and Lincoln SkyTrain Station.",
     image: "/images/photos/area-coquitlam.jpg",
     imageAlt: "Megas Hair Salon on Pacific Street in Coquitlam, British Columbia",
     body: [
-      "Megas is a Coquitlam salon by address and by temperament. We are on Pacific Street, in the stretch of Burquitlam that has grown up fast around the SkyTrain — and most of our chairs are filled by people who live within fifteen minutes of the door.",
+      "Megas is a Coquitlam salon by address and by temperament. We are on Pacific Street near Coquitlam Centre and Lincoln SkyTrain Station — and most of our chairs are filled by people who live within fifteen minutes of the door.",
       "What we brought here is not local, though. The salon started in Istanbul in 1984, and the standard it was built on — long consultations, colour mixed for the head in front of you, stylists who have been doing this for decades rather than seasons — came with it.",
       "For Coquitlam clients that means you do not have to drive to Vancouver for master-level colour work. Balayage, blonde correction, keratin smoothing, and precision cutting all happen here, at Tri-Cities prices and with parking you do not have to circle for.",
     ],
     gettingHere: [
       { label: "Address", detail: "150-1169 Pacific St, Coquitlam, BC V3B 0J1" },
-      { label: "SkyTrain", detail: "Short walk from Burquitlam Station on the Evergreen Extension." },
-      { label: "Driving", detail: "Minutes from Como Lake Ave and the North Road corridor." },
+      { label: "SkyTrain", detail: "A short walk from Lincoln Station on the Millennium Line." },
+      { label: "Driving", detail: "Near Coquitlam Centre, Pinetree Way, and Lougheed Highway." },
       { label: "Parking", detail: "Street and building parking available on Pacific St." },
     ],
     faqs: [
       {
         question: "Where exactly is Megas Hair Salon in Coquitlam?",
         answer:
-          "We are at 150-1169 Pacific St, Coquitlam, BC V3B 0J1 — in Burquitlam, a short walk from Burquitlam SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
+          "We are at 150-1169 Pacific St, Coquitlam, BC V3B 0J1 — near Coquitlam Centre and a short walk from Lincoln SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
       },
       {
         question: "What are your hours?",
@@ -68,27 +68,27 @@ export const AREAS: readonly Area[] = [
     metaTitle: "Hair Salon Near Port Moody | Balayage & Colour | Megas Hair Salon",
     metaDescription:
       "Master colourists a short drive from Port Moody. Balayage from $350, highlights from $185, precision cuts from $60 at Megas Hair Salon in Coquitlam.",
-    eyebrow: "Port Moody · 10 minutes away",
+    eyebrow: "Port Moody · 15 minutes away",
     headline: "A Port Moody drive worth making.",
-    lede: "Ten minutes down the hill from Newport Village for colour work you would otherwise cross a bridge for.",
+    lede: "A short trip from Newport Village for colour work you would otherwise cross a bridge for.",
     image: "/images/photos/area-port-moody.jpg",
     imageAlt: "The route from Port Moody to Megas Hair Salon in Coquitlam",
     body: [
       "Port Moody clients make up a steady share of our chairs, and the reason is usually colour. Balayage, blonde correction, and grey coverage are specialist work, and the pool of colourists with thirty-plus years behind the chair is small anywhere in the Lower Mainland.",
-      "The drive from Newport Village or Suter Brook is about ten minutes along Clarke and St Johns. From Heritage Mountain, allow fifteen. Either way it is shorter than the trip into Vancouver that a lot of people were making before they found us.",
+      "The drive from Newport Village or Suter Brook is usually about fifteen minutes via St Johns Street, Barnet Highway, and Pinetree Way. Either way it is shorter than the trip into Vancouver that a lot of people were making before they found us.",
       "If you are coming from Port Moody for a first colour appointment, book the complimentary consultation first. It is free, it takes twenty minutes, and it means the colour appointment itself is planned rather than improvised.",
     ],
     gettingHere: [
-      { label: "Drive time", detail: "About 10 minutes from Newport Village and Suter Brook." },
-      { label: "Route", detail: "St Johns St to Clarke Rd, then across to Pacific St." },
-      { label: "SkyTrain", detail: "Moody Centre to Burquitlam is two stops on the Evergreen Extension." },
+      { label: "Drive time", detail: "About 15 minutes from Newport Village and Suter Brook, outside rush hour." },
+      { label: "Route", detail: "St Johns St to Barnet Hwy, then Pinetree Way to Pacific St." },
+      { label: "SkyTrain", detail: "Take the Millennium Line from Moody Centre to Lincoln Station." },
       { label: "Parking", detail: "Street and building parking on Pacific St." },
     ],
     faqs: [
       {
         question: "How far is Megas from Port Moody?",
         answer:
-          "About ten minutes by car from Newport Village, or two SkyTrain stops from Moody Centre to Burquitlam followed by a short walk.",
+          "Usually about fifteen minutes by car from Newport Village, or take the Millennium Line from Moody Centre to Lincoln Station followed by a short walk.",
       },
       {
         question: "Is it worth the drive from Port Moody for a haircut?",
@@ -107,7 +107,7 @@ export const AREAS: readonly Area[] = [
     name: "Port Coquitlam",
     metaTitle: "Hair Salon Near Port Coquitlam | Cuts, Colour & Keratin | Megas",
     metaDescription:
-      "Megas Hair Salon serves Port Coquitlam from nearby Burquitlam. Cuts from $60, colour from $120, keratin from $300. Master stylists, easy parking. Book online.",
+      "Megas Hair Salon near Coquitlam Centre serves Port Coquitlam. Women's and men's cuts, colour, balayage, and keratin with easy parking. Book online.",
     eyebrow: "Port Coquitlam · 15 minutes away",
     headline: "PoCo's colour appointment.",
     lede: "Fifteen minutes west along Lougheed, with parking at the door.",
@@ -120,7 +120,7 @@ export const AREAS: readonly Area[] = [
     ],
     gettingHere: [
       { label: "Drive time", detail: "About 15 minutes from downtown Port Coquitlam." },
-      { label: "Route", detail: "Lougheed Hwy west, then north to Pacific St in Burquitlam." },
+      { label: "Route", detail: "Lougheed Hwy west toward Coquitlam Centre, then Pinetree Way to Pacific St." },
       { label: "Transit", detail: "West Coast Express and SkyTrain both connect via Coquitlam Central." },
       { label: "Parking", detail: "Street and building parking on Pacific St." },
     ],
@@ -160,7 +160,7 @@ export const AREAS: readonly Area[] = [
     ],
     gettingHere: [
       { label: "Drive time", detail: "About 25–30 minutes from downtown Vancouver via Highway 1." },
-      { label: "SkyTrain", detail: "Expo to Millennium Line, then the Evergreen Extension to Burquitlam." },
+      { label: "SkyTrain", detail: "Expo to Millennium Line, then continue to Lincoln Station." },
       { label: "Language", detail: "Turkish and English spoken in the salon." },
       { label: "Parking", detail: "Free of the downtown parking problem — street and building parking on site." },
     ],

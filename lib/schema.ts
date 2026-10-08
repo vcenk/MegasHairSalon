@@ -23,6 +23,8 @@ export function localBusinessSchema() {
     name: BUSINESS.name,
     legalName: BUSINESS.legalName,
     url: SITE.url,
+    description:
+      "Hair salon in Coquitlam near Coquitlam Centre specializing in balayage, blonde highlights, custom colour, haircuts, keratin smoothing, and styling.",
     telephone: [CONTACT.phone, CONTACT.secondaryPhone],
     email: CONTACT.email,
     priceRange: BUSINESS.priceRange,
@@ -38,6 +40,7 @@ export function localBusinessSchema() {
       latitude: CONTACT.geo.latitude,
       longitude: CONTACT.geo.longitude,
     },
+    hasMap: CONTACT.mapsUrl,
     areaServed: AREA_SERVED.map((name) => ({ "@type": "City", name })),
     openingHoursSpecification: Object.entries(HOURS)
       .filter(([, hours]) => hours !== null)

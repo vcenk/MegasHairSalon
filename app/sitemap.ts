@@ -6,8 +6,6 @@ import { TEAM } from "@/lib/team";
 import { SITE } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const staticPaths: { path: string; priority: number; changeFrequency: "weekly" | "monthly" | "yearly" }[] = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" },
@@ -29,25 +27,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPaths.map((entry) => ({
       url: `${SITE.url}${entry.path}`,
-      lastModified: now,
       changeFrequency: entry.changeFrequency,
       priority: entry.priority,
     })),
     ...SERVICES.map((service) => ({
       url: `${SITE.url}/services/${service.slug}`,
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.85,
     })),
     ...TEAM.map((member) => ({
       url: `${SITE.url}/team/${member.slug}`,
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
     ...AREAS.map((area) => ({
       url: `${SITE.url}/areas/${area.slug}`,
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

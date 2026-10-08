@@ -16,9 +16,9 @@ import { TEAM, TEAM_LEADS } from "@/lib/team";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Megas Hair Salon Coquitlam | Master Colourists Since 1984",
+  title: "Hair Salon Coquitlam | Colour, Balayage & Haircuts | Megas",
   description:
-    "Turkish-founded hair salon in Coquitlam. Balayage from $350, highlights from $185, precision cuts from $60 — by master stylists with 20–40 years' experience. Book online.",
+    "Hair salon in Coquitlam near Coquitlam Centre for balayage, blonde highlights, hair colour, women's and men's cuts, keratin, and styling. Book online.",
   path: "/",
 });
 
@@ -26,6 +26,52 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      <section className="border-b border-ink/10 bg-bone">
+        <div className="shell grid gap-8 py-14 md:grid-cols-12 md:gap-12 md:py-20">
+          <Reveal className="md:col-span-5">
+            <Eyebrow className="mb-5">Coquitlam hair salon</Eyebrow>
+            <h2 className="mask-line text-title text-balance">
+              Colour, cuts and treatments near Coquitlam Centre.
+            </h2>
+          </Reveal>
+
+          <Reveal delay={100} className="md:col-span-7 md:pt-9">
+            <p className="max-w-2xl text-lede text-pretty text-muted">
+              Visit Megas on Pacific Street for balayage, blonde highlights, custom hair
+              colour, women&apos;s and men&apos;s haircuts, keratin smoothing, and styling.
+              Every appointment starts with a clear consultation and a price agreed before
+              the work begins.
+            </p>
+            <nav aria-label="Popular hair services" className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
+              <Link
+                href="/services/balayage-coquitlam"
+                className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+              >
+                Balayage →
+              </Link>
+              <Link
+                href="/services/precision-haircut-coquitlam"
+                className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+              >
+                Haircuts →
+              </Link>
+              <Link
+                href="/services/hair-color-coquitlam"
+                className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+              >
+                Hair colour →
+              </Link>
+              <Link
+                href="/services/keratin-treatment-coquitlam"
+                className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+              >
+                Keratin →
+              </Link>
+            </nav>
+          </Reveal>
+        </div>
+      </section>
 
       <ServicesGrid
         services={FEATURED_SERVICES}

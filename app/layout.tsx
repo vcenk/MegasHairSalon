@@ -28,11 +28,11 @@ const rubik = Rubik({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Megas Hair Salon Coquitlam | Master Colourists Since 1984",
+    default: "Hair Salon Coquitlam | Colour, Balayage & Haircuts | Megas",
     template: `%s | ${BUSINESS.name}`,
   },
   description:
-    "Turkish-founded hair salon in Coquitlam. Balayage, blonde specialists, precision cuts, and keratin by master stylists with 20–40 years' experience. Book online.",
+    "Hair salon in Coquitlam near Coquitlam Centre for balayage, blonde highlights, hair colour, women's and men's cuts, keratin, and styling. Book online.",
   applicationName: BUSINESS.name,
   authors: [{ name: BUSINESS.name }],
   robots: { index: true, follow: true },

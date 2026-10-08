@@ -168,7 +168,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "Where are you?",
         answer:
-          "150-1169 Pacific St, Coquitlam, BC V3B 0J1 — in Burquitlam, a short walk from Burquitlam SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
+          "150-1169 Pacific St, Coquitlam, BC V3B 0J1 — near Coquitlam Centre and a short walk from Lincoln SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
       },
       {
         question: "What are your hours?",
