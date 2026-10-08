@@ -22,6 +22,12 @@ export type ProductCategory = {
 
 export type ProductPartner = {
   readonly name: string;
+  readonly logo: {
+    readonly src: string;
+    readonly alt: string;
+    readonly width: number;
+    readonly height: number;
+  };
   readonly focus: string;
   readonly description: string;
   readonly strengths: readonly string[];
@@ -30,6 +36,12 @@ export type ProductPartner = {
 export const PRODUCT_PARTNERS: readonly ProductPartner[] = [
   {
     name: "Aveda",
+    logo: {
+      src: "/images/brands/aveda-logo.svg",
+      alt: "Aveda",
+      width: 2054,
+      height: 500,
+    },
     focus: "Plant-powered care",
     description:
       "Our choice for thoughtful hair and scalp care rooted in high-performance, plant-derived technology. From Botanical Repair to Nutriplenish and Scalp Solutions, Aveda helps us build routines around strength, hydration, and a healthier-feeling scalp.",
@@ -37,6 +49,12 @@ export const PRODUCT_PARTNERS: readonly ProductPartner[] = [
   },
   {
     name: "Wella Professionals",
+    logo: {
+      src: "/images/brands/wella-professionals-logo-grey.jpg",
+      alt: "Wella Professionals",
+      width: 860,
+      height: 860,
+    },
     focus: "Colour expertise",
     description:
       "A professional colour authority trusted for precision, tone, and luminous results. We work with Wella Professionals across colour, repair, and styling so the finish created in the salon can be supported with considered care at home.",

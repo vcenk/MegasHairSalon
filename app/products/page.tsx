@@ -61,10 +61,10 @@ export default function ProductsPage() {
         </Reveal>
       </section>
 
-      <section className="mt-14 bg-espresso text-bone md:mt-20">
+      <section className="mt-14 overflow-hidden bg-sand text-ink md:mt-20">
         <div className="shell py-16 md:py-24">
-          <Reveal className="grid gap-8 border-b border-bone/15 pb-10 md:grid-cols-[0.8fr_1.2fr] md:items-end md:pb-14">
-            <Eyebrow className="text-copper-soft">Our product partners</Eyebrow>
+          <Reveal className="grid gap-8 border-b border-ink/10 pb-10 md:grid-cols-[0.8fr_1.2fr] md:items-end md:pb-14">
+            <Eyebrow className="text-copper">Our product partners</Eyebrow>
             <h2 className="mask-line max-w-3xl text-title text-balance">
               Two professional houses. One considered standard.
             </h2>
@@ -78,29 +78,45 @@ export default function ProductsPage() {
                 as="article"
                 className={`py-10 md:py-14 ${
                   index === 0
-                    ? "border-b border-bone/15 md:border-r md:border-b-0 md:pr-12"
+                    ? "border-b border-ink/10 md:border-r md:border-b-0 md:pr-12"
                     : "md:pl-12"
                 }`}
               >
-                <div className="flex items-baseline justify-between gap-6">
-                  <p className="font-display text-[clamp(2rem,5vw,4.25rem)] font-light uppercase leading-none tracking-[-0.03em]">
-                    {partner.name}
-                  </p>
-                  <span className="font-sans text-[0.6875rem] tracking-[0.18em] text-copper-soft">
+                <div className="flex min-h-44 items-center justify-between gap-8">
+                  {partner.name === "Wella Professionals" ? (
+                    <div className="relative h-40 w-56 shrink-0 overflow-hidden sm:h-44 sm:w-64">
+                      <Image
+                        src={partner.logo.src}
+                        alt={partner.logo.alt}
+                        width={partner.logo.width}
+                        height={partner.logo.height}
+                        className="absolute left-0 top-0 h-auto w-full -translate-y-[12%] mix-blend-multiply"
+                      />
+                    </div>
+                  ) : (
+                    <Image
+                      src={partner.logo.src}
+                      alt={partner.logo.alt}
+                      width={partner.logo.width}
+                      height={partner.logo.height}
+                      className="h-auto w-56 sm:w-64"
+                    />
+                  )}
+                  <span className="self-start pt-2 font-sans text-[0.6875rem] tracking-[0.18em] text-copper">
                     0{index + 1}
                   </span>
                 </div>
-                <p className="mt-5 font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper-soft">
+                <p className="mt-5 font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-copper">
                   {partner.focus}
                 </p>
-                <p className="mt-5 max-w-xl text-[0.9375rem] leading-7 text-bone/70 text-pretty">
+                <p className="mt-5 max-w-xl text-[0.9375rem] leading-7 text-muted text-pretty">
                   {partner.description}
                 </p>
                 <ul aria-label={`${partner.name} strengths`} className="mt-7 flex flex-wrap gap-2">
                   {partner.strengths.map((strength) => (
                     <li
                       key={strength}
-                      className="rounded-full border border-bone/20 px-4 py-2 font-sans text-xs tracking-wide text-bone/80"
+                      className="rounded-full border border-ink/15 bg-bone/45 px-4 py-2 font-sans text-xs tracking-wide text-ink/80"
                     >
                       {strength}
                     </li>
@@ -110,11 +126,11 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          <Reveal className="border-t border-bone/15 pt-8 md:flex md:items-start md:justify-between md:gap-12">
-            <p className="font-display text-xl leading-snug text-bone md:max-w-sm md:text-2xl">
+          <Reveal className="border-t border-ink/10 pt-8 md:flex md:items-start md:justify-between md:gap-12">
+            <p className="font-display text-xl leading-snug text-ink md:max-w-sm md:text-2xl">
               Partnership, translated into personal care.
             </p>
-            <p className="mt-4 max-w-2xl text-[0.9375rem] leading-7 text-bone/65 text-pretty md:mt-0">
+            <p className="mt-4 max-w-2xl text-[0.9375rem] leading-7 text-muted text-pretty md:mt-0">
               A product name is only the beginning. We pair the right formula with your cut,
               colour, texture, and routine, then show you how much to use and where to use it.
               The result is a simple regimen chosen for your hair—not a shelf full of guesswork.
