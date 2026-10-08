@@ -18,7 +18,7 @@ UI face and is on Google Fonts.
 
 - Next.js 15 (App Router) · TypeScript · Tailwind CSS v4
 - Fonts: Jost (display) + Rubik (body), via `next/font`
-- Fully static — 42 prerendered pages, no database, no API routes
+- Prerendered marketing pages, no database or custom API routes
 - Booking is external: every CTA links to Phorest
 
 ## Run it
@@ -66,6 +66,16 @@ by `npm run photos`. The Pexels License allows free commercial use without
 attribution. These stand in for the salon's own photography; when the real
 shoot lands, overwrite the files keeping the same names and nothing in `lib/`
 has to change.
+
+## Instagram gallery
+
+The Gallery page keeps its curated service imagery and adds the latest six posts
+from `@megashairsalon`. The feed is fetched server-side and cached for six hours,
+so no access token reaches the browser. Configure the three variables in
+`.env.example` locally and in Vercel. The Instagram account must be a professional
+Business or Creator account authorised through Meta's Instagram API. If the
+credentials are missing or the API is temporarily unavailable, the page falls
+back to a direct Instagram profile link rather than leaving a broken grid.
 
 That set includes the eight `stylist-*` portraits. **Those are the one thing
 here that cannot ship** — they are stock models under real people's names, added

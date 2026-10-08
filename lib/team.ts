@@ -44,13 +44,13 @@ const FOUNDERS: readonly TeamMember[] = [
     slug: "bulent-bill",
     name: "Bülent",
     alternateName: "Bill",
-    title: "Founder & Master Colourist",
+    title: "Master Colourist",
     level: "Master Hairstylist LV.1",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=vFh7ZCDCExWJ3YUSVJx-Ew",
     years: 35,
     portrait: "/images/photos/stylist-bulent-bill.jpg",
     portraitAlt:
-      "Portrait of Bülent (Bill), founder and master colourist at Megas Hair Salon, Coquitlam",
+      "Portrait of Bülent (Bill), master colourist at Megas Hair Salon, Coquitlam",
     metaTitle:
       "Bülent “Bill” — Master Colourist & Blonde Specialist | Megas Hair Salon Coquitlam",
     metaDescription:
@@ -79,16 +79,16 @@ const FOUNDERS: readonly TeamMember[] = [
   {
     slug: "gazi",
     name: "Gazi",
-    title: "Master Stylist",
+    title: "Salon Manager & Master Stylist",
     level: "Master Hairstylist LV.3",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=mjvZaVl8H56e9DUL6IcA5A",
     years: 41,
     portrait: "/images/photos/stylist-gazi.jpg",
     portraitAlt:
       "Portrait of Gazi, master stylist and colour sculptor at Megas Hair Salon, Coquitlam",
-    metaTitle: "Gazi — Master Stylist & Colour Sculptor | Megas Hair Salon Coquitlam",
+    metaTitle: "Gazi — Salon Manager & Master Stylist | Megas Hair Salon Coquitlam",
     metaDescription:
-      "Meet Gazi, master stylist at Megas Hair Salon Coquitlam. 41+ years of precision colour placement, custom cuts, and transformative restyles.",
+      "Meet Gazi, salon manager and master stylist at Megas Hair Salon Coquitlam. 41+ years of precision colour placement, custom cuts, and transformative restyles.",
     headline: "Gazi — sculptor of confidence.",
     bio: "Since 1984, Gazi has been more than a hairstylist — he has been a force in hair artistry. Fast, innovative, and instinctively skilled, Gazi doesn't just style hair; he leaves his mark. Clients often describe his work not as a service, but as a transformation. For Gazi, hair is not simply cut. It is sculpted. It speaks. It becomes you.",
     languages: ["Turkish", "Arabic", "English"],
@@ -137,15 +137,15 @@ const FOUNDERS: readonly TeamMember[] = [
   {
     slug: "fulya",
     name: "Fulya",
-    title: "Owner & Director",
-    level: "Owner",
+    title: "Director",
+    level: "Director",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=6DNwbV7mw8XHqClweJ-Ybw",
     years: 15,
     portrait: "/images/photos/stylist-fulya.jpg",
-    portraitAlt: "Portrait of Fulya, owner and director at Megas Hair Salon, Coquitlam",
-    metaTitle: "Fulya — Owner & Director | Megas Hair Salon Coquitlam",
+    portraitAlt: "Portrait of Fulya, director at Megas Hair Salon, Coquitlam",
+    metaTitle: "Fulya — Director | Megas Hair Salon Coquitlam",
     metaDescription:
-      "Meet Fulya, owner and director of Megas Hair Salon Coquitlam. 15+ years in client experience and salon operations, leading the Vancouver chapter of a 1984 story.",
+      "Meet Fulya, director of Megas Hair Salon Coquitlam. 15+ years in client experience and salon operations, leading the Vancouver chapter of a 1984 story.",
     headline: "Fulya — the architect of the experience.",
     bio: "A strong vision, refined leadership, and an unwavering commitment to excellence — Fulya is the driving force behind the experience at Megas. With business education across Türkiye, the United States, and Canada, she brings a globally informed perspective to the beauty industry. As director and client relations lead, she oversees every part of the client journey: appointments, team coordination, service quality, and long-term satisfaction. To her, beauty is not just appearance; it is trust, connection, and consistency. The Vancouver chapter of the Megas story was shaped under her leadership.",
     languages: ["English", "Turkish"],
