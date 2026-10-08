@@ -20,6 +20,8 @@ export type TeamMember = {
   readonly title: string;
   /** Phorest booking level, shown as a small credential chip. */
   readonly level?: string;
+  /** Direct Phorest calendar for this team member. */
+  readonly bookingUrl: string;
   readonly years: number | null;
   readonly portrait: string;
   readonly portraitAlt: string;
@@ -44,6 +46,7 @@ const FOUNDERS: readonly TeamMember[] = [
     alternateName: "Bill",
     title: "Founder & Master Colourist",
     level: "Master Hairstylist LV.1",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=vFh7ZCDCExWJ3YUSVJx-Ew",
     years: 35,
     portrait: "/images/photos/stylist-bulent-bill.jpg",
     portraitAlt:
@@ -78,6 +81,7 @@ const FOUNDERS: readonly TeamMember[] = [
     name: "Gazi",
     title: "Master Stylist",
     level: "Master Hairstylist LV.3",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=mjvZaVl8H56e9DUL6IcA5A",
     years: 41,
     portrait: "/images/photos/stylist-gazi.jpg",
     portraitAlt:
@@ -106,6 +110,7 @@ const FOUNDERS: readonly TeamMember[] = [
     name: "Emir",
     title: "Colour & Styling Master",
     level: "Master Hairstylist LV.2",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=2_LtH8tLjirvz0b4xFbRHA",
     years: 23,
     portrait: "/images/photos/stylist-emir.jpg",
     portraitAlt:
@@ -134,6 +139,7 @@ const FOUNDERS: readonly TeamMember[] = [
     name: "Fulya",
     title: "Owner & Director",
     level: "Owner",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=6DNwbV7mw8XHqClweJ-Ybw",
     years: 15,
     portrait: "/images/photos/stylist-fulya.jpg",
     portraitAlt: "Portrait of Fulya, owner and director at Megas Hair Salon, Coquitlam",
@@ -176,6 +182,7 @@ const SENIOR_PROFILES: Record<
   {
     headline: string;
     focus: string;
+    bookingUrl: string;
     bio: string;
     languages: string[];
     specialties: string[];
@@ -185,6 +192,7 @@ const SENIOR_PROFILES: Record<
   Fara: {
     headline: "Fara — colour, and the patience it takes.",
     focus: "Colour & foils",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=eeE5Qh-GDv0WcVKeOZDtLg",
     bio: "Fara works across the salon's colour menu, from a root retouch on a working lunch break to a full head of foils that takes the afternoon. She is unhurried by temperament, which is the right temperament for lightening — the difference between a good result and a brassy one is usually the twenty minutes somebody was not willing to wait. Book her for highlights, grey coverage, and gloss refreshes.",
     languages: ["Persian", "English"],
     specialties: ["Highlights & foils", "Grey coverage", "Toners & glossing", "Blow-dry"],
@@ -198,6 +206,7 @@ const SENIOR_PROFILES: Record<
   Nadia: {
     headline: "Nadia — cut first, then everything else.",
     focus: "Cutting & finishing",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=oQ4DvCiXMglO2uB5cyEzUQ",
     bio: "Nadia's consultations happen dry and standing up, because that is how you will wear your hair. She cuts to your growth pattern and your actual morning routine rather than to a photograph, and she will tell you when a shape needs two visits instead of one. Book her for restyles, fringes, and cuts that need to survive being air-dried.",
     languages: ["Persian", "English"],
     specialties: ["Precision cutting", "Fringes", "Restyles", "Blow-dry & styling"],
@@ -211,6 +220,7 @@ const SENIOR_PROFILES: Record<
   Rain: {
     headline: "Rain — smoothing, repair, and the long game.",
     focus: "Treatments & smoothing",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=mpoJM4LU6M36g8tq842-ZQ",
     bio: "Rain handles the salon's treatment work — keratin smoothing, hair botox, Aveda rituals, and the scalp treatments most people never think to book. Her starting question is always what the hair has already been through, because that decides what it can take next. Book her when your hair needs rebuilding before it needs changing.",
     languages: ["Chinese", "English"],
     specialties: ["Keratin smoothing", "Hair botox", "Scalp & Aveda treatments", "Blow-dry"],
@@ -224,6 +234,7 @@ const SENIOR_PROFILES: Record<
   Sima: {
     headline: "Sima — texture, curl, and finished styling.",
     focus: "Texture & styling",
+    bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=JVdUy440ZIKW9FGqS8OrpQ",
     bio: "Sima works with curl and texture, which means cutting for shrinkage, styling without fighting the hair's own pattern, and being honest about what a round brush will and will not do. She also takes on the salon's event work: updos, evening styles, and the wedding-morning bookings that have to hold for twelve hours. Book her for curls, occasions, and blowouts.",
     languages: ["Persian", "English"],
     specialties: ["Curly & textured hair", "Updos & evening styles", "Blowouts", "Braiding"],
@@ -244,6 +255,7 @@ const SENIORS: readonly TeamMember[] = PLACEHOLDER_NAMES.map((name) => {
     name,
     title: "Senior Stylist",
     level: "Senior LV.1",
+    bookingUrl: profile.bookingUrl,
     years: null,
     portrait: `/images/photos/stylist-${slug}.jpg`,
     portraitAlt: `Portrait of ${name}, senior stylist at Megas Hair Salon, Coquitlam`,

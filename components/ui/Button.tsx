@@ -49,15 +49,18 @@ export function ButtonLink({
 }
 
 /**
- * Every booking CTA on the site funnels through here, so the Phorest URL and
- * the new-tab behaviour stay consistent.
+ * Every booking CTA on the site funnels through here, so the default Phorest
+ * URL and the new-tab behaviour stay consistent. Profile pages can override
+ * the URL with a stylist's direct calendar.
  */
 export function BookButton({
+  href = BOOKING.url,
   variant = "primary",
   size = "md",
   className = "",
   children = "Book an appointment",
 }: {
+  href?: string;
   variant?: Variant;
   size?: Size;
   className?: string;
@@ -65,7 +68,7 @@ export function BookButton({
 }) {
   return (
     <a
-      href={BOOKING.url}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={`${buttonClass(variant, size)} ${className}`}

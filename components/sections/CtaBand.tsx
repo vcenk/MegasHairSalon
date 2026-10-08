@@ -7,10 +7,14 @@ export function CtaBand({
   title = "Ready when you are.",
   body = "Booking is open around the clock on our Phorest page — pick your stylist, your service, and your time. Consultations are complimentary.",
   secondary,
+  bookingHref,
+  bookingLabel,
 }: {
   title?: string;
   body?: string;
   secondary?: { href: string; label: string };
+  bookingHref?: string;
+  bookingLabel?: string;
 }) {
   return (
     <section className="bg-espresso text-bone">
@@ -22,7 +26,9 @@ export function CtaBand({
           <h2 className="mask-line text-title text-balance">{title}</h2>
           <p className="mx-auto mt-5 max-w-xl text-lede text-pretty text-bone/70">{body}</p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <BookButton variant="light" size="lg" />
+            <BookButton href={bookingHref} variant="light" size="lg">
+              {bookingLabel}
+            </BookButton>
             {secondary ? (
               <ButtonLink href={secondary.href} variant="quiet" size="lg">
                 {secondary.label}

@@ -108,7 +108,9 @@ export default async function TeamMemberPage({ params }: Params) {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <BookButton size="lg">Book with {member.name}</BookButton>
+              <BookButton href={member.bookingUrl} size="lg">
+                Book with {member.name}
+              </BookButton>
               <ButtonLink href="/team" variant="outline" size="lg">
                 All stylists
               </ButtonLink>
@@ -171,7 +173,12 @@ export default async function TeamMemberPage({ params }: Params) {
         </section>
       )}
 
-      <CtaBand />
+      <CtaBand
+        title={`Book with ${member.name}.`}
+        body={`Choose your service and see ${member.name}'s live availability directly in Phorest.`}
+        bookingHref={member.bookingUrl}
+        bookingLabel={`Book with ${member.name}`}
+      />
 
       <JsonLd
         data={personSchema({
