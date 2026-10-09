@@ -1,3 +1,4 @@
+import { BOOKING } from "@/lib/site";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogCard } from "@/components/sections/BlogCard";
@@ -83,7 +84,7 @@ export default function HomePage() {
             <ButtonLink href="/services" variant="outline">
               All services
             </ButtonLink>
-            <ButtonLink href="/menu" variant="outline">
+            <ButtonLink href={BOOKING.url} variant="outline">
               Full price menu
             </ButtonLink>
           </>

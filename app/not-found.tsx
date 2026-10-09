@@ -1,3 +1,4 @@
+import { BOOKING } from "@/lib/site";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
@@ -12,7 +13,7 @@ export default function NotFound() {
       </p>
       <div className="mt-9 flex flex-wrap gap-3">
         <ButtonLink href="/">Back to home</ButtonLink>
-        <ButtonLink href="/menu" variant="outline">
+        <ButtonLink href={BOOKING.url} variant="outline">
           Price menu
         </ButtonLink>
       </div>

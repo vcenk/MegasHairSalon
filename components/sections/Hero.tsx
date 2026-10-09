@@ -50,7 +50,7 @@ export function Hero() {
         </BookButton>
 
         <Link
-          href="/menu"
+          href={BOOKING.url}
           className="tracked sweep enter enter-5 mt-6 text-[0.8125rem] text-bone/65 transition-colors duration-300 hover:text-bone"
         >
           See prices

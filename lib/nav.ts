@@ -1,3 +1,4 @@
+import { BOOKING } from "@/lib/site";
 export type NavLink = { href: string; label: string };
 
 /**
@@ -8,7 +9,7 @@ export type NavLink = { href: string; label: string };
  */
 export const PRIMARY_NAV: readonly NavLink[] = [
   { href: "/services", label: "Services" },
-  { href: "/menu", label: "Prices" },
+  { href: BOOKING.url, label: "Prices" },
   { href: "/team", label: "Team" },
   { href: "/gallery", label: "Gallery" },
   { href: "/products", label: "Products" },

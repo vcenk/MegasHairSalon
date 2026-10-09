@@ -1,3 +1,4 @@
+import { BOOKING } from "@/lib/site";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -76,7 +77,7 @@ export default async function ServicePage({ params }: Params) {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <BookButton size="lg" />
-              <ButtonLink href="/menu" variant="outline" size="lg">
+              <ButtonLink href={BOOKING.url} variant="outline" size="lg">
                 See all prices
               </ButtonLink>
             </div>
@@ -161,7 +162,7 @@ export default async function ServicePage({ params }: Params) {
               time — we confirm that at the consultation, before we start.
             </p>
             <Link
-              href="/menu"
+              href={BOOKING.url}
               className="mt-5 inline-block font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
             >
               See the full menu →

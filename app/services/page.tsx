@@ -1,3 +1,4 @@
+import { BOOKING } from "@/lib/site";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -31,7 +32,7 @@ export default function ServicesPage() {
             to {MENU_ITEM_COUNT} items, all priced and bookable online.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="/menu">Full price menu</ButtonLink>
+            <ButtonLink href={BOOKING.url}>Full price menu</ButtonLink>
             <ButtonLink href="/team" variant="outline">
               Meet the stylists
             </ButtonLink>

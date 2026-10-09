@@ -1,3 +1,4 @@
+import { BOOKING } from "@/lib/site";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -56,7 +57,7 @@ export default async function AreaPage({ params }: Params) {
             <p className="mt-6 max-w-lg text-lede text-pretty text-muted">{area.lede}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BookButton size="lg" />
-              <ButtonLink href="/menu" variant="outline" size="lg">
+              <ButtonLink href={BOOKING.url} variant="outline" size="lg">
                 See prices
               </ButtonLink>
             </div>

@@ -113,7 +113,7 @@ export default function BookPage() {
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-pretty text-muted">
               Book the complimentary consultation. Twenty minutes, no charge, and you leave
               with a plan and a firm price.{" "}
-              <Link href="/menu" className="text-copper underline-offset-4 hover:underline">
+              <Link href={BOOKING.url} className="text-copper underline-offset-4 hover:underline">
                 See the full menu
               </Link>
               .

@@ -9,7 +9,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ALL_FAQS, FAQ_GROUPS } from "@/lib/faqs";
 import { faqSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
-import { CONTACT } from "@/lib/site";
+import { BOOKING, CONTACT } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
   title: "Salon FAQ | Megas Hair Salon Coquitlam",
@@ -111,7 +111,7 @@ export default function FaqPage() {
             </p>
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
               {[
-                { href: "/menu", label: "Full price menu" },
+                { href: BOOKING.url, label: "Full price menu" },
                 { href: "/services", label: "All services" },
                 { href: "/products", label: "Products we retail" },
                 { href: "/contact", label: "Hours & directions" },

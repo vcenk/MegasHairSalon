@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BookButton, WhatsAppButton } from "@/components/ui/Button";
 import { FOOTER_PRODUCTS, FOOTER_SALON, FOOTER_VISIT } from "@/lib/nav";
 import { SERVICES } from "@/lib/services";
-import { BUSINESS, CONTACT, HOURS_DISPLAY, SOCIAL } from "@/lib/site";
+import { BOOKING, BUSINESS, CONTACT, HOURS_DISPLAY, SOCIAL } from "@/lib/site";
 
 /**
  * Grouped footer in the spirit of Zazou's Salon / Locations / Academy columns.
@@ -43,7 +43,7 @@ export function Footer() {
                 {service.name}
               </FooterLink>
             ))}
-            <FooterLink href="/menu" accent>
+            <FooterLink href={BOOKING.url} accent>
               Full price menu
             </FooterLink>
           </FooterColumn>
