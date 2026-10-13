@@ -79,16 +79,16 @@ const FOUNDERS: readonly TeamMember[] = [
   {
     slug: "gazi",
     name: "Gazi",
-    title: "Salon Manager & Master Stylist",
+    title: "Master Stylist",
     level: "Master Hairstylist LV.3",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=mjvZaVl8H56e9DUL6IcA5A",
     years: 41,
     portrait: "/images/photos/stylist-gazi.jpg",
     portraitAlt:
       "Portrait of Gazi, master stylist and colour sculptor at Megas Hair Salon, Coquitlam",
-    metaTitle: "Gazi — Salon Manager & Master Stylist | Megas Hair Salon Coquitlam",
+    metaTitle: "Gazi — Master Stylist | Megas Hair Salon Coquitlam",
     metaDescription:
-      "Meet Gazi, salon manager and master stylist at Megas Hair Salon Coquitlam. 41+ years of precision colour placement, custom cuts, and transformative restyles.",
+      "Meet Gazi, master stylist at Megas Hair Salon Coquitlam. 41+ years of precision colour placement, custom cuts, and transformative restyles.",
     headline: "Gazi — sculptor of confidence.",
     bio: "Since 1984, Gazi has been more than a hairstylist — he has been a force in hair artistry. Fast, innovative, and instinctively skilled, Gazi doesn't just style hair; he leaves his mark. Clients often describe his work not as a service, but as a transformation. For Gazi, hair is not simply cut. It is sculpted. It speaks. It becomes you.",
     languages: ["Turkish", "Arabic", "English"],
