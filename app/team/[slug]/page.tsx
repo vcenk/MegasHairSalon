@@ -70,7 +70,13 @@ export default async function TeamMemberPage({ params }: Params) {
             </Eyebrow>
             <h1 className="mask-line text-title text-balance">{member.headline}</h1>
 
-            <p className="mt-7 text-lede text-pretty text-muted">{member.bio}</p>
+            <div className="mt-7 space-y-5">
+              {member.bio.split(/\n\n+/).map((paragraph) => (
+                <p key={paragraph} className="text-lede text-pretty text-muted">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
 
             <div className="mt-8 rule pt-6">
               <h2 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">

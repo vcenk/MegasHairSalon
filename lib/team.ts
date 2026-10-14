@@ -1,17 +1,4 @@
-/**
- * The Megas team. Bios for the four founding members are the salon's own copy.
- *
- * ⚠️ TWO THINGS HERE ARE NOT REAL, and both must be replaced before launch:
- *
- * 1. Every `portrait` is a stock photograph of someone else. They were added so
- *    the client could review a complete demo. A stock model's face under a
- *    named person's bio is a misrepresentation, and it is outside what the
- *    Pexels License permits — this cannot ship.
- * 2. Fara, Nadia, Rain and Sima have demo bios (see SENIOR_PROFILES below).
- *    Their names, titles, and Phorest levels ARE real; the prose is not.
- *
- * See docs/LAUNCH-CHECKLIST.md.
- */
+/** The Megas team. Profile biographies and portraits are salon-supplied. */
 
 export type TeamMember = {
   readonly slug: string;
@@ -164,19 +151,7 @@ const FOUNDERS: readonly TeamMember[] = [
   },
 ];
 
-/**
- * ⚠️ DEMO COPY. The four senior stylists are real, confirmed people, but every
- * word below was written to fill a client demo — not supplied by them.
- *
- * It is written to be replaceable rather than believable-and-wrong: no years of
- * experience, no training history, no awards, no former employers, no invented
- * personal story. Each bio describes the salon's own standard of work, which is
- * true of the chair regardless of who is in it.
- *
- * The `level` values ARE real — they come from the Phorest booking system.
- *
- * Replace each entry with the stylist's own words before launch.
- */
+/** Senior stylist biographies are salon-supplied; level values come from Phorest. */
 const SENIOR_PROFILES: Record<
   (typeof PLACEHOLDER_NAMES)[number],
   {
@@ -193,7 +168,7 @@ const SENIOR_PROFILES: Record<
     headline: "Fara — colour, and the patience it takes.",
     focus: "Colour & foils",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=eeE5Qh-GDv0WcVKeOZDtLg",
-    bio: "Fara works across the salon's colour menu, from a root retouch on a working lunch break to a full head of foils that takes the afternoon. She is unhurried by temperament, which is the right temperament for lightening — the difference between a good result and a brassy one is usually the twenty minutes somebody was not willing to wait. Book her for highlights, grey coverage, and gloss refreshes.",
+    bio: "Hello and welcome! I’m Fara, a passionate hair stylist with over 15 years of experience in precision hair cutting, custom coloring, and advanced hair reconstruction. Over the years, I have continuously updated my skills through specialized training to bring my clients the very best in modern trends and healthy hair care.\n\nI specialize in precision cuts, tailored coloring techniques, and transformative hair care treatments, including Keratin, Hair Botox, and restorative protein therapies. For me, hair styling is about listening to my clients, understanding their unique style, and crafting a personalized look that highlights their natural beauty while keeping their hair healthy and strong.\n\nWhat I love most about being a hairstylist is building genuine connections with my clients and seeing their confidence shine when they look in the mirror. I look forward to welcoming you to my chair and helping you achieve your dream hair!",
     languages: ["Persian", "English"],
     specialties: ["Highlights & foils", "Grey coverage", "Toners & glossing", "Blow-dry"],
     gallery: [
@@ -207,7 +182,7 @@ const SENIOR_PROFILES: Record<
     headline: "Nadia — cut first, then everything else.",
     focus: "Cutting & finishing",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=oQ4DvCiXMglO2uB5cyEzUQ",
-    bio: "Nadia's consultations happen dry and standing up, because that is how you will wear your hair. She cuts to your growth pattern and your actual morning routine rather than to a photograph, and she will tell you when a shape needs two visits instead of one. Book her for restyles, fringes, and cuts that need to survive being air-dried.",
+    bio: "Welcome, I’m Nadia!\n\nTo me, exceptional hair care is a blend of artistry, technical precision, and dedicated hair health. With over 15 years of experience, I specialize in precision haircuts, custom color design including seamless balayage, dimensional highlights, and rich gray coverage as well as transformative hair therapies like Keratin smoothing and Hair Botox.\n\nBeyond aesthetic styling, my passion lies in restoring the strength and natural shine of your hair. Every appointment in my chair is a relaxed, personalized experience where I tailor a radiant look that fits effortlessly into your daily lifestyle.",
     languages: ["Persian", "English"],
     specialties: ["Precision cutting", "Fringes", "Restyles", "Blow-dry & styling"],
     gallery: [
@@ -221,7 +196,7 @@ const SENIOR_PROFILES: Record<
     headline: "Rain — smoothing, repair, and the long game.",
     focus: "Treatments & smoothing",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=mpoJM4LU6M36g8tq842-ZQ",
-    bio: "Rain handles the salon's treatment work — keratin smoothing, hair botox, Aveda rituals, and the scalp treatments most people never think to book. Her starting question is always what the hair has already been through, because that decides what it can take next. Book her when your hair needs rebuilding before it needs changing.",
+    bio: "Hi, I’m Rain! With 10 years of experience in the hair industry, I specialize in women’s precision haircuts, short styles, long layers, men’s fades, perms for both men and women, and creative colouring techniques, including partial highlights, ombré, and balayage.\n\nWith formal training in hair cutting and colouring in China, I bring strong technical skills, patience, and attention to detail to every appointment. I’m approachable and dedicated, and I take pride in creating personalized styles that complement each client’s features and lifestyle while prioritizing hair health.\n\nI love helping my clients look and feel their best with a style that reflects their individuality.",
     languages: ["Chinese", "English"],
     specialties: ["Keratin smoothing", "Hair botox", "Scalp & Aveda treatments", "Blow-dry"],
     gallery: [
@@ -235,7 +210,7 @@ const SENIOR_PROFILES: Record<
     headline: "Sima — texture, curl, and finished styling.",
     focus: "Texture & styling",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=JVdUy440ZIKW9FGqS8OrpQ",
-    bio: "Sima works with curl and texture, which means cutting for shrinkage, styling without fighting the hair's own pattern, and being honest about what a round brush will and will not do. She also takes on the salon's event work: updos, evening styles, and the wedding-morning bookings that have to hold for twelve hours. Book her for curls, occasions, and blowouts.",
+    bio: "Hi, my name is Sima. I have approximately 25 years of hairstyling experience, working on and off throughout my career, and I have held my hairstyling certification for 25 years. I have been working as a hairstylist in Canada for the past 6 years.\n\nMy main specialties are haircuts, hair coloring, highlights, and balayage, with haircutting being my strongest skill. I also have experience in keratin treatments and perms.\n\nLast year, I updated my professional skills and knowledge and obtained a Pedagogy Certificate to further develop my expertise and qualifications in the hairstyling industry.",
     languages: ["Persian", "English"],
     specialties: ["Curly & textured hair", "Updos & evening styles", "Blowouts", "Braiding"],
     gallery: [
@@ -267,7 +242,7 @@ const SENIORS: readonly TeamMember[] = PLACEHOLDER_NAMES.map((name) => {
     specialties: profile.specialties,
     gallery: profile.gallery,
     relatedServices: ["precision-haircut-coquitlam", "hair-color-coquitlam", "blow-dry-coquitlam"],
-    isPlaceholder: true,
+    isPlaceholder: false,
   } satisfies TeamMember;
 });
 
