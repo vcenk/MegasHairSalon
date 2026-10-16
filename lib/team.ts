@@ -66,16 +66,16 @@ const FOUNDERS: readonly TeamMember[] = [
   {
     slug: "gazi",
     name: "Gazi",
-    title: "Master Stylist",
+    title: "Professional Hairstylist",
     level: "Master Hairstylist LV.3",
     bookingUrl: "https://www.phorest.com/salon/megashairsalon/book/services?staffId=mjvZaVl8H56e9DUL6IcA5A",
     years: 41,
     portrait: "/images/photos/stylist-gazi.jpg",
     portraitAlt:
-      "Portrait of Gazi, master stylist and colour sculptor at Megas Hair Salon, Coquitlam",
-    metaTitle: "Gazi — Master Stylist | Megas Hair Salon Coquitlam",
+      "Portrait of Gazi, professional hairstylist and colour sculptor at Megas Hair Salon, Coquitlam",
+    metaTitle: "Gazi — Professional Hairstylist | Megas Hair Salon Coquitlam",
     metaDescription:
-      "Meet Gazi, master stylist at Megas Hair Salon Coquitlam. 41+ years of precision colour placement, custom cuts, and transformative restyles.",
+      "Meet Gazi, professional hairstylist at Megas Hair Salon Coquitlam. 41+ years of precision colour placement, custom cuts, and transformative restyles.",
     headline: "Gazi — sculptor of confidence.",
     bio: "Since 1984, Gazi has been more than a hairstylist — he has been a force in hair artistry. Fast, innovative, and instinctively skilled, Gazi doesn't just style hair; he leaves his mark. Clients often describe his work not as a service, but as a transformation. For Gazi, hair is not simply cut. It is sculpted. It speaks. It becomes you.",
     languages: ["Turkish", "Arabic", "English"],
@@ -246,10 +246,12 @@ const SENIORS: readonly TeamMember[] = PLACEHOLDER_NAMES.map((name) => {
   } satisfies TeamMember;
 });
 
-export const TEAM: readonly TeamMember[] = [...FOUNDERS, ...SENIORS];
+const [bulent, gazi, emir, fulya] = FOUNDERS;
+
+export const TEAM: readonly TeamMember[] = [gazi, bulent, emir, ...SENIORS, fulya];
 
 /** The four leads, used for the homepage teaser. */
-export const TEAM_LEADS = FOUNDERS;
+export const TEAM_LEADS: readonly TeamMember[] = [gazi, bulent, emir, fulya];
 
 export function getTeamMember(slug: string): TeamMember | undefined {
   return TEAM.find((member) => member.slug === slug);
