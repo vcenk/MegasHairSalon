@@ -67,8 +67,9 @@ and fall back to the static 4.9 / 274 in `lib/site.ts` when not.
 - [ ] **Create a Google Cloud API key** with "Places API (New)" enabled (billing
       must be on; Place Details with these fields sits inside the monthly free
       allowance at this volume). Restrict the key to that API.
-- [ ] **Find the salon's Place ID** (Google's Place ID Finder) and confirm it
-      resolves to Megas, not a similarly named business.
+- [ ] **Confirm the Place ID.** `GOOGLE_PLACE.id` in `lib/site.ts` was read from the
+      salon's own review link and resolves to MEGAS Hair Salon on Maps; use it as
+      `GOOGLE_PLACE_ID`, and confirm with Google's Place ID Finder.
 - [ ] **Add `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID`** in Vercel → Settings →
       Environment Variables (Production), then redeploy once.
 - [ ] **Check the static fallback in `lib/site.ts` against Google.** It is only

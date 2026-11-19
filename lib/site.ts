@@ -86,16 +86,34 @@ export const BOOKING = {
   url: "https://phorest.com/book/salons/megashairsalon",
 } as const;
 
+/**
+ * Identifiers for the salon's Google Business Profile, read from the salon's own
+ * "write a review" link (g.page/r/Ccz7LfbThVqJEBM/review) and checked to resolve
+ * to "MEGAS Hair Salon" on Google Maps on 2026-11-18. The Place ID is also what
+ * GOOGLE_PLACE_ID should be set to for the live rating (lib/google-rating.ts).
+ */
+export const GOOGLE_PLACE = {
+  id: "ChIJD1mZwMV_hlQRzPst9tOFWok",
+  cid: "9897370276514888652",
+} as const;
+
 export const SOCIAL = {
   instagram: "https://www.instagram.com/megashairsalon",
   facebook: "https://www.facebook.com/megashairsalon",
-  google: "https://www.google.com/maps/place/MEGAS+Hair+Salon",
+  // The old /maps/place/MEGAS+Hair+Salon form opened an empty map over Vancouver
+  // rather than the salon; the cid form opens the listing itself.
+  google: `https://www.google.com/maps?cid=${GOOGLE_PLACE.cid}`,
   /**
    * Opens Google's "write a review" form for the salon's Business Profile, for
    * anyone — never gate it behind a satisfaction question or offer anything in
    * return, both of which Google's review policy prohibits.
+   *
+   * Uses the Place ID form rather than the g.page short link: on desktop the
+   * short link lands on the Maps listing (the review dialog only appears over it
+   * for some signed-in users), where this goes straight to sign-in and then the
+   * review form. On phones both behave the same.
    */
-  googleReview: "https://g.page/r/Ccz7LfbThVqJEBM/review",
+  googleReview: `https://search.google.com/local/writereview?placeid=${GOOGLE_PLACE.id}`,
 } as const;
 
 /**
