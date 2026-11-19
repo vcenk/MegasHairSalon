@@ -58,7 +58,7 @@ export function Header() {
       <div className="shell flex h-20 items-center justify-between gap-6 md:h-28">
         <Logo tone={overlaying ? "light" : "ink"} />
 
-        <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 xl:flex 2xl:gap-6">
           {PRIMARY_NAV.map((link) => {
             const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
@@ -79,7 +79,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href={CONTACT.phoneHref}
-            className={`hidden font-sans text-[0.9375rem] whitespace-nowrap tracking-[0.08em] transition-colors duration-300 md:inline ${linkTone}`}
+            className={`hidden font-sans text-[0.9375rem] whitespace-nowrap tracking-[0.08em] transition-colors duration-300 2xl:inline ${linkTone}`}
           >
             {CONTACT.phone}
           </a>

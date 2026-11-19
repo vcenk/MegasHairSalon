@@ -26,7 +26,7 @@ export const AREAS: readonly Area[] = [
   {
     slug: "hair-salon-coquitlam",
     name: "Coquitlam",
-    metaTitle: "Hair Salon in Coquitlam | Master Colourists Since 1984 | Megas",
+    metaTitle: "Hair Salon in Coquitlam | Master Colourists | Megas",
     metaDescription:
       "Megas Hair Salon near Coquitlam Centre on Pacific St. Balayage, blonde highlights, women's and men's cuts, colour, and keratin. Book online.",
     eyebrow: "Coquitlam Centre · Home salon",
@@ -145,9 +145,9 @@ export const AREAS: readonly Area[] = [
   {
     slug: "turkish-hair-salon-vancouver",
     name: "Vancouver",
-    metaTitle: "Turkish Hair Salon Near Vancouver | Istanbul-Trained Since 1984 | Megas",
+    metaTitle: "Turkish Hair Salon Near Vancouver | Master Colourists | Megas",
     metaDescription:
-      "Turkish hair salon serving Greater Vancouver from Coquitlam. Istanbul-trained master colourists since 1984 — balayage, blonde work, keratin. Book online.",
+      "Turkish hair salon serving Greater Vancouver from Coquitlam. master colourists with careers built in Türkiye — balayage, blonde work, keratin. Book online.",
     eyebrow: "Vancouver · Turkish salon",
     headline: "A Turkish salon, forty years in.",
     lede: "Istanbul training and Istanbul standards, twenty-five minutes east of downtown Vancouver.",
@@ -168,7 +168,7 @@ export const AREAS: readonly Area[] = [
       {
         question: "Is there a Turkish hair salon near Vancouver?",
         answer:
-          "Megas Hair Salon in Coquitlam is Turkish-owned and Istanbul-founded, operating since 1984. It is about twenty-five minutes east of downtown Vancouver, and Turkish is spoken in the salon.",
+          "Megas Hair Salon in Coquitlam is Turkish-owned and was founded in Istanbul in 1984; it has been in Coquitlam since 2025. It is about twenty-five minutes east of downtown Vancouver, and Turkish is spoken in the salon.",
       },
       {
         question: "Do the stylists speak Turkish?",

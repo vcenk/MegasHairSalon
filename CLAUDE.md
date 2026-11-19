@@ -17,6 +17,11 @@ it explains the structure and where content lives.
   `MENU_UPDATED` whenever they change.
 - **Every page uses `pageMeta()` from `lib/seo.ts`** for its metadata, and gets
   at least one JSON-LD block. Do not hand-roll `metadata` objects.
+- **1984 is Türkiye, never Coquitlam.** The salon began in Türkiye in 1984 and
+  opened in Coquitlam in 2025. Any copy that mentions 1984 must tie it to Türkiye
+  ("Since 1984 in Türkiye, now in Coquitlam"); never "Coquitlam since 1984".
+- **No job titles on the public site.** Years of experience may show where the
+  salon has supplied them; titles and Phorest levels stay in data only.
 - **Motion is CSS-driven and respects `prefers-reduced-motion`.** The `Reveal`
   component only flips a data attribute; `app/globals.css` owns the transition
   and disables it under reduced motion.

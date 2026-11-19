@@ -11,7 +11,7 @@ import { TEAM_LEADS } from "@/lib/team";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Our Story | Turkish Hair Salon in Coquitlam Since 1984",
+  title: "Our Story | Turkish-Founded Hair Salon in Coquitlam",
   description:
     "Megas Hair Salon began in Istanbul in 1984 and opened in Coquitlam in 2025. Four decades of Turkish hair artistry — master colourists, long consultations, honest advice.",
   path: "/about",
@@ -72,7 +72,7 @@ export default function AboutPage() {
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal className="rv-left lg:col-span-7">
             <Eyebrow className="mb-5">Our story</Eyebrow>
-            <h1 className="mask-line text-title text-balance">Getting this right since 1984</h1>
+            <h1 className="mask-line text-title text-balance">Four decades of getting this right</h1>
             <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
               Two salons in Istanbul, one in Coquitlam, and a way of working that has not
               changed in forty years.
@@ -104,7 +104,7 @@ export default function AboutPage() {
               that a stylist with thirty years of experience is normal rather than remarkable.
             </p>
             <p>
-              Megas has been operating on those assumptions since 1984. Gazi has been behind a
+              Megas has worked on those assumptions since 1984 in Türkiye, and now in Coquitlam. Gazi has been behind a
               chair for forty-one years. Bülent — Bill to everyone who books him — built his
               reputation on blonde work across two salons in Türkiye before bringing it here.
               Emir has spent twenty-three years between the two countries.

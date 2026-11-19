@@ -236,6 +236,21 @@
     animation-delay: 0.82s;
   }
 
+  /* The hero timeline's rule draws left to right after the copy has arrived. */
+  .draw-line {
+    transform-origin: left;
+    animation: draw-line 1.6s var(--ease-out-soft) 0.9s both;
+  }
+
+  @keyframes draw-line {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   /* ── Reveal variants ─────────────────────────────────────────────────────
      Different sections move differently on purpose. Everything rising the
      same distance at the same speed reads as no animation at all.
@@ -352,6 +367,7 @@
 
   .reveal img,
   .hero-zoom,
+  .draw-line,
   .parallax,
   .scroll-progress {
     transform: none;

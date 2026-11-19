@@ -24,12 +24,13 @@ export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: nu
             <span className="text-muted"> “{member.alternateName}”</span>
           )}
         </h3>
-        <p className="mt-1 text-sm text-muted">{member.title}</p>
-        {/* Years where we have them; otherwise the Phorest booking level, which
-            is real data — never a blank slot and never an invented number. */}
-        <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
-          {member.years !== null ? `${member.years} years` : member.level}
-        </p>
+        {/* No job titles on the public site. Years of experience only where the
+            salon has supplied them; otherwise the line is simply absent. */}
+        {member.years !== null && (
+          <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
+            {member.years} years
+          </p>
+        )}
         <p className="mt-3 text-xs leading-relaxed text-muted">
           <span className="mr-2 font-sans font-medium uppercase tracking-[0.16em] text-ink">
             Languages

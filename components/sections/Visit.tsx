@@ -1,5 +1,4 @@
 import { BookButton } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { CONTACT, HOURS_DISPLAY } from "@/lib/site";
 
@@ -8,29 +7,9 @@ export function Visit({ heading = "Come and find us." }: { heading?: string }) {
     <section className="bg-sand">
       <div className="shell grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-16">
         <Reveal className="rv-left lg:col-span-5">
-          <Eyebrow className="mb-5">Visit</Eyebrow>
           <h2 className="mask-line text-title text-balance">{heading}</h2>
 
           <div className="mt-8 space-y-7">
-            <div>
-              <h3 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
-                Address
-              </h3>
-              <address className="mt-2 not-italic">
-                <a
-                  href={CONTACT.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-display text-xl leading-snug text-ink transition-colors hover:text-copper"
-                >
-                  {CONTACT.address.streetAddress}
-                  <br />
-                  {CONTACT.address.addressLocality}, {CONTACT.address.addressRegion}{" "}
-                  {CONTACT.address.postalCode}
-                </a>
-              </address>
-            </div>
-
             <div>
               <h3 className="font-sans text-[0.6875rem] uppercase tracking-[0.2em] text-muted">
                 Hours

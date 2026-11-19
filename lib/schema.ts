@@ -93,7 +93,8 @@ export function serviceSchema(input: {
 export function personSchema(input: {
   name: string;
   alternateName?: string;
-  jobTitle: string;
+  /** Omit unless the title is also shown on the page — schema must match it. */
+  jobTitle?: string;
   description: string;
   path: string;
   image: string;
@@ -105,7 +106,7 @@ export function personSchema(input: {
     "@type": "Person",
     name: input.name,
     ...(input.alternateName ? { alternateName: input.alternateName } : {}),
-    jobTitle: input.jobTitle,
+    ...(input.jobTitle ? { jobTitle: input.jobTitle } : {}),
     description: input.description,
     url: `${SITE.url}${input.path}`,
     image: `${SITE.url}${input.image}`,

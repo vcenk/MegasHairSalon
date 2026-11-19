@@ -62,24 +62,33 @@ export function Footer() {
                 {link.label}
               </FooterLink>
             ))}
-          </FooterColumn>
 
-          <FooterColumn title="Find us">
-            <address className="not-italic">
+            {/* The one place the street address lives in the footer. Small, but
+                marked as a link so it is obvious it opens directions. */}
+            <address className="mt-3 border-t border-bone/15 pt-4 not-italic">
               <a
                 href={CONTACT.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm leading-relaxed text-bone/70 transition-colors hover:text-bone"
+                aria-label={`Get directions to ${CONTACT.addressLine} on Google Maps`}
+                className="group block text-xs leading-relaxed text-bone/60 transition-colors hover:text-bone"
               >
                 {CONTACT.address.streetAddress}
                 <br />
                 {CONTACT.address.addressLocality}, {CONTACT.address.addressRegion}{" "}
                 {CONTACT.address.postalCode}
+                <span className="mt-1.5 block font-medium text-copper-soft underline decoration-copper-soft/40 underline-offset-4 transition-colors group-hover:decoration-copper-soft">
+                  Open in Google Maps ↗
+                </span>
               </a>
+            </address>
+          </FooterColumn>
+
+          <FooterColumn title="Find us">
+            <address className="not-italic">
               <a
                 href={CONTACT.phoneHref}
-                className="mt-3 block text-sm text-bone/70 transition-colors hover:text-bone"
+                className="block text-sm text-bone/70 transition-colors hover:text-bone"
               >
                 {CONTACT.phone}
               </a>

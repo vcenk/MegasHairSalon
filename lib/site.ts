@@ -19,7 +19,7 @@ export const BUSINESS = {
   foundingDate: "1984",
   foundingLocation: "Istanbul, Türkiye",
   vancouverSince: "2025",
-  tagline: "Master colourists since 1984.",
+  tagline: "Master colourists. Since 1984 in Türkiye, now in Coquitlam.",
   longTagline: "Four decades of European hair artistry — now in Coquitlam.",
   priceRange: "$$",
 } as const;

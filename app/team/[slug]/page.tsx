@@ -64,10 +64,9 @@ export default async function TeamMemberPage({ params }: Params) {
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">
-            <Eyebrow className="mb-5">
-              {member.title}
-              {member.years !== null && ` · ${member.years} years`}
-            </Eyebrow>
+            {member.years !== null && (
+              <Eyebrow className="mb-5">{member.years} years</Eyebrow>
+            )}
             <h1 className="mask-line text-title text-balance">{member.headline}</h1>
 
             <div className="mt-7 space-y-5">
@@ -106,11 +105,6 @@ export default async function TeamMemberPage({ params }: Params) {
                   </li>
                 ))}
               </ul>
-              {member.level && (
-                <p className="mt-4 text-xs tracking-wide text-muted">
-                  Booking level: {member.level}
-                </p>
-              )}
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -190,7 +184,6 @@ export default async function TeamMemberPage({ params }: Params) {
         data={personSchema({
           name: member.name,
           alternateName: member.alternateName,
-          jobTitle: member.title,
           description: member.metaDescription,
           path: `/team/${member.slug}`,
           image: member.portrait,
