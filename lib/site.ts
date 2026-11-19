@@ -90,11 +90,22 @@ export const SOCIAL = {
   instagram: "https://www.instagram.com/megashairsalon",
   facebook: "https://www.facebook.com/megashairsalon",
   google: "https://www.google.com/maps/place/MEGAS+Hair+Salon",
+  /**
+   * Opens Google's "write a review" form for the salon's Business Profile, for
+   * anyone — never gate it behind a satisfaction question or offer anything in
+   * return, both of which Google's review policy prohibits.
+   */
+  googleReview: "https://g.page/r/Ccz7LfbThVqJEBM/review",
 } as const;
 
+/**
+ * Static fallback for the Google rating, used whenever the live lookup in
+ * lib/google-rating.ts is not configured or fails. Read from the salon's Google
+ * listing on 2026-11-18; it will drift as reviews arrive.
+ */
 export const RATING = {
-  value: 4.8,
-  count: 146,
+  value: 4.9,
+  count: 274,
 } as const;
 
 export const AREA_SERVED = [

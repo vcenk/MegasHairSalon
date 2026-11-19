@@ -2,7 +2,7 @@
  * ⚠️ PLACEHOLDER CONTENT.
  *
  * These quotes are illustrative. Before launch, replace them with real,
- * verbatim Google reviews (the salon has 146 at 4.8 stars). Never publish
+ * verbatim Google reviews (the salon has 274 at 4.9 stars as of 2026-11-18). Never publish
  * invented testimonials — and never wire these into Review schema, which is
  * why lib/schema.ts only emits the aggregate rating.
  */

@@ -35,6 +35,14 @@ export function Footer() {
                 {link.label}
               </FooterLink>
             ))}
+            <a
+              href={SOCIAL.googleReview}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-copper-soft transition-colors duration-300 hover:text-bone"
+            >
+              Leave a Google review ↗
+            </a>
           </FooterColumn>
 
           <FooterColumn title="Services">

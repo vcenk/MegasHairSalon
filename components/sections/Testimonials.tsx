@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { FEATURED_REVIEWS } from "@/lib/reviews";
 import { getGoogleRating } from "@/lib/google-rating";
+import { SOCIAL } from "@/lib/site";
 
 export async function Testimonials() {
   const rating = await getGoogleRating();
@@ -16,12 +17,22 @@ export async function Testimonials() {
             {rating.value.toFixed(1)} stars, {rating.count} reviews.
           </h2>
         </div>
-        <Link
-          href="/reviews"
-          className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
-        >
-          Read all reviews →
-        </Link>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <a
+            href={SOCIAL.googleReview}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-sm tracking-wide text-ink underline decoration-copper/40 underline-offset-4 transition-colors hover:text-copper"
+          >
+            Leave a review ↗
+          </a>
+          <Link
+            href="/reviews"
+            className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+          >
+            Read all reviews →
+          </Link>
+        </div>
       </Reveal>
 
       <div className="mt-14 grid gap-x-8 gap-y-10 md:grid-cols-3">

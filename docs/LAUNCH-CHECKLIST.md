@@ -24,9 +24,9 @@ they are listed first.
 ## Blocking — content we do not have
 
 - [ ] **Reviews are placeholders.** `lib/reviews.ts` contains illustrative
-      quotes, not real ones. Replace with verbatim quotes from the salon's 146
+      quotes, not real ones. Replace with verbatim quotes from the salon's 274
       Google reviews before launch. Do not publish invented testimonials.
-      (Schema only emits the aggregate 4.8/146 rating, never these quotes — keep
+      (Schema only emits the aggregate 4.9/274 rating, never these quotes — keep
       it that way unless the reviews are real and attributable.)
 - [ ] **All photography is interim stock.** 27 Pexels photographs in
       `public/images/photos/` stand in for the salon's own work. They are
@@ -62,7 +62,7 @@ they are listed first.
 ## Live Google rating
 
 The hero, reviews page, and schema read the rating from Google when configured
-and fall back to the static 4.8 / 146 in `lib/site.ts` when not.
+and fall back to the static 4.9 / 274 in `lib/site.ts` when not.
 
 - [ ] **Create a Google Cloud API key** with "Places API (New)" enabled (billing
       must be on; Place Details with these fields sits inside the monthly free

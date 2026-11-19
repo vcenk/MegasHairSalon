@@ -5,7 +5,9 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { ALL_REVIEWS } from "@/lib/reviews";
 import { pageMeta } from "@/lib/seo";
+import { ButtonLink } from "@/components/ui/Button";
 import { getGoogleRating } from "@/lib/google-rating";
+import { SOCIAL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const rating = await getGoogleRating();
@@ -35,14 +37,28 @@ export default async function ReviewsPage() {
             The pattern in them is consistent: people mention the consultation, the honesty,
             and how the cut or colour was still holding weeks later.
           </p>
-          <a
-            href={rating.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-block font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
-          >
-            Read them on Google →
-          </a>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <ButtonLink
+              href={SOCIAL.googleReview}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+            >
+              Leave a Google review
+            </ButtonLink>
+            <a
+              href={rating.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-sm tracking-wide text-copper transition-colors hover:text-copper-deep"
+            >
+              Read them on Google →
+            </a>
+          </div>
+          <p className="mt-4 max-w-md text-xs leading-relaxed text-muted">
+            Been to Megas? A few honest words help the next person choose a stylist they can
+            trust.
+          </p>
         </Reveal>
       </section>
 
