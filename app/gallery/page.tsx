@@ -22,10 +22,10 @@ export default function GalleryPage() {
       <section className="shell pt-10 md:pt-14">
         <Reveal className="max-w-3xl">
           <Eyebrow className="mb-5">Gallery</Eyebrow>
-          <h1 className="mask-line text-title text-balance">The work, up close</h1>
+          <h1 className="mask-line text-title text-balance">Looks we create</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
-            Explore colour, cutting, styling, and treatment inspiration, then see the latest
-            work from the Megas team on Instagram.
+            Illustrative images of the colour, cuts, and styling we offer. For real, recent
+            work from the Megas team, follow us on Instagram below.
           </p>
         </Reveal>
       </section>

@@ -20,6 +20,13 @@ they are listed first.
       previous employers — but it is still not their words. See
       `SENIOR_PROFILES` in `lib/team.ts`.
 - [ ] **The reviews are invented.** See below.
+- [ ] **The twenty gallery images are AI-generated illustrations** (their original
+      filenames say so). They are in `public/images/gallery/`, described neutrally
+      in `lib/gallery.ts`, and the gallery page calls them illustrative. They show
+      no real Megas work or salon, and some show people who do not exist, so they
+      must be replaced with real photos — with each client's permission to publish
+      — before launch. The original PNGs are kept outside the repo in
+      `../Megas-gallery-originals/`.
 - [ ] **The eight service photos look AI-generated.** They were supplied for the
       demo (`public/images/photos/service-*.jpg`): the same face, the same
       hydrangeas, and the same arched-mirror room recur across all eight. Shown
