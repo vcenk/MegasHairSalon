@@ -20,6 +20,12 @@ they are listed first.
       previous employers — but it is still not their words. See
       `SENIOR_PROFILES` in `lib/team.ts`.
 - [ ] **The reviews are invented.** See below.
+- [ ] **The eight service photos look AI-generated.** They were supplied for the
+      demo (`public/images/photos/service-*.jpg`): the same face, the same
+      hydrangeas, and the same arched-mirror room recur across all eight. Shown
+      as the salon's own work they can mislead clients about what Megas delivers.
+      Replace them with real work, or label them as illustrations, before launch.
+      Their alt text describes the picture and no longer says Megas did the work.
 
 ## Blocking — content we do not have
 
