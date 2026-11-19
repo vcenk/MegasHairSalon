@@ -113,7 +113,7 @@ export default function ContactPage() {
       </section>
 
       <div className="mt-16 md:mt-20">
-        <Visit heading="150-1169 Pacific Street." />
+        <Visit showAddress />
       </div>
 
       <section id="parking-information" className="bg-bone">
