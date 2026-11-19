@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 /**
- * Header lockup: the crossed-shears mark, then the MEGAS wordmark with 1984
- * set small above the final S.
+ * Header lockup: the crossed-shears mark, the MEGAS wordmark, and the line
+ * "Since 1984 in Türkiye" beneath it.
  *
  * 1984 is the year the salon began in Türkiye. It must never read as a
- * Coquitlam date — the salon opened here in 2025 — so it sits on the S as a
- * mark of origin rather than in a "Hair Salon · Est. 1984" line.
+ * Coquitlam date — the salon opened here in 2025 — so it is always tied to
+ * Türkiye in the same line.
  *
  * `tone` follows the header state: light while it floats over the dark hero,
  * ink once it settles onto the bone bar. The mark is silver on transparent, so
@@ -38,16 +38,7 @@ export function Logo({ tone = "ink" }: { tone?: "ink" | "light" }) {
         <span
           className={`relative font-display text-[1.625rem] font-normal tracking-[0.3em] whitespace-nowrap transition-colors duration-300 md:text-[2rem] ${primary}`}
         >
-          MEGA
-          <span className="relative">
-            S
-            <span
-              aria-hidden="true"
-              className="absolute -top-[0.55em] left-0 font-sans text-[0.3em] font-medium tracking-[0.12em]"
-            >
-              1984
-            </span>
-          </span>
+          MEGAS
         </span>
         <span
           className={`mt-2 hidden font-sans text-[0.625rem] whitespace-nowrap uppercase tracking-[0.2em] transition-colors duration-300 sm:block ${secondary}`}

@@ -33,16 +33,27 @@ export default function HomePage() {
           <Reveal className="md:col-span-5">
             <Eyebrow className="mb-5">Coquitlam hair salon</Eyebrow>
             <h2 className="mask-line text-title text-balance">
-              Colour, cuts and treatments near Coquitlam Centre.
+              Are you ready for an exceptional experience?
             </h2>
           </Reveal>
 
           <Reveal delay={100} className="md:col-span-7 md:pt-9">
+            {/* Client-supplied copy. The original wording read "Vegas Hair Salon";
+                corrected to Megas. */}
             <p className="max-w-2xl text-lede text-pretty text-muted">
-              Visit Megas on Pacific Street for balayage, blonde highlights, custom hair
-              colour, women&apos;s and men&apos;s haircuts, keratin smoothing, and styling.
-              Every appointment starts with a clear consultation and a price agreed before
-              the work begins.
+              Looking for a more personalized approach to your hair? We invite you to
+              experience a professional consultation and hair design at Megas Hair Salon in
+              Coquitlam. Let&rsquo;s create something beautiful together!
+            </p>
+            <p className="mt-5 max-w-2xl text-lede text-pretty text-muted">
+              We don&rsquo;t just create your hairstyle; we design a look that reflects your
+              personality, features, and natural beauty.
+            </p>
+            {/* Kept for search: names the services and the Coquitlam Centre area. */}
+            <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-pretty text-muted">
+              Visit us on Pacific Street, near Coquitlam Centre, for balayage, blonde
+              highlights, custom hair colour, women&apos;s and men&apos;s haircuts, keratin
+              smoothing, and styling.
             </p>
             <nav aria-label="Popular hair services" className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
               <Link
