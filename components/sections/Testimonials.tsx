@@ -2,16 +2,18 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { FEATURED_REVIEWS } from "@/lib/reviews";
-import { RATING } from "@/lib/site";
+import { getGoogleRating } from "@/lib/google-rating";
 
-export function Testimonials() {
+export async function Testimonials() {
+  const rating = await getGoogleRating();
+
   return (
     <section className="shell py-20 md:py-28">
       <Reveal className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
           <Eyebrow className="mb-5">In their words</Eyebrow>
           <h2 className="mask-line text-title text-balance">
-            {RATING.value} stars, {RATING.count} reviews.
+            {rating.value.toFixed(1)} stars, {rating.count} reviews.
           </h2>
         </div>
         <Link

@@ -59,6 +59,24 @@ they are listed first.
       invent it).
 - [ ] Have `/privacy` and `/terms` reviewed against PIPEDA and BC PIPA.
 
+## Live Google rating
+
+The hero, reviews page, and schema read the rating from Google when configured
+and fall back to the static 4.8 / 146 in `lib/site.ts` when not.
+
+- [ ] **Create a Google Cloud API key** with "Places API (New)" enabled (billing
+      must be on; Place Details with these fields sits inside the monthly free
+      allowance at this volume). Restrict the key to that API.
+- [ ] **Find the salon's Place ID** (Google's Place ID Finder) and confirm it
+      resolves to Megas, not a similarly named business.
+- [ ] **Add `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID`** in Vercel → Settings →
+      Environment Variables (Production), then redeploy once.
+- [ ] **Check the static fallback in `lib/site.ts` against Google.** It is only
+      what shows if the API is unreachable, but it is a snapshot, not verified.
+- [ ] Read Google's Maps Platform terms on caching before launch: pages hold the
+      rating for up to six hours. That is common practice but is a judgement call
+      on a term that restricts caching Places content.
+
 ## Dependencies
 
 - [x] **Next.js patched to 15.5.25** — 15.5.4 carried CVE-2025-66478, which

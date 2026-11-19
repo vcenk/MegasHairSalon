@@ -45,6 +45,7 @@ these files. To change the site, change these:
 | `lib/faqs.ts` | The salon FAQ, grouped. Feeds `/faq` and its FAQPage schema. |
 | `lib/products.ts` | In-salon retail categories and the Aveda / Wella Professionals product partnerships. |
 | `lib/blog.ts` | Journal posts. |
+| `lib/google-rating.ts` | Live Google rating + review count (hero, reviews page, schema). Falls back to `RATING` in `lib/site.ts`. Needs `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID`. |
 | `lib/reviews.ts` | Testimonials. **Currently placeholders — see the launch checklist.** |
 | `lib/gallery.ts` | Gallery grid. |
 | `lib/nav.ts` | Header and footer navigation. |

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BookButton } from "@/components/ui/Button";
-import { BOOKING, CONTACT, RATING } from "@/lib/site";
+import { getGoogleRating } from "@/lib/google-rating";
+import { BOOKING, CONTACT } from "@/lib/site";
 
 /**
  * Salon Haze's hero shape: one full-bleed photograph of the room, everything
@@ -9,7 +10,9 @@ import { BOOKING, CONTACT, RATING } from "@/lib/site";
  * a light scrim — Haze runs white type straight onto a bright photo, which does
  * not hold up to a contrast check.
  */
-export function Hero() {
+export async function Hero() {
+  const rating = await getGoogleRating();
+
   return (
     <section className="relative flex min-h-[34rem] items-center justify-center overflow-hidden bg-espresso md:min-h-[94svh]">
       <Image
@@ -84,13 +87,26 @@ export function Hero() {
         </Link>
 
         <dl className="enter enter-6 mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 border-t border-bone/25 pt-7 text-[0.8125rem] tracking-[0.12em] text-bone/70 uppercase">
-          <div className="flex items-baseline gap-2.5">
+          {/* Live from Google (see lib/google-rating.ts); links to the reviews. */}
+          <div>
             <dt className="sr-only">Google rating</dt>
-            <dd className="font-display text-xl font-normal text-bone">{RATING.value}</dd>
-            <span aria-hidden="true" className="text-sm text-copper-soft">
-              ★★★★★
-            </span>
-            <span>{RATING.count} reviews</span>
+            <dd>
+              <a
+                href={rating.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Rated ${rating.value.toFixed(1)} out of 5 from ${rating.count} Google reviews — read them on Google`}
+                className="flex items-baseline gap-2.5 transition-colors duration-300 hover:text-bone"
+              >
+                <span className="font-display text-xl font-normal text-bone">
+                  {rating.value.toFixed(1)}
+                </span>
+                <span aria-hidden="true" className="text-sm text-copper-soft">
+                  ★★★★★
+                </span>
+                <span>{rating.count} Google reviews</span>
+              </a>
+            </dd>
           </div>
           <div>
             <dt className="sr-only">Location</dt>

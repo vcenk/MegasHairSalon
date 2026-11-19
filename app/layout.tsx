@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getGoogleRating } from "@/lib/google-rating";
 import { localBusinessSchema } from "@/lib/schema";
 import { BUSINESS, SITE } from "@/lib/site";
 
@@ -25,6 +26,13 @@ const rubik = Rubik({
   variable: "--font-rubik",
 });
 
+/**
+ * Pages re-render at most every six hours so the live Google rating in the hero,
+ * reviews page, and schema picks up new reviews without a deploy. Matches the
+ * fetch revalidate in lib/google-rating.ts.
+ */
+export const revalidate = 21_600;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
@@ -45,7 +53,9 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const rating = await getGoogleRating();
+
   return (
     <html lang="en-CA" className={`${jost.variable} ${rubik.variable}`}>
       <body className="min-h-screen bg-bone antialiased">
@@ -58,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <JsonLd data={localBusinessSchema()} />
+        <JsonLd data={localBusinessSchema(rating)} />
       </body>
     </html>
   );

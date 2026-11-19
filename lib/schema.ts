@@ -15,7 +15,7 @@ const DAY_SCHEMA: Record<string, string> = {
 export const BUSINESS_ID = `${SITE.url}/#salon`;
 
 /** Sitewide LocalBusiness node. Emitted once, in the root layout. */
-export function localBusinessSchema() {
+export function localBusinessSchema(rating: { value: number; count: number } = RATING) {
   return {
     "@context": "https://schema.org",
     "@type": "HairSalon",
@@ -52,8 +52,8 @@ export function localBusinessSchema() {
       })),
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: RATING.value,
-      reviewCount: RATING.count,
+      ratingValue: rating.value,
+      reviewCount: rating.count,
       bestRating: 5,
     },
     sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.google],
