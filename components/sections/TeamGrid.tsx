@@ -24,8 +24,9 @@ export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: nu
             <span className="text-muted"> “{member.alternateName}”</span>
           )}
         </h3>
-        {/* No job titles on the public site. Years of experience only where the
-            salon has supplied them; otherwise the line is simply absent. */}
+        {/* Job title, then years of experience where the salon has supplied
+            them. Phorest booking levels (LV.1 etc.) are not shown. */}
+        <p className="mt-1 text-sm text-muted">{member.title}</p>
         {member.years !== null && (
           <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
             {member.years} years

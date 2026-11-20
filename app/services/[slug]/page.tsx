@@ -216,6 +216,7 @@ export default async function ServicePage({ params }: Params) {
                       <h3 className="font-display text-lg text-ink transition-colors group-hover:text-copper">
                         {member.name}
                       </h3>
+                      <p className="mt-0.5 text-sm text-muted">{member.title}</p>
                       {member.years !== null && (
                         <p className="mt-0.5 font-sans text-[0.6875rem] uppercase tracking-[0.18em] text-copper">
                           {member.years} years

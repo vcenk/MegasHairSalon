@@ -20,8 +20,9 @@ it explains the structure and where content lives.
 - **1984 is Türkiye, never Coquitlam.** The salon began in Türkiye in 1984 and
   opened in Coquitlam in 2025. Any copy that mentions 1984 must tie it to Türkiye
   ("Since 1984 in Türkiye, now in Coquitlam"); never "Coquitlam since 1984".
-- **No job titles on the public site.** Years of experience may show where the
-  salon has supplied them; titles and Phorest levels stay in data only.
+- **Job titles show as the salon supplies them** (`title` in `lib/team.ts`), with
+  years of experience where given. Phorest booking levels ("LV.1" etc.) are never
+  shown publicly.
 - **Motion is CSS-driven and respects `prefers-reduced-motion`.** The `Reveal`
   component only flips a data attribute; `app/globals.css` owns the transition
   and disables it under reduced motion.
