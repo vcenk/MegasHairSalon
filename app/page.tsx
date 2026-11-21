@@ -1,4 +1,4 @@
-import { BOOKING } from "@/lib/site";
+import { BOOKING, CONTACT } from "@/lib/site";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogCard } from "@/components/sections/BlogCard";
@@ -51,7 +51,17 @@ export default function HomePage() {
             </p>
             {/* Kept for search: names the services and the Coquitlam Centre area. */}
             <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-pretty text-muted">
-              Visit us on Pacific Street, near Coquitlam Centre, for balayage, blonde
+              Visit us on{" "}
+              <a
+                href={CONTACT.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-copper underline decoration-copper/40 underline-offset-4 transition-colors hover:text-copper-deep hover:decoration-copper-deep"
+              >
+                Pacific Street
+                <span className="sr-only"> (opens Google Maps in a new tab)</span>
+              </a>
+              , near Coquitlam Centre, for balayage, blonde
               highlights, custom hair colour, women&apos;s and men&apos;s haircuts, keratin
               smoothing, and styling.
             </p>
