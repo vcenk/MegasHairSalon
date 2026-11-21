@@ -29,10 +29,13 @@ it explains the structure and where content lives.
 
 ## Design system
 
-Tokens are in the `@theme` block of `app/globals.css` — near-white warm paper,
-ink, and burnished copper, with Jost for display and Rubik for UI. Use the
-semantic colour names (`bone`, `sand`, `clay`, `ink`, `espresso`, `muted`,
-`copper`), not raw hex.
+Tokens are in the `@theme` block of `app/globals.css` — a pale lavender
+ground, near-black ink with a plum undertone, and the logo's purple as the single
+accent, with Jost for display and Rubik for UI. Use the semantic colour names
+(`bone`, `sand`, `clay`, `ink`, `espresso`, `muted`, `copper`), not raw hex.
+`copper` is the logo purple `#982E91`; the name is left over from the first palette.
+`copper-soft` (`#BF7CB5`) is for dark sections only — it is too light for text on the
+lavender ground.
 
 Display type follows Salon Haze: light weight, uppercase, wide tracking on nav
 and buttons. Uppercase is applied to `h1`/`h2` only — never through

@@ -43,7 +43,7 @@ const region = {
 };
 
 const PAPER = [252, 250, 247];
-const SHEAR_LIFT = [225, 150, 225];
+const SHEAR_LIFT = [191, 124, 181]; // the client's light purple, #BF7CB5
 const dark = Buffer.alloc(width * height * 4);
 const light = Buffer.alloc(width * height * 4);
 for (let p = 0; p < width * height; p++) {
@@ -57,7 +57,7 @@ for (let p = 0; p < width * height; p++) {
   dark[o] = c[0]; dark[o + 1] = c[1]; dark[o + 2] = c[2]; dark[o + 3] = alpha;
   const neutral = Math.max(...c) - Math.min(...c) < 40; // lettering, not the purple shears
   // Shears: lifted toward a light orchid and made more opaque so they hold on a dark photo.
-  const l = neutral ? PAPER : c.map((v, k) => Math.round(v + (SHEAR_LIFT[k] - v) * 0.55));
+  const l = neutral ? PAPER : c.map((v, k) => Math.round(v + (SHEAR_LIFT[k] - v) * 0.7));
   const la = neutral ? alpha : Math.min(255, Math.round(alpha * 1.9));
   light[o] = l[0]; light[o + 1] = l[1]; light[o + 2] = l[2]; light[o + 3] = la;
 }

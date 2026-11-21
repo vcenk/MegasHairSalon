@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: BUSINESS.longTagline,
     start_url: "/",
     display: "standalone",
-    background_color: "#f8f4ee",
-    theme_color: "#f8f4ee",
+    background_color: "#f8f1f7",
+    theme_color: "#f8f1f7",
   };
 }

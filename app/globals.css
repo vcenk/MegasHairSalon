@@ -8,19 +8,22 @@
    sizes. Haze runs Brandon Grotesque (Adobe Fonts, licensed) over Rubik —
    we use Jost as the Brandon stand-in and Rubik itself for UI text.
 
-   Colour keeps Megas distinct: Haze's near-white airiness, warmed slightly,
-   with burnished copper as the single accent.
+   Colour: a pale lavender ground, near-black ink with a plum undertone, and
+   the logo's purple as the single accent. The accent tokens are still named
+   copper-* from the first palette; read them as the purple family
+   (copper #982E91 = logo purple, copper-soft #BF7CB5 = the light purple used
+   on dark sections, where it reaches 5.4:1 — on the light ground use copper).
    ───────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-bone: #fcfaf7;
-  --color-sand: #f4f0ea;
-  --color-clay: #e2dad0;
-  --color-ink: #1c1917;
-  --color-espresso: #211d1a;
-  --color-muted: #6f665e;
-  --color-copper: #a15c33;
-  --color-copper-deep: #7c4425;
-  --color-copper-soft: #c99269;
+  --color-bone: #f8f1f7;
+  --color-sand: #f1e6ef;
+  --color-clay: #e4d6e0;
+  --color-ink: #1d181c;
+  --color-espresso: #231a21;
+  --color-muted: #6b6370;
+  --color-copper: #982e91;
+  --color-copper-deep: #7a2474;
+  --color-copper-soft: #bf7cb5;
 
   --font-display: var(--font-jost), "Futura", ui-sans-serif, sans-serif;
   --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
