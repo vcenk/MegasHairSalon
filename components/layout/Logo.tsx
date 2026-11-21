@@ -2,50 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 
 /**
- * Header lockup: the crossed-shears mark, the MEGAS wordmark, and the line
- * "Since 1984 in Türkiye" beneath it.
+ * The client's approved logo, exactly as supplied: purple shears and black
+ * lettering on white. It is not recoloured or re-typeset.
  *
- * 1984 is the year the salon began in Türkiye. It must never read as a
- * Coquitlam date — the salon opened here in 2025 — so it is always tied to
- * Türkiye in the same line.
- *
- * `tone` follows the header state: light while it floats over the dark hero,
- * ink once it settles onto the bone bar. The mark is silver on transparent, so
- * on the light bar it is inverted rather than swapped for a second asset.
+ * On the light bar the white ground is multiplied away so the logo sits
+ * straight on the paper tone. Over the dark hero it would vanish, so it keeps
+ * its own white ground and reads as a small white badge instead.
  */
 export function Logo({ tone = "ink" }: { tone?: "ink" | "light" }) {
-  const primary = tone === "light" ? "text-bone" : "text-ink";
-  const secondary = tone === "light" ? "text-bone/60" : "text-muted";
-
   return (
     <Link
       href="/"
-      className="group mr-2 flex shrink-0 items-center gap-3 leading-none xl:mr-4"
+      className="mr-2 block shrink-0 xl:mr-4"
       aria-label="Megas Hair Salon — home"
     >
       <Image
-        src="/images/brands/megas-mark.png"
+        src="/images/brands/megas-logo.png"
         alt=""
-        width={344}
-        height={240}
+        width={994}
+        height={614}
         priority
-        className={`h-9 w-auto transition-[filter] duration-300 md:h-12 ${
-          tone === "light" ? "" : "invert"
+        className={`h-14 w-auto md:h-[5.5rem] ${
+          tone === "light" ? "rounded-sm" : "mix-blend-multiply"
         }`}
       />
-
-      <span className="flex flex-col">
-        <span
-          className={`relative font-display text-[1.625rem] font-normal tracking-[0.3em] whitespace-nowrap transition-colors duration-300 md:text-[2rem] ${primary}`}
-        >
-          MEGAS
-        </span>
-        <span
-          className={`mt-2 hidden font-sans text-[0.625rem] whitespace-nowrap uppercase tracking-[0.2em] transition-colors duration-300 sm:block ${secondary}`}
-        >
-          Since 1984 in Türkiye
-        </span>
-      </span>
     </Link>
   );
 }
