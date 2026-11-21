@@ -107,8 +107,8 @@ export default async function AreaPage({ params }: Params) {
       <section className="bg-sand">
         <div className="shell py-20 md:py-24">
           <Reveal className="max-w-xl">
-            <Eyebrow className="mb-5">Popular with {area.name} clients</Eyebrow>
-            <h2 className="mask-line text-title text-balance">What people book</h2>
+            <Eyebrow className="mb-5">Our services</Eyebrow>
+            <h2 className="mask-line text-title text-balance">What we offer</h2>
           </Reveal>
           <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURED_SERVICES.slice(0, 3).map((service, index) => (

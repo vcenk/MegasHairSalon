@@ -168,7 +168,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "Where are you?",
         answer:
-          "150-1169 Pacific St, Coquitlam, BC V3B 0J1 — near Coquitlam Centre and a short walk from Lincoln SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
+          "150-1169 Pacific St, Coquitlam, BC V3B 0J1 — near Coquitlam Centre and Lincoln SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
       },
       {
         question: "What are your hours?",
@@ -177,7 +177,7 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
       {
         question: "Where do I park?",
         answer:
-          "There is street and building parking on Pacific Street. If you are coming from Port Moody or Vancouver, the SkyTrain drops you a short walk away.",
+          "Paid street parking is available along Pacific Street, paid underground parking is behind the salon building, and free street parking is available on Glen Drive. Please do not park in the Coquitlam Square parking lot; it is reserved for the stores in the square.",
       },
       {
         question: "Do you speak Turkish?",

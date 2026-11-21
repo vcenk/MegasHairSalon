@@ -3,9 +3,16 @@
  *
  * These describe one salon serving several communities — they are not separate
  * locations, and the copy must never imply otherwise.
+ *
+ * Only state what the salon has supplied or what is on the menu and team data.
+ * No drive times, turn-by-turn routes, "most of our clients" claims, price
+ * comparisons or parking promises: those are not ours to assert. Address, hours,
+ * phone and parking come from lib/site.ts; for travel time the pages point to
+ * the map instead of quoting minutes.
  */
 
 import type { Faq } from "./services";
+import { CONTACT, HOURS_DISPLAY, PARKING } from "./site";
 
 export type Area = {
   readonly slug: string;
@@ -22,43 +29,60 @@ export type Area = {
   readonly faqs: readonly Faq[];
 };
 
+const HOURS_TEXT = `${HOURS_DISPLAY[0].label}, ${HOURS_DISPLAY[0].value}. ${HOURS_DISPLAY[1].label}: ${HOURS_DISPLAY[1].value}.`;
+
+const PARKING_TEXT = `${PARKING.street} ${PARKING.underground} ${PARKING.free}`;
+
+const ADDRESS_ROW = { label: "Address", detail: CONTACT.addressLine } as const;
+const PARKING_ROW = { label: "Parking", detail: PARKING_TEXT } as const;
+const PARKING_WARNING_ROW = { label: "Please note", detail: PARKING.warning } as const;
+
+const MAPS_ROW = {
+  label: "Driving",
+  detail: `Enter ${CONTACT.addressLine} in your maps app for a live route and drive time from where you are.`,
+} as const;
+
 export const AREAS: readonly Area[] = [
   {
     slug: "hair-salon-coquitlam",
     name: "Coquitlam",
     metaTitle: "Hair Salon in Coquitlam | Master Colourists | Megas",
     metaDescription:
-      "Megas Hair Salon near Coquitlam Centre on Pacific St. Balayage, blonde highlights, women's and men's cuts, colour, and keratin. Book online.",
-    eyebrow: "Coquitlam Centre · Home salon",
+      "Megas Hair Salon on Pacific St in Coquitlam, near Coquitlam Centre. Balayage, blonde highlights, women's and men's cuts, colour, and keratin. Book online.",
+    eyebrow: "Coquitlam · Our salon",
     headline: "Your hair salon in Coquitlam.",
-    lede: "On Pacific Street near Coquitlam Centre and Lincoln SkyTrain Station.",
+    lede: "On Pacific Street, near Coquitlam Centre and Lincoln SkyTrain Station.",
     image: "/images/photos/area-coquitlam.jpg",
-    imageAlt: "Megas Hair Salon on Pacific Street in Coquitlam, British Columbia",
+    imageAlt:
+      "Inside Megas Hair Salon: a colour wall, shampoo chairs, and styling stations under pendant lighting",
     body: [
-      "Megas is a Coquitlam salon by address and by temperament. We are on Pacific Street near Coquitlam Centre and Lincoln SkyTrain Station — and most of our chairs are filled by people who live within fifteen minutes of the door.",
-      "What we brought here is not local, though. The salon started in Istanbul in 1984, and the standard it was built on — long consultations, colour mixed for the head in front of you, stylists who have been doing this for decades rather than seasons — came with it.",
-      "For Coquitlam clients that means you do not have to drive to Vancouver for master-level colour work. Balayage, blonde correction, keratin smoothing, and precision cutting all happen here, at Tri-Cities prices and with parking you do not have to circle for.",
+      "Megas is on Pacific Street, near Coquitlam Centre and Lincoln SkyTrain Station. The salon began in Türkiye in 1984 and opened in Coquitlam in 2025.",
+      "What came with it is the way the salon works: a consultation before colour, colour mixed for the head in front of us, and stylists with decades behind the chair.",
+      "Balayage, blonde work, keratin smoothing, and precision cutting all happen at the Pacific Street salon. See the services for the full list, or book online in Phorest.",
     ],
     gettingHere: [
-      { label: "Address", detail: "150-1169 Pacific St, Coquitlam, BC V3B 0J1" },
-      { label: "SkyTrain", detail: "A short walk from Lincoln Station on the Millennium Line." },
-      { label: "Driving", detail: "Near Coquitlam Centre, Pinetree Way, and Lougheed Highway." },
-      { label: "Parking", detail: "Street and building parking available on Pacific St." },
+      ADDRESS_ROW,
+      { label: "SkyTrain", detail: "Lincoln Station, on the Millennium Line, is nearby." },
+      PARKING_ROW,
+      PARKING_WARNING_ROW,
     ],
     faqs: [
       {
         question: "Where exactly is Megas Hair Salon in Coquitlam?",
-        answer:
-          "We are at 150-1169 Pacific St, Coquitlam, BC V3B 0J1 — near Coquitlam Centre and a short walk from Lincoln SkyTrain Station. Call 778-858-0396 if you have trouble finding the entrance.",
+        answer: `We are at ${CONTACT.addressLine}, near Coquitlam Centre. Call ${CONTACT.phone} if you have trouble finding the entrance.`,
       },
       {
         question: "What are your hours?",
-        answer: "Monday to Saturday, 9:00 am to 6:00 pm. Closed Sundays.",
+        answer: HOURS_TEXT,
       },
       {
         question: "Do I need an appointment?",
         answer:
-          "We strongly recommend booking — colour appointments in particular need blocked time. You can book online through our Phorest booking page at any hour, or call during opening hours.",
+          "Booking ahead is the best way to get the time and stylist you want. You can book online through our Phorest booking page at any hour, or call during opening hours.",
+      },
+      {
+        question: "Where do I park?",
+        answer: `${PARKING_TEXT} ${PARKING.warning}`,
       },
     ],
   },
@@ -67,38 +91,38 @@ export const AREAS: readonly Area[] = [
     name: "Port Moody",
     metaTitle: "Hair Salon Near Port Moody | Balayage & Colour | Megas Hair Salon",
     metaDescription:
-      "Master colourists a short drive from Port Moody. Balayage from $350, highlights from $185, precision cuts from $60 at Megas Hair Salon in Coquitlam.",
-    eyebrow: "Port Moody · 15 minutes away",
-    headline: "A Port Moody drive worth making.",
-    lede: "A short trip from Newport Village for colour work you would otherwise cross a bridge for.",
+      "Megas Hair Salon in Coquitlam, near Port Moody. Balayage, blonde highlights, precision cuts, and keratin by master stylists. Book online.",
+    eyebrow: "Port Moody · Megas in Coquitlam",
+    headline: "From Port Moody to Megas.",
+    lede: "One salon, on Pacific Street in Coquitlam, near Coquitlam Centre.",
     image: "/images/photos/area-port-moody.jpg",
-    imageAlt: "The route from Port Moody to Megas Hair Salon in Coquitlam",
+    imageAlt: "A treatment room with a white treatment bed and recessed ceiling lighting",
     body: [
-      "Port Moody clients make up a steady share of our chairs, and the reason is usually colour. Balayage, blonde correction, and grey coverage are specialist work, and the pool of colourists with thirty-plus years behind the chair is small anywhere in the Lower Mainland.",
-      "The drive from Newport Village or Suter Brook is usually about fifteen minutes via St Johns Street, Barnet Highway, and Pinetree Way. Either way it is shorter than the trip into Vancouver that a lot of people were making before they found us.",
-      "If you are coming from Port Moody for a first colour appointment, book the complimentary consultation first. It is free, it takes twenty minutes, and it means the colour appointment itself is planned rather than improvised.",
+      "If you are in Port Moody and looking for balayage, blonde work, or grey coverage, Megas is nearby in Coquitlam, on Pacific Street.",
+      "Our master stylists have decades of experience, and every colour is mixed for the head in front of them rather than poured from a pre-made bowl.",
+      "If this is your first colour appointment, book the complimentary consultation first. It costs nothing and lets us plan the colour before we start.",
     ],
     gettingHere: [
-      { label: "Drive time", detail: "About 15 minutes from Newport Village and Suter Brook, outside rush hour." },
-      { label: "Route", detail: "St Johns St to Barnet Hwy, then Pinetree Way to Pacific St." },
-      { label: "SkyTrain", detail: "Take the Millennium Line from Moody Centre to Lincoln Station." },
-      { label: "Parking", detail: "Street and building parking on Pacific St." },
+      ADDRESS_ROW,
+      { label: "SkyTrain", detail: "Millennium Line from Moody Centre to Lincoln Station." },
+      MAPS_ROW,
+      PARKING_ROW,
+      PARKING_WARNING_ROW,
     ],
     faqs: [
       {
-        question: "How far is Megas from Port Moody?",
-        answer:
-          "Usually about fifteen minutes by car from Newport Village, or take the Millennium Line from Moody Centre to Lincoln Station followed by a short walk.",
+        question: "How do I get to Megas from Port Moody?",
+        answer: `Megas is on Pacific Street in Coquitlam, near Coquitlam Centre. By car, enter ${CONTACT.addressLine} in your maps app for a live route. By SkyTrain, take the Millennium Line from Moody Centre to Lincoln Station.`,
       },
       {
-        question: "Is it worth the drive from Port Moody for a haircut?",
+        question: "What can I book?",
         answer:
-          "For a straightforward trim, that is your call. For colour — balayage, blonde work, correction, or grey coverage that has to look right — the experience level here is the reason people travel.",
+          "Women's and men's cuts, colour, balayage, blonde highlights, keratin smoothing, blow-dries, and treatments. The services page has the full list.",
       },
       {
         question: "Can I book a consultation before committing?",
         answer:
-          "Yes, and it costs nothing. Book the complimentary consultation online, come in for twenty minutes, and leave with a plan and a firm price.",
+          "Yes. The consultation is listed as complimentary on our menu. Book it online in Phorest before your colour appointment.",
       },
     ],
   },
@@ -107,38 +131,40 @@ export const AREAS: readonly Area[] = [
     name: "Port Coquitlam",
     metaTitle: "Hair Salon Near Port Coquitlam | Cuts, Colour & Keratin | Megas",
     metaDescription:
-      "Megas Hair Salon near Coquitlam Centre serves Port Coquitlam. Women's and men's cuts, colour, balayage, and keratin with easy parking. Book online.",
-    eyebrow: "Port Coquitlam · 15 minutes away",
-    headline: "PoCo's colour appointment.",
-    lede: "Fifteen minutes west along Lougheed, with parking at the door.",
+      "Megas Hair Salon on Pacific St in Coquitlam, serving Port Coquitlam. Women's and men's cuts, colour, balayage, and keratin. Book online.",
+    eyebrow: "Port Coquitlam · Megas in Coquitlam",
+    headline: "From Port Coquitlam to Megas.",
+    lede: "One salon, on Pacific Street in Coquitlam, near Coquitlam Centre.",
     image: "/images/photos/area-port-coquitlam.jpg",
-    imageAlt: "The route from Port Coquitlam to Megas Hair Salon in Coquitlam",
+    imageAlt: "Styling station, colour storage, and shampoo chairs inside Megas Hair Salon",
     body: [
-      "From downtown Port Coquitlam it is roughly fifteen minutes west along Lougheed Highway to our door on Pacific Street. No bridge, no downtown parking, no meter anxiety.",
-      "PoCo clients tend to book cuts and colour together, and that suits us — a cut and a root retouch in one visit is the most efficient appointment in the salon, and it is how most of our regulars run their year.",
-      "Families are a good part of that. Kids' cuts are $40 to $45 for ages three to eleven, and we book them alongside a parent's appointment where the schedule allows.",
+      "Megas is on Pacific Street in Coquitlam, near Coquitlam Centre, in the city next to Port Coquitlam.",
+      "A cut and a colour can be booked together: choose both services when you book in Phorest.",
+      "Kids' cuts for ages 3 to 11 are on the price menu, so families can book through the same page.",
     ],
     gettingHere: [
-      { label: "Drive time", detail: "About 15 minutes from downtown Port Coquitlam." },
-      { label: "Route", detail: "Lougheed Hwy west toward Coquitlam Centre, then Pinetree Way to Pacific St." },
-      { label: "Transit", detail: "West Coast Express and SkyTrain both connect via Coquitlam Central." },
-      { label: "Parking", detail: "Street and building parking on Pacific St." },
+      ADDRESS_ROW,
+      MAPS_ROW,
+      {
+        label: "Transit",
+        detail: "Use TransLink's trip planner for transit directions to Lincoln Station, near the salon.",
+      },
+      PARKING_ROW,
+      PARKING_WARNING_ROW,
     ],
     faqs: [
       {
-        question: "How long does it take to get there from Port Coquitlam?",
-        answer:
-          "About fifteen minutes by car from downtown PoCo along Lougheed Highway, outside rush hour.",
+        question: "How do I get to Megas from Port Coquitlam?",
+        answer: `Megas is at ${CONTACT.addressLine}, near Coquitlam Centre. Enter the address in your maps app for a live route and drive time from where you are.`,
       },
       {
         question: "Do you cut children's hair?",
         answer:
-          "Yes — $45 for girls and $40 for boys, ages three to eleven. Book it next to your own appointment and we will try to run them back to back.",
+          "Yes. Kids' cuts for ages 3 to 11 are on our price menu. Book them in Phorest.",
       },
       {
         question: "Can I get a cut and colour in the same visit?",
-        answer:
-          "Yes, and it is the most common booking we take. Select both services when booking online so the right amount of time is blocked.",
+        answer: "Yes. Select both services when booking online.",
       },
     ],
   },
@@ -147,37 +173,41 @@ export const AREAS: readonly Area[] = [
     name: "Vancouver",
     metaTitle: "Turkish Hair Salon Near Vancouver | Master Colourists | Megas",
     metaDescription:
-      "Turkish hair salon serving Greater Vancouver from Coquitlam. master colourists with careers built in Türkiye — balayage, blonde work, keratin. Book online.",
+      "Turkish hair salon serving Greater Vancouver from Coquitlam. Founded in Istanbul in 1984 — balayage, blonde work, keratin. Book online.",
     eyebrow: "Vancouver · Turkish salon",
     headline: "A Turkish salon, forty years in.",
-    lede: "Istanbul training and Istanbul standards, twenty-five minutes east of downtown Vancouver.",
+    lede: "Since 1984 in Türkiye, now in Coquitlam.",
     image: "/images/photos/area-vancouver.jpg",
-    imageAlt: "Megas Hair Salon — a Turkish hair salon serving Greater Vancouver from Coquitlam",
+    imageAlt: "Long blonde hair in soft waves, seen in profile",
     body: [
-      "If you have had your hair done in Istanbul, you know the difference is not a technique — it is a set of assumptions. That the consultation matters. That colour gets mixed for your head, not poured from a pre-made bowl. That a stylist with thirty years of experience is normal rather than remarkable.",
-      "Megas has been operating under those assumptions since 1984, first in Istanbul and, since 2025, in Coquitlam. Bülent and Gazi both trained and built careers in Türkiye before bringing the salon here; Emir has worked across both countries.",
-      "For the Turkish community across Greater Vancouver — and for anyone else who wants that standard — we are about twenty-five minutes east of downtown, straight out on Highway 1 or two transfers on SkyTrain. Türkçe konuşuyoruz; hoş geldiniz.",
+      "Megas began in Istanbul in 1984 and opened in Coquitlam in 2025. The way we work comes from there: a real consultation first, colour mixed for the head in front of us, and stylists who have been doing this for decades.",
+      "Bülent has two established salons in Türkiye and a career in Canada, and Emir has worked across both countries. Gazi has been working since 1984.",
+      "For the Turkish community across Greater Vancouver, and for anyone who wants that standard, we are in Coquitlam, on Pacific Street near Coquitlam Centre. Türkçe konuşuyoruz; hoş geldiniz.",
     ],
     gettingHere: [
-      { label: "Drive time", detail: "About 25–30 minutes from downtown Vancouver via Highway 1." },
-      { label: "SkyTrain", detail: "Expo to Millennium Line, then continue to Lincoln Station." },
-      { label: "Language", detail: "Turkish and English spoken in the salon." },
-      { label: "Parking", detail: "Free of the downtown parking problem — street and building parking on site." },
+      ADDRESS_ROW,
+      {
+        label: "SkyTrain",
+        detail: "Expo Line to Commercial–Broadway, then the Millennium Line to Lincoln Station.",
+      },
+      MAPS_ROW,
+      { label: "Language", detail: "Turkish and English are spoken in the salon." },
+      PARKING_ROW,
+      PARKING_WARNING_ROW,
     ],
     faqs: [
       {
         question: "Is there a Turkish hair salon near Vancouver?",
         answer:
-          "Megas Hair Salon in Coquitlam is Turkish-owned and was founded in Istanbul in 1984; it has been in Coquitlam since 2025. It is about twenty-five minutes east of downtown Vancouver, and Turkish is spoken in the salon.",
+          "Megas Hair Salon was founded in Istanbul in 1984 and has been in Coquitlam since 2025. Turkish is spoken in the salon.",
       },
       {
         question: "Do the stylists speak Turkish?",
         answer: "Yes. Bülent, Gazi, Emir, and Fulya all speak Turkish and English.",
       },
       {
-        question: "Is it worth coming from Vancouver?",
-        answer:
-          "For colour, most of our Vancouver clients think so — and they usually save money doing it, since Tri-Cities pricing runs below downtown for the same level of experience.",
+        question: "How do I get to Megas from Vancouver?",
+        answer: `By SkyTrain, take the Expo Line to Commercial–Broadway, then the Millennium Line to Lincoln Station. By car, enter ${CONTACT.addressLine} in your maps app for a live route and drive time.`,
       },
     ],
   },

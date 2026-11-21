@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Areas We Serve | Coquitlam, Port Moody, Port Coquitlam & Vancouver",
   description:
-    "Megas Hair Salon is on Pacific St in Coquitlam, serving the Tri-Cities and Greater Vancouver. Directions, drive times, and transit for each area.",
+    "Megas Hair Salon is on Pacific St in Coquitlam, serving the Tri-Cities and Greater Vancouver. Directions and transit for each area.",
   path: "/areas",
 });
 
@@ -25,8 +25,8 @@ export default function AreasPage() {
           <Eyebrow className="mb-5">Areas we serve</Eyebrow>
           <h1 className="mask-line text-title text-balance">One salon, the whole Tri-Cities.</h1>
           <p className="mt-6 max-w-xl text-lede text-pretty text-muted">
-            We are on Pacific Street near Coquitlam Centre — a short walk from Lincoln Station
-            and a straightforward drive from Port Moody, Port Coquitlam, and Greater Vancouver.
+            We are on Pacific Street, near Coquitlam Centre and Lincoln Station, and welcome
+            clients from Port Moody, Port Coquitlam, and Greater Vancouver.
           </p>
         </Reveal>
       </section>
